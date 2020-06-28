@@ -10,6 +10,7 @@ namespace Blueberry.WPF.Enums
     {
         HomePage = 0,
         OrderPage = 1,
-        CalendarPage = 2,
+        CustomersPage = 2,
+        CalendarPage = 3,
     }
 }

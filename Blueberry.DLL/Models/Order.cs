@@ -18,106 +18,116 @@ namespace Blueberry.DLL.Models
         private OrderStatus _status;
         private DateTime _dateOfRealization;
 
-        public Order() { }
-
-    public Order(Order argsOrder)
-    {
-        Id = argsOrder.Id;
-        Customer = argsOrder.Customer;
-        Amount = argsOrder.Amount;
-        DateOfOrder = argsOrder.DateOfOrder;
-        DateOfRealization = argsOrder.DateOfRealization;
-        Priority = argsOrder.Priority;
-        Status = argsOrder.Status;
-    }
-
-    public int Id { get; set; }
-    public Customer Customer { get; set; }
-
-    public float Amount
-    {
-        get => _amount;
-        set
+        public Order()
         {
-            if (Math.Abs(value - _amount) > 0.01)
-            {
-                _amount = value;
-                OnPropertyChanged();
-            }      
-        } 
-    }
+        }
 
-    public DateTime DateOfOrder { get; set; }
+        public int Id { get; set; } 
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
 
-    public DateTime DateOfRealization
-    {
-        get => _dateOfRealization;
-        set
+        public float Amount
         {
-            if (_dateOfRealization != value)
+            get => _amount;
+            set
             {
-                _dateOfRealization = value;
-                OnPropertyChanged();
+                if (Math.Abs(value - _amount) > 0.01)
+                {
+                    _amount = value;
+                    OnPropertyChanged();
+                }
             }
         }
-    }
 
-    public Priority Priority
-    {
-        get => _priority;
-        set
+        public DateTime DateOfOrder { get; set; }
+
+        public DateTime DateOfRealization
         {
-            if (_priority != value)
+            get => _dateOfRealization;
+            set
             {
-                _priority = value;
-                OnPropertyChanged();                
+                if (_dateOfRealization != value)
+                {
+                    _dateOfRealization = value;
+                    OnPropertyChanged();
+                }
             }
         }
-    }
 
-    public OrderStatus Status
-    {
-        get => _status;
-        set
+        public Priority Priority
         {
-            if (_status != value)
+            get => _priority;
+            set
             {
-                _status = value;
-                OnPropertyChanged();
+                if (_priority != value)
+                {
+                    _priority = value;
+                    OnPropertyChanged();
+                }
             }
         }
-    }
 
-    public override string ToString()
-    {
-        string dateString = DateOfRealization.ToShortDateString();
-        return $"Klient: {Customer}\t Ilość: {Amount}\t Do: {dateString}";
-    }
+        public OrderStatus Status
+        {
+            get => _status;
+            set
+            {
+                if (_status != value)
+                {
+                    _status = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-    protected bool Equals(Order other)
-    {
-        return Id == other.Id;
-    }
+        public Order(Order argsOrder)
+        {
+            Id = argsOrder.Id;
+            Customer = argsOrder.Customer;
+            Amount = argsOrder.Amount;
+            DateOfOrder = argsOrder.DateOfOrder;
+            DateOfRealization = argsOrder.DateOfRealization;
+            Priority = argsOrder.Priority;
+            Status = argsOrder.Status;
+        }
 
-    public override bool Equals(object obj)
-    {
-        if (ReferenceEquals(null, obj)) return false;
-        if (ReferenceEquals(this, obj)) return true;
-        if (obj.GetType() != this.GetType()) return false;
-        return Equals((Order) obj);
-    }
+        public string FullString()
+        {
+            return
+                $"{nameof(Id)}: {Id}, {nameof(Customer)}: {Customer}, {nameof(Amount)}: {Amount}, {nameof(DateOfOrder)}: {DateOfOrder}, " +
+                $"{nameof(DateOfRealization)}: {DateOfRealization}, {nameof(Priority)}: {Priority}, {nameof(Status)}: {Status}";
+        }
 
-    public override int GetHashCode()
-    {
-        return Id;
-    }
+        public override string ToString()
+        {
+            string dateString = DateOfRealization.ToShortDateString();
+            return $"Klient: {Customer}\t Ilość: {Amount}\t Do: {dateString}";
+        }
 
-    public event PropertyChangedEventHandler PropertyChanged;
+        protected bool Equals(Order other)
+        {
+            return Id == other.Id;
+        }
 
-    [NotifyPropertyChangedInvocator]
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Order) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

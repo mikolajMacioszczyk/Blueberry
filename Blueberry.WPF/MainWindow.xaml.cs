@@ -39,11 +39,15 @@ namespace Blueberry.WPF
             var homePage = new HomePage(Model);
             var orderPage =  new OrderPage(Model);
             orderPage.OrderChanged += Model.OnOrdersChangedEventHandler;
+            orderPage.OrderAdded += Model.OnOrderAddedEventHandler;
+            var customersPage = new CustomersPage(Model);
+            customersPage.CustomerModified += Model.OnCustomerModifiedEventHandler;
             var calendarPage =  new CalendarPage();
             Pages = new List<Page>()
             {
                 homePage,
                 orderPage,
+                customersPage,
                 calendarPage
             };
             MainFrame.Navigate(Pages[0]);

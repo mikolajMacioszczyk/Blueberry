@@ -30,3 +30,13 @@ D:\C#\Blueberry\Blueberry.WPF\bin\Debug\EntityFramework.SqlServer.xml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Windows\EditOrderWindow.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Windows\EditOrderWindow.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\OrderList.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\OrderList.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\NewOrderPanel.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\NewOrderPanel.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\CustomersPage.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\CustomersPage.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Windows\CustomerDetailsWindow.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Windows\CustomerDetailsWindow.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Windows\EditCustomerWindow.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Windows\EditCustomerWindow.baml

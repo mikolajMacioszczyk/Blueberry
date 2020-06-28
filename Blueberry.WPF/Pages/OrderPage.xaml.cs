@@ -14,8 +14,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using Blueberry.WPF.Enums;
 using Blueberry.WPF.ExtensionMethods;
 using Blueberry.WPF.PageEventArgs;
+using Blueberry.WPF.UserControls;
 using Blueberry.WPF.Windows;
 
 namespace Blueberry.WPF.Pages
@@ -28,13 +30,35 @@ namespace Blueberry.WPF.Pages
         private ViewModel _model;
         private SortBy _sortByFilter = SortBy.Priority;
         private OrderStatus _statusFilter = OrderStatus.Waiting;
+        private OrderList _orderList;
+        private NewOrderPanel _newOrderPanel;
+
+        public event EventHandler<NewOrderEventArgs> OrderAdded; 
         public event EventHandler<OrderPageEventAgrs> OrderChanged;
 
         public OrderPage(ViewModel model)
         {
             InitializeComponent();
-            DataContext = model;
             _model = model;
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            _newOrderPanel = new NewOrderPanel(_model);
+            _newOrderPanel.OrderAdded += (sender, args) =>
+            {
+                OrderAdded?.Invoke(sender, args);
+                RightSideControl.Content = _orderList;
+                FilterOrders();
+            };
+            _orderList = new OrderList();
+            RightSideControl.Content = _orderList;
+            _orderList.OrderChanged += (sender, args) =>
+            {
+                OrderChanged?.Invoke(sender, args);
+                FilterOrders();
+            };
             FilterOrders();
         }
 
@@ -43,22 +67,22 @@ namespace Blueberry.WPF.Pages
             switch (_sortByFilter)
             {
                 case SortBy.Date:
-                    OrdersItemsControl.DataContext =
-                        _model.Orders.Where(o => o.Status == _statusFilter).OrderBy(o => o.DateOfRealization);
+                    _orderList.DataContext =
+                        _model.Orders.Where(o => o.Status == _statusFilter).OrderBy(o => o.DateOfRealization).ToList();
                     break;
                 case SortBy.Customer:
-                    OrdersItemsControl.DataContext =
-                        _model.Orders.Where(o => o.Status == _statusFilter).OrderBy(o => o.Customer);
+                    _orderList.DataContext =
+                        _model.Orders.Where(o => o.Status == _statusFilter).OrderBy(o => o.Customer).ToList();
                     break;
                 case SortBy.Priority:
-                    OrdersItemsControl.DataContext =
-                        _model.Orders.Where(o => o.Status == _statusFilter).OrderBy(o => o.Priority);
+                    _orderList.DataContext =
+                        _model.Orders.Where(o => o.Status == _statusFilter).OrderByDescending(o => o.Priority).ToList();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
-
+        
         private void RefreshOnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -73,17 +97,7 @@ namespace Blueberry.WPF.Pages
             _sortByFilter = (SortBy) Enum.Parse(typeof(SortBy), e.Parameter.ToString());
             FilterOrders();
         }
-
-        private void DoneButtonOnClick(object sender, RoutedEventArgs e)
-        {
-            Button source = sender as Button;
-            var oldOrder = source?.Tag as Order;
-            if (oldOrder.Status == OrderStatus.Realized) return;
-            var newOrder = new Order(oldOrder);
-            newOrder.Status = OrderStatus.Realized;
-            UpdateOrders(oldOrder,newOrder, new Modification(oldOrder.Status, OrderStatus.Realized));
-        }
-
+        
         private void FindOnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -99,60 +113,14 @@ namespace Blueberry.WPF.Pages
             FilterOrders();
         }
 
-        private void EditOnClick(object sender, RoutedEventArgs e)
-        { 
-            var button = sender as Button;
-            var oldOrder = button.Tag as Order;
-            var newOrder = new EditOrderWindow(oldOrder).PromptDialog();
-            
-            var changes = new List<Modification>();
-
-            if (oldOrder.Amount != newOrder.Amount)
-            {
-                changes.Add(new Modification(oldOrder.Amount, newOrder.Amount));
-            }
-            if (oldOrder.Priority != newOrder.Priority)
-            {
-                changes.Add(new Modification(oldOrder.Priority, newOrder.Priority));
-            }
-            if (oldOrder.Status != newOrder.Status)
-            {
-                changes.Add(new Modification(oldOrder.Status, newOrder.Status));
-            }
-            if (oldOrder.DateOfRealization != newOrder.DateOfRealization)
-            {
-                changes.Add(new Modification(oldOrder.DateOfRealization, newOrder.DateOfRealization));
-            }
-            
-            UpdateOrders(oldOrder,newOrder, changes.ToArray());
-        }
-        
-        private void CancelOnClick(object sender, RoutedEventArgs e)
-        {
-            if (_statusFilter == OrderStatus.Cancelled) { return; }
-            var button = sender as Button;
-            var oldOrder = button.Tag as Order;
-            var newOrder = new Order(oldOrder);
-            newOrder.Status = OrderStatus.Cancelled;
-            UpdateOrders(oldOrder,newOrder, new Modification(oldOrder.Status, OrderStatus.Cancelled));
-        }
-
-        private void UpdateOrders(Order old, Order @new, params Modification[] modifications)
-        {
-            OrderChanged?.Invoke(this, new OrderPageEventAgrs(old, @new, modifications));
-            FilterOrders();
-        }
-
         private void NewOrderOnClick(object sender, RoutedEventArgs e)
         {
-            
+            RightSideControl.Content = _newOrderPanel;
         }
-    }
-
-    internal enum SortBy
-    {
-        Date,
-        Customer,
-        Priority
+        
+        private void ListOnClick(object sender, RoutedEventArgs e)
+        {
+            RightSideControl.Content = _orderList;
+        }
     }
 }

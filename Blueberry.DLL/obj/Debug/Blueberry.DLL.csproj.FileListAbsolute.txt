@@ -12,5 +12,5 @@ D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.exe
 D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.pdb
 D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.Migrations.InitialModel.resources
 D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.csproj.GenerateResource.cache
-D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.Migrations.MakeDateTimeNotNullAble.resources
-D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.Migrations.AddRecordColumn.resources
+D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.Migrations.InitialModel1.resources
+D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.Migrations.AddNumberColumnToCustomer.resources

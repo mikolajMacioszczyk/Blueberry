@@ -5,6 +5,6 @@
         Niski = 1,
         Średni,
         Wysoki,
-        BardzoWyskoi
+        BardzoWysoki
     }
 }

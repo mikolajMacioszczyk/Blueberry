@@ -7,13 +7,13 @@ namespace Blueberry.DLL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class MakeDateTimeNotNullAble : IMigrationMetadata
+    public sealed partial class InitialModel1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MakeDateTimeNotNullAble));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialModel1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202006261336435_MakeDateTimeNotNullAble"; }
+            get { return "202006271648571_InitialModel1"; }
         }
         
         string IMigrationMetadata.Source

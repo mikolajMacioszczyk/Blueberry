@@ -3,16 +3,16 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class MakeDateTimeNotNullAble : DbMigration
+    public partial class AddNumberColumnToCustomer : DbMigration
     {
         public override void Up()
         {
-            AlterColumn("dbo.Orders", "DateOfRealization", c => c.DateTime(nullable: false));
+            AddColumn("dbo.Customers", "Number", c => c.String());
         }
         
         public override void Down()
         {
-            AlterColumn("dbo.Orders", "DateOfRealization", c => c.DateTime());
+            DropColumn("dbo.Customers", "Number");
         }
     }
 }

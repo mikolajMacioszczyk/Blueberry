@@ -1,0 +1,31 @@
+﻿<Window x:Class="Blueberry.WPF.Windows.CustomerDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Blueberry.WPF.Windows"
+        xmlns:converters="clr-namespace:Blueberry.WPF.Converters"
+        mc:Ignorable="d"
+        SizeToContent="Width"
+        Title="CustomerDetailsWindow" Height="450">
+    <Window.Resources>
+        <converters:AngToPlPriorityConverter x:Key="PriorityToPlConverter" />
+        <converters:AngToPlStatusConverter x:Key="StatusToPlConverter" />
+    </Window.Resources>
+    <ListView ItemsSource="{Binding}">
+        <ListView.View>
+            <GridView>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=Amount}" Header="Ilość" Width="80" />
+
+                <GridViewColumn DisplayMemberBinding="{Binding Path=DateOfOrder}" Header="Przyjęte" Width="150" />
+
+                <GridViewColumn DisplayMemberBinding="{Binding Path=DateOfRealization}" Header="Zrealizowane"
+                                Width="150" />
+
+                <GridViewColumn DisplayMemberBinding="{Binding Path=Status, Converter={StaticResource StatusToPlConverter}}" Header="Status" Width="100" />
+
+                <GridViewColumn DisplayMemberBinding="{Binding Path=Priority, Converter={StaticResource PriorityToPlConverter}}" Header="Priorytet" Width="100" />
+            </GridView>
+        </ListView.View>
+    </ListView>
+</Window>

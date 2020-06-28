@@ -10,9 +10,19 @@ namespace Blueberry.DLL
     {
         private BlueberryContext _context;
         private List<Order> Orders;
+        private List<Customer> Customers;
         public DBConnector()
         {
             _context = new BlueberryContext();
+        }
+
+        public List<Customer> GetCustomers()
+        {
+            if (Customers == null)
+            {
+                Customers = _context.Customers.Include(c => c.Address).ToList();
+            }
+            return Customers;
         }
 
         public List<Order> GetOrders()
@@ -24,15 +34,31 @@ namespace Blueberry.DLL
             return Orders;
         }
 
-        public void ModifyOrder(Order oldOrder, Order newOrder, Modification[] modifications)
+        public void ModifyOrder(Order modifiedOrder, Modification[] modifications)
         {
             var record = new Record()
             {
-                Order = newOrder,
-                Message = string.Join(", ",modifications.Select(m => $"Modification property {m.Type} =>  from '{m.OldValue}' to '{m.NewValue}'")),
+                Message =$"Modification order {modifiedOrder.FullString()}: " + string.Join(", ",modifications.Select(m => $"property {m.Type} =>  from '{m.OldValue}' to '{m.NewValue}', ")),
             };
-            _context.Orders.Remove(oldOrder);
-            _context.Orders.Add(newOrder);
+            _context.Records.Add(record);
+        }
+
+        public void ModifyCustomer(Customer old, Modification[] modifications)
+        {
+            var record = new Record()
+            {
+                Message =$"Modification custmer {old.FullString()}: " + string.Join(", ",modifications.Select(m => $"property {m.Type} =>  from '{m.OldValue}' to '{m.NewValue}', ")),
+            };
+            _context.Records.Add(record);
+        }
+        
+        public void AddOrder(Order order)
+        {
+            var record = new Record()
+            {
+                Message =$"Added new order: {order.FullString()}: ",
+            };
+            _context.Orders.Add(order);
             _context.Records.Add(record);
         }
 

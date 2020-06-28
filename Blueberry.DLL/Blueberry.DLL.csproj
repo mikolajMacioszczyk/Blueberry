@@ -60,13 +60,13 @@
     <Compile Include="Migrations\202006241918168_InitialModel.designer.cs">
       <DependentUpon>202006241918168_InitialModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006261336435_MakeDateTimeNotNullAble.cs" />
-    <Compile Include="Migrations\202006261336435_MakeDateTimeNotNullAble.designer.cs">
-      <DependentUpon>202006261336435_MakeDateTimeNotNullAble.cs</DependentUpon>
+    <Compile Include="Migrations\202006271648571_InitialModel1.cs" />
+    <Compile Include="Migrations\202006271648571_InitialModel1.designer.cs">
+      <DependentUpon>202006271648571_InitialModel1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006271003027_AddRecordColumn.cs" />
-    <Compile Include="Migrations\202006271003027_AddRecordColumn.designer.cs">
-      <DependentUpon>202006271003027_AddRecordColumn.cs</DependentUpon>
+    <Compile Include="Migrations\202006271900425_AddNumberColumnToCustomer.cs" />
+    <Compile Include="Migrations\202006271900425_AddNumberColumnToCustomer.designer.cs">
+      <DependentUpon>202006271900425_AddNumberColumnToCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Addresses.cs" />
@@ -88,11 +88,11 @@
     <EmbeddedResource Include="Migrations\202006241918168_InitialModel.resx">
       <DependentUpon>202006241918168_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006261336435_MakeDateTimeNotNullAble.resx">
-      <DependentUpon>202006261336435_MakeDateTimeNotNullAble.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006271648571_InitialModel1.resx">
+      <DependentUpon>202006271648571_InitialModel1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006271003027_AddRecordColumn.resx">
-      <DependentUpon>202006271003027_AddRecordColumn.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006271900425_AddNumberColumnToCustomer.resx">
+      <DependentUpon>202006271900425_AddNumberColumnToCustomer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

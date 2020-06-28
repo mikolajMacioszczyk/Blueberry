@@ -7,13 +7,13 @@ namespace Blueberry.DLL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddRecordColumn : IMigrationMetadata
+    public sealed partial class AddNumberColumnToCustomer : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddRecordColumn));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddNumberColumnToCustomer));
         
         string IMigrationMetadata.Id
         {
-            get { return "202006271003027_AddRecordColumn"; }
+            get { return "202006271900425_AddNumberColumnToCustomer"; }
         }
         
         string IMigrationMetadata.Source

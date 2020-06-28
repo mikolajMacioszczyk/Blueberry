@@ -21,8 +21,9 @@
         <Menu DockPanel.Dock="Top" FontSize="35">
             <MenuItem Header="Start" Padding="20,0" Command="NavigationCommands.GoToPage" CommandParameter="HomePage" />
             <MenuItem Header="Zamówienia" Padding="20,0" Command="NavigationCommands.GoToPage" CommandParameter="OrderPage"/>
+            <MenuItem Header="Klienci" Padding="20,0" Command="NavigationCommands.GoToPage" CommandParameter="CustomersPage"/>
             <MenuItem Header="Kalendarz" Padding="20,0" Command="NavigationCommands.GoToPage" CommandParameter="CalendarPage"/>
-            <MenuItem Header="Wyloguj" Padding="20,0" Command="Close" />
+            <MenuItem Header="Zapisz" Padding="20,0" Command="Close" />
         </Menu>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
     </DockPanel>
