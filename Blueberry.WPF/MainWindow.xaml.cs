@@ -42,7 +42,8 @@ namespace Blueberry.WPF
             orderPage.OrderAdded += Model.OnOrderAddedEventHandler;
             var customersPage = new CustomersPage(Model);
             customersPage.CustomerModified += Model.OnCustomerModifiedEventHandler;
-            var calendarPage =  new CalendarPage();
+            customersPage.CustomerAdded += Model.OnCustomerAddedEventHandler;
+            var calendarPage =  new CalendarPage(Model);
             Pages = new List<Page>()
             {
                 homePage,

@@ -10,7 +10,8 @@
       d:DesignHeight="450" d:DesignWidth="800"
       MaxHeight="800"
       FontSize="30"
-      Title="OrderPage">
+      Title="OrderPage"
+      Background="White">
     <Page.CommandBindings>
         <CommandBinding Command="Refresh"
                         CanExecute="RefreshOnCanExecute"
@@ -19,60 +20,42 @@
                         CanExecute="FindOnCanExecute"
                         Executed="FindOnExecuted" />
     </Page.CommandBindings>
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
 
-        <!--Row 0-->
-        <GroupBox Grid.Row="0">
-            <GroupBox.Resources>
-                <Style TargetType="{x:Type RadioButton}" x:Key="RadioButtonStyle">
-                    <Setter Property="Margin" Value="10,0" />
-                    <Setter Property="FontSize" Value="27" />
-                </Style>
-            </GroupBox.Resources>
-            <GroupBox.Header>
-                <Label Content="Zamówienia" />
-            </GroupBox.Header>
-            <StackPanel Orientation="Horizontal">
-                <RadioButton Content="Oczekujące" Command="Find" CommandParameter="0"
-                             Style="{StaticResource RadioButtonStyle}" />
-                <RadioButton Content="Zrealizowane" Command="Find" CommandParameter="1"
-                             Style="{StaticResource RadioButtonStyle}" />
-                <RadioButton Content="Anulowane" Command="Find" CommandParameter="2"
-                             Style="{StaticResource RadioButtonStyle}" />
-                <RadioButton Content="Odłożone" Command="Find" CommandParameter="3"
-                             Style="{StaticResource RadioButtonStyle}" />
-            </StackPanel>
-        </GroupBox>
-
-        <!--Row 1-->
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <!-- Left side -->
-            <StackPanel Orientation="Vertical" Grid.Column="0">
-                <StackPanel.Resources>
+    <DockPanel>
+        <!-- Left Side -->
+        <Border DockPanel.Dock="Left"
+                BorderThickness="0,0,3,0" BorderBrush="#004225"
+                Padding="10,5,15,10">
+            <Grid>
+                <Grid.Resources>
                     <Style TargetType="{x:Type RadioButton}" x:Key="RadioButtonStyle">
                         <Setter Property="Margin" Value="10,0" />
                         <Setter Property="FontSize" Value="25" />
                     </Style>
-                    <Style TargetType="{x:Type Button}" x:Key="ButtonStyle">
+                    <Style TargetType="{x:Type  Border}" x:Key="OuterBorderStyle">
+                        <Setter Property="Margin" Value="10" />
+                        <Setter Property="Padding" Value="5" />
+                        <Setter Property="CornerRadius" Value="10" />
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="BorderBrush" Value="#004225" />
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
-                    
-                </StackPanel.Resources>
-                <GroupBox>
+                </Grid.Resources>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- SortBy -->
+                <GroupBox Grid.Row="0">
                     <GroupBox.Header>
                         <Label Content="Sortuj po: " />
                     </GroupBox.Header>
@@ -85,43 +68,62 @@
                                      Style="{StaticResource RadioButtonStyle}" />
                     </StackPanel>
                 </GroupBox>
-
-                <Separator />
-    
-                <!-- New Order -->
-                <Button BorderThickness="0" Style="{StaticResource ButtonStyle}"
-                        Click="NewOrderOnClick">
-                    <Button.Background>
-                        <SolidColorBrush Color="White" Opacity="0.5" />
-                    </Button.Background>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Dodaj nowe" />
-                        <Image Source="../Images/add_icone.png" Width="60" />
-                    </StackPanel>
-                </Button>
                 
-                <Separator />
+                <!-- Selection -->
+                <GroupBox Grid.Row="1">
+                    <GroupBox.Resources>
+                        <Style TargetType="{x:Type RadioButton}" x:Key="RadioButtonStyle">
+                            <Setter Property="FontSize" Value="25" />
+                            <Setter Property="Margin" Value="0,3" />
+                        </Style>
+                    </GroupBox.Resources>
+                    <GroupBox.Header>
+                        <Label Content="Zamówienia" />
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton Content="Oczekujące" Command="Find" CommandParameter="0"
+                                     Style="{StaticResource RadioButtonStyle}" />
+                        <RadioButton Content="Zrealizowane" Command="Find" CommandParameter="1"
+                                     Style="{StaticResource RadioButtonStyle}" />
+                        <RadioButton Content="Anulowane" Command="Find" CommandParameter="2"
+                                     Style="{StaticResource RadioButtonStyle}" />
+                        <RadioButton Content="Odłożone" Command="Find" CommandParameter="3"
+                                     Style="{StaticResource RadioButtonStyle}" />
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- New Order -->
+                <Border Grid.Row="3" Style="{StaticResource OuterBorderStyle}">
+                    <Button BorderThickness="0"
+                            Click="NewOrderOnClick">
+                        <Button.Background>
+                            <SolidColorBrush Color="White" Opacity="0.5" />
+                        </Button.Background>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Dodaj nowe" />
+                            <Image Source="../Images/add_icone.png" Width="60" />
+                        </StackPanel>
+                    </Button>
+                </Border>
 
                 <!-- List -->
-                <Button BorderThickness="0" Style="{StaticResource ButtonStyle}"
-                        Click="ListOnClick">
-                    <Button.Background>
-                        <SolidColorBrush Color="White" Opacity="0.5" />
-                    </Button.Background>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Lista" />
-                        <Image Source="../Images/list.png" Width="60" />
-                    </StackPanel>
-                </Button>
-            </StackPanel>
-
-            <!-- Right Side -->
-            <UserControl Grid.Column="1" x:Name="RightSideControl" >
-                <UserControl.Background>
-                    <SolidColorBrush Color="White" Opacity="0.6" />
-                </UserControl.Background>
-            </UserControl>
-
-        </Grid>
-    </Grid>
+                <Border Grid.Row="4" Style="{StaticResource OuterBorderStyle}">
+                    <Button BorderThickness="0"
+                            Click="ListOnClick">
+                        <Button.Background>
+                            <SolidColorBrush Color="White" Opacity="0.5" />
+                        </Button.Background>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Lista" />
+                            <Image Source="../Images/list.png" Width="60" />
+                        </StackPanel>
+                    </Button>
+                </Border>
+            </Grid>
+        </Border>
+        
+        <!-- Center -->
+        <UserControl x:Name="RightSideControl" Margin="20" />
+        
+    </DockPanel>
 </Page>

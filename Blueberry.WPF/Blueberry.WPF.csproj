@@ -17,6 +17,22 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\macio\Desktop\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +52,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>AEBE68051B21616B38E07F00BBDFCB481B90024E</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Blueberry.WPF_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -68,18 +96,33 @@
     <Compile Include="Converters\AddressToStringPConverter.cs" />
     <Compile Include="Converters\AngToPlPriorityConverter.cs" />
     <Compile Include="Converters\AngToPlStatusConverter.cs" />
+    <Compile Include="Enums\MonthPolishNames.cs" />
     <Compile Include="Enums\OrderStatusPolishNames.cs" />
     <Compile Include="Enums\PageTypes.cs" />
     <Compile Include="Enums\PriorityPolishNames.cs" />
     <Compile Include="Enums\SortBy.cs" />
     <Compile Include="ExtensionMethods\ObservableCollectionExtensionMethods.cs" />
+    <Compile Include="PageEventArgs\CustomerAddedEventArgs.cs" />
     <Compile Include="PageEventArgs\CustomerPageEventArgs.cs" />
+    <Compile Include="PageEventArgs\NewCustomerEventArgs.cs" />
     <Compile Include="PageEventArgs\NewOrderEventArgs.cs" />
     <Compile Include="PageEventArgs\OrderPageEventAgrs.cs" />
     <Compile Include="Pages\CustomersPage.xaml.cs">
       <DependentUpon>CustomersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="UserControls\ColoredCalendar.xaml.cs">
+      <DependentUpon>ColoredCalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ColoredCalendarItem.xaml.cs">
+      <DependentUpon>ColoredCalendarItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomerList.xaml.cs">
+      <DependentUpon>CustomerList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\NewCustomerUserControl.xaml.cs">
+      <DependentUpon>NewCustomerUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\NewOrderPanel.xaml.cs">
       <DependentUpon>NewOrderPanel.xaml</DependentUpon>
     </Compile>
@@ -87,6 +130,7 @@
       <DependentUpon>OrderList.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel.cs" />
+    <Compile Include="ViewModels\ColoredCalendarViewModel.cs" />
     <Compile Include="Windows\CustomerDetailsWindow.xaml.cs">
       <DependentUpon>CustomerDetailsWindow.xaml</DependentUpon>
     </Compile>
@@ -121,6 +165,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\ColoredCalendar.xaml" />
+    <Page Include="UserControls\ColoredCalendarItem.xaml" />
+    <Page Include="UserControls\CustomerList.xaml" />
+    <Page Include="UserControls\NewCustomerUserControl.xaml" />
     <Page Include="UserControls\NewOrderPanel.xaml" />
     <Page Include="UserControls\OrderList.xaml" />
     <Page Include="Windows\CustomerDetailsWindow.xaml" />
@@ -154,6 +202,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Blueberry.WPF_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -184,6 +233,28 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\list.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\next_icone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\previous_icone.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

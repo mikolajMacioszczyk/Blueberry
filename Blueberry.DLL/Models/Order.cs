@@ -101,7 +101,7 @@ namespace Blueberry.DLL.Models
         public override string ToString()
         {
             string dateString = DateOfRealization.ToShortDateString();
-            return $"Klient: {Customer}\t Ilość: {Amount}\t Do: {dateString}";
+            return $"Klient: {Customer},  Ilość: {Amount},  Do: {dateString}";
         }
 
         protected bool Equals(Order other)

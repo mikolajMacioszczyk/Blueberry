@@ -19,6 +19,7 @@ namespace Blueberry.WPF.Windows
         {
             Customer = new Customer(customer);
             Save = new Customer(customer);
+            SaveAddress = new Address(customer.Address);
             Refresh();
             base.ShowDialog();
             return Customer;
@@ -33,9 +34,9 @@ namespace Blueberry.WPF.Windows
             FirstNameTextBox.Text = Save.FirstName;
             LastNameTextBox.Text = Save.LastName;
             PhoneNumberTextBox.Text = Save.Number;
-            CityTextBox.Text = Save.Address.City;
-            StreetTextBox.Text = Save.Address.Street;
-            HouseTextBox.Text = Save.Address.House.ToString();
+            CityTextBox.Text = SaveAddress.City;
+            StreetTextBox.Text = SaveAddress.Street;
+            HouseTextBox.Text = SaveAddress.House.ToString();
         }
 
         private void SubmitOnClick(object sender, RoutedEventArgs e)
@@ -50,7 +51,7 @@ namespace Blueberry.WPF.Windows
                 Customer.Address.House = Convert.ToInt32(HouseTextBox.Text);
                 this.Close();
             }
-            catch (FormatException exception)
+            catch (FormatException)
             {
                 Refresh();
                 InfoBox.Text = "Nieprawidłowa wartość liczbowa";
