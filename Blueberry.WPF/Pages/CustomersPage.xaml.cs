@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Blueberry.DLL.Models;
 using Blueberry.WPF.PageEventArgs;
+using Blueberry.WPF.UserControls;
 using Blueberry.WPF.Windows;
 
 namespace Blueberry.WPF.Pages
@@ -12,54 +13,79 @@ namespace Blueberry.WPF.Pages
     public partial class CustomersPage : Page
     {
         public event EventHandler<CustomerPageEventArgs> CustomerModified; 
-        
+        public event EventHandler<CustomerAddedEventArgs> CustomerAdded;
+
         private ViewModel _model;
+        private CustomerList _customerList;
+        private NewCustomerUserControl _newCustomerControl;
         public CustomersPage(ViewModel model)
         {
             _model = model;
             InitializeComponent();
-            CustomersItemControl.DataContext = _model.Customers.OrderBy(c => c.LastName);
+            Initialize();
         }
 
-        private void DetailsOnClick(object sender, RoutedEventArgs e)
+        private void Initialize()
         {
-            var button = sender as Button;
-            var customer = button.Tag as Customer;
-            var orders = customer.Orders.OrderBy(o => o.DateOfRealization);
-            new CustomerDetailsWindow(orders).ShowDialog();
-        }
-        
-        private void EditOnClick(object sender, RoutedEventArgs e)
-        {
-            var button = sender as Button;
-            var oldCustomer = button.Tag as Customer;
-            var newCustomer = new EditCustomerWindow().Edit(oldCustomer);
-            if (newCustomer != null)
+            _newCustomerControl = new NewCustomerUserControl();
+
+            void OnNewCustomerControlOnDiscarded(object sender, EventArgs args)
             {
-                CustomerModified?.Invoke(this, new CustomerPageEventArgs(oldCustomer, newCustomer, GetModifications(oldCustomer, newCustomer)));
+                AddButton.Visibility = Visibility.Visible;
+                RightSide.Content = _customerList;
             }
+
+            _newCustomerControl.Discarded += OnNewCustomerControlOnDiscarded;
+            _newCustomerControl.CustomerAdded += OnCustomerAddedEventHandler;
+            
+            _customerList = new CustomerList();
+            _customerList.CustomerModified += (sender, args) => CustomerModified?.Invoke(sender, args);
+            _customerList.DataContext = _model.Customers.OrderBy(c => c.LastName);
+            
+            RightSide.Content = _customerList;
         }
 
-        private Modification[] GetModifications(Customer before, Customer after)
+        private void NewCustomerOnClick(object sender, RoutedEventArgs e)
         {
-            var modifications = new List<Modification>();
-            if (!before.FirstName.Equals(after.FirstName))
+            AddButton.Visibility = Visibility.Hidden;
+            RightSide.Content = _newCustomerControl;
+        }
+
+        private void OnCustomerAddedEventHandler(object sender, NewCustomerEventArgs args)
+        {
+            RightSide.Content = _customerList;
+            AddButton.Visibility = Visibility.Visible;
+            if (_model.Customers.Any(c => c.FirstName.Equals(args.FirstName) && c.LastName.Equals(args.LastName)))
             {
-                modifications.Add(new Modification(before.FirstName, after.FirstName));
+                return;
             }
-            if (!before.LastName.Equals(after.LastName))
+
+            Address address;
+            bool isAddressNew = false;
+            try
             {
-                modifications.Add(new Modification(before.LastName, after.LastName));
+                address = _model.Addresses.Single(a => a.City.Equals(args.City) && a.Street.Equals(args.Street) && a.House.Equals(args.House));
             }
-            if (!before.Number.Equals(after.Number))
+            catch (InvalidOperationException)
             {
-                modifications.Add(new Modification(before.Number, after.Number));
+                isAddressNew = true;
+                address = new Address()
+                {
+                    City = args.City,
+                    Street = args.Street,
+                    House = args.House
+                };
             }
-            if (!before.Address.Equals(after.Address))
+            var customer = new Customer()
             {
-                modifications.Add(new Modification(before.Address, after.Address));
-            }
-            return modifications.ToArray();
+                FirstName = args.FirstName,
+                LastName = args.LastName,
+                Number = args.PhoneNumber,
+                Address = address,
+                Orders =  new List<Order>()
+            };
+            CustomerAdded?.Invoke(this, new CustomerAddedEventArgs(customer, isAddressNew));
+            _customerList.DataContext = _model.Customers.OrderBy(c => c.LastName);
         }
     }
 }

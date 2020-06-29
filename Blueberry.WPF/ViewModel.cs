@@ -20,6 +20,7 @@ namespace Blueberry.WPF
         private DBConnector _connector;
         public ObservableCollection<Order> Orders { get; }
         public ObservableCollection<Customer> Customers { get; }
+        public ObservableCollection<Address> Addresses { get; set; }
         public float PricePerKilo => 15;
         
         public ViewModel()
@@ -27,6 +28,7 @@ namespace Blueberry.WPF
             _connector = new DBConnector();
             Orders = new ObservableCollection<Order>(_connector.GetOrders());
             Customers = new ObservableCollection<Customer>(_connector.GetCustomers());
+            Addresses = new ObservableCollection<Address>(_connector.GetAddresses());
         }
 
         public void OnOrdersChangedEventHandler(object sender, OrderPageEventAgrs args)
@@ -60,6 +62,16 @@ namespace Blueberry.WPF
             old.Address.Street = @new.Address.Street;
             old.Address.House = @new.Address.House;
             _connector.ModifyCustomer(args.OldValue, args.Modifications);
+        }
+        
+        public void OnCustomerAddedEventHandler(object sender, CustomerAddedEventArgs args)
+        {
+            Customers.Add(args.Customer);
+            if (args.IsAddressNew)
+            {
+                Addresses.Add(args.Customer.Address);
+            }
+            _connector.AddCustomer(args.Customer, args.IsAddressNew);
         }
 
         public void Dispose()

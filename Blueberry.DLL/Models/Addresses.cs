@@ -11,13 +11,11 @@ namespace Blueberry.DLL.Models
 {
     public class Address : INotifyPropertyChanged
     {
+        #region Properties
         private int _house;
         private string _street;
         private string _city;
-
-        #region Properties
         public int Id { get; set; }
-
         public int House
         {
             get => _house;
@@ -30,7 +28,6 @@ namespace Blueberry.DLL.Models
                 }
             }
         }
-
         public string Street
         {
             get => _street;
@@ -43,7 +40,6 @@ namespace Blueberry.DLL.Models
                 }
             }
         }
-
         public string City
         {
             get => _city;
@@ -56,8 +52,18 @@ namespace Blueberry.DLL.Models
                 }
             }
         }
-
         #endregion
+
+        public Address() { }
+
+        public Address(Address address)
+        {
+            Id = address.Id;
+            City = address.City;
+            Street = address.Street;
+            House = address.House;
+        }
+        
 
         public override string ToString()
         {

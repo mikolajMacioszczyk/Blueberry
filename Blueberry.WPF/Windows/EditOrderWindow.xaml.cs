@@ -40,7 +40,7 @@ namespace Blueberry.WPF.Windows
                 Order.DateOfRealization = Convert.ToDateTime(RealizationDate.SelectedDate);
                 this.Close();
             }
-            catch (FormatException exception)
+            catch (FormatException)
             {
                 MessageBox.Show("Niepoprawna wartość liczbowa");
                 Restore();

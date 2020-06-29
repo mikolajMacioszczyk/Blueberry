@@ -30,7 +30,7 @@
             </StackPanel.Resources>
             <Border CornerRadius="7" Margin="20,0,20,10" Padding="10">
                 <Border.Background>
-                    <SolidColorBrush Color="White" Opacity="0.55"/>
+                    <SolidColorBrush Color="#d3dfed" Opacity="0.85"/>
                 </Border.Background>
                 <StackPanel >
                     <TextBlock x:Name="Droped" Style="{StaticResource DescriptionStyle}"/>
@@ -42,7 +42,7 @@
 
             <Border CornerRadius="7" Margin="20,10,20,0" Padding="10">
                 <Border.Background>
-                    <SolidColorBrush Color="White" Opacity="0.55"/>
+                    <SolidColorBrush Color="#d3dfed" Opacity="0.85"/>
                 </Border.Background>
                 <StackPanel>
                     <TextBlock Text="Oczekujące zamówienia:" Style="{StaticResource DescriptionStyle}"/>

@@ -40,3 +40,15 @@ D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Windows\CustomerDetailsWindow.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Windows\CustomerDetailsWindow.baml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Windows\EditCustomerWindow.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Windows\EditCustomerWindow.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\CustomerList.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\CustomerList.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\NewCustomerUserControl.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\NewCustomerUserControl.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendar.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendar.baml
+D:\C#\Blueberry\Blueberry.WPF\bin\Debug\Blueberry.WPF.exe.manifest
+D:\C#\Blueberry\Blueberry.WPF\bin\Debug\Blueberry.WPF.application
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Blueberry.WPF.exe.manifest
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Blueberry.WPF.application
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendarItem.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendarItem.baml
