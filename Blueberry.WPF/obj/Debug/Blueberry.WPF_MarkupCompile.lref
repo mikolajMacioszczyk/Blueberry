@@ -1,17 +1,27 @@
 ﻿D:\C#\Blueberry\Blueberry.WPF\obj\Debug\GeneratedInternalTypeHelper.g.cs
 
-FD:\C#\Blueberry\Blueberry.WPF\MainWindow.xaml;;
 FD:\C#\Blueberry\Blueberry.WPF\Pages\CalendarPage.xaml;;
 FD:\C#\Blueberry\Blueberry.WPF\Pages\CustomersPage.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\Pages\EmployeePages\EmployerPage.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\Pages\EmployeePages\NewEmployeePage.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\Pages\EmployeePages\SalaryPage.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\Pages\HarvestPages\HarvestHistoryPage.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\Pages\HarvestPages\NewHarvestPage.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\Pages\HarvestPages\StatisticsPage.xaml;;
 FD:\C#\Blueberry\Blueberry.WPF\Pages\HomePage.xaml;;
 FD:\C#\Blueberry\Blueberry.WPF\Pages\OrderPage.xaml;;
-FD:\C#\Blueberry\Blueberry.WPF\UserControls\ColoredCalendar.xaml;;
-FD:\C#\Blueberry\Blueberry.WPF\UserControls\ColoredCalendarItem.xaml;;
-FD:\C#\Blueberry\Blueberry.WPF\UserControls\CustomerList.xaml;;
-FD:\C#\Blueberry\Blueberry.WPF\UserControls\NewCustomerUserControl.xaml;;
-FD:\C#\Blueberry\Blueberry.WPF\UserControls\NewOrderPanel.xaml;;
-FD:\C#\Blueberry\Blueberry.WPF\UserControls\OrderList.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\UserControls\ColoredCalendar\ColoredCalendar.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\UserControls\ColoredCalendar\ColoredCalendarItem.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\UserControls\CustomerControls\CustomerList.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\UserControls\CustomerControls\NewCustomerUserControl.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\UserControls\EmployeeControls\EmployeeTemplate.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\UserControls\EmployeeControls\EmployeeTemplateHeader.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\UserControls\EmployeeControls\SalaryTemplate.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\UserControls\OrderControls\NewOrderPanel.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\UserControls\OrderControls\OrderList.xaml;;
 FD:\C#\Blueberry\Blueberry.WPF\Windows\CustomerDetailsWindow.xaml;;
 FD:\C#\Blueberry\Blueberry.WPF\Windows\EditCustomerWindow.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\Windows\EditEmployeeWindow.xaml;;
 FD:\C#\Blueberry\Blueberry.WPF\Windows\EditOrderWindow.xaml;;
+FD:\C#\Blueberry\Blueberry.WPF\Windows\MainWindow.xaml;;
 

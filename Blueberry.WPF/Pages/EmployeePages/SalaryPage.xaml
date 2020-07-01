@@ -1,0 +1,91 @@
+﻿<Page x:Class="Blueberry.WPF.Pages.SalaryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Blueberry.WPF.Pages"
+      xmlns:userControls="clr-namespace:Blueberry.WPF.UserControls"
+      mc:Ignorable="d"
+      Title="SalaryPage"
+      Loaded="SalaryPage_OnLoaded">
+    <DockPanel Margin="10">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+            <Image Source="../Images/coin.png" Width="70" Margin="10,0" />            
+            <TextBlock DockPanel.Dock="Top" Text="Wypłaty" TextAlignment="Center" FontSize="40" />
+        </StackPanel>
+
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}" x:Key="GroupTextBlockStyle">
+                    <Setter Property="FontSize" Value="20" />
+                    <Setter Property="Margin" Value="0, 5" />
+                </Style>
+            </Grid.Resources>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Left side -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <GroupBox>
+                    <GroupBox.Header>
+                        <TextBlock Text="Sortuj pracowników po:" Style="{StaticResource GroupTextBlockStyle}" />
+                    </GroupBox.Header>
+
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton Click="SortOnClick" Tag="ByName" >
+                            <TextBlock Text="Nazwisku" Style="{StaticResource GroupTextBlockStyle}" />
+                        </RadioButton>
+                        <RadioButton Click="SortOnClick" Tag="ByRate" >
+                            <TextBlock Text="Stawce" Style="{StaticResource GroupTextBlockStyle}" />
+                        </RadioButton>
+                        <RadioButton Click="SortOnClick" Tag="ByCollected" >
+                            <TextBlock Text="Zebranych" Style="{StaticResource GroupTextBlockStyle}" />
+                        </RadioButton>
+                        <RadioButton Click="SortOnClick" Tag="ByUnpaided" >
+                            <TextBlock Text="Nieopłaconych" Style="{StaticResource GroupTextBlockStyle}" />
+                        </RadioButton>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+
+            <!-- Right side -->
+            <StackPanel Grid.Column="1">
+
+                <Border Width="{Binding ElementName=SalaryItemsControl}"
+                        Padding="5" CornerRadius="3"
+                        BorderThickness="0,0,0,3" BorderBrush="#7f90b0">
+                    <userControls:EmployeeTemplateHeader />
+                </Border>
+
+                <ScrollViewer>
+                    <ItemsControl x:Name="SalaryItemsControl"
+                                  ItemsSource="{Binding}"
+                                  Margin="20,0">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Width="{Binding ElementName=SalaryItemsControl}"
+                                        Padding="5" CornerRadius="3"
+                                        BorderThickness="0,0,0,3" BorderBrush="DarkGray">
+                                    <userControls:SalaryTemplate EmployeePaided="SalaryTemplate_OnEmployeePaided" DataContext="{Binding}" />
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Page>

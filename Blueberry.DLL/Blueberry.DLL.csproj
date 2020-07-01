@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CDA7A8BD-B905-41D6-AE00-B7D06F21717E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>Blueberry.DLL</RootNamespace>
     <AssemblyName>Blueberry.DLL</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -15,6 +15,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +49,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -68,9 +86,33 @@
     <Compile Include="Migrations\202006271900425_AddNumberColumnToCustomer.designer.cs">
       <DependentUpon>202006271900425_AddNumberColumnToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006290920234_AddBlueberryDataEntity.cs" />
+    <Compile Include="Migrations\202006290920234_AddBlueberryDataEntity.designer.cs">
+      <DependentUpon>202006290920234_AddBlueberryDataEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006290925121_AddEmployeeTable.cs" />
+    <Compile Include="Migrations\202006290925121_AddEmployeeTable.designer.cs">
+      <DependentUpon>202006290925121_AddEmployeeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006291014109_AddRateColumnToEmployeeTable.cs" />
+    <Compile Include="Migrations\202006291014109_AddRateColumnToEmployeeTable.designer.cs">
+      <DependentUpon>202006291014109_AddRateColumnToEmployeeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006291846025_AddTableBlueberryException.cs" />
+    <Compile Include="Migrations\202006291846025_AddTableBlueberryException.Designer.cs">
+      <DependentUpon>202006291846025_AddTableBlueberryException.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006301023231_AddHarvestTable.cs" />
+    <Compile Include="Migrations\202006301023231_AddHarvestTable.designer.cs">
+      <DependentUpon>202006301023231_AddHarvestTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Addresses.cs" />
+    <Compile Include="Models\BlueberryData.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\BlueberryException.cs" />
+    <Compile Include="Models\Harvest.cs" />
     <Compile Include="Models\Modification.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderStatus.cs" />
@@ -94,6 +136,33 @@
     <EmbeddedResource Include="Migrations\202006271900425_AddNumberColumnToCustomer.resx">
       <DependentUpon>202006271900425_AddNumberColumnToCustomer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006290920234_AddBlueberryDataEntity.resx">
+      <DependentUpon>202006290920234_AddBlueberryDataEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006290925121_AddEmployeeTable.resx">
+      <DependentUpon>202006290925121_AddEmployeeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006291014109_AddRateColumnToEmployeeTable.resx">
+      <DependentUpon>202006291014109_AddRateColumnToEmployeeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006291846025_AddTableBlueberryException.resx">
+      <DependentUpon>202006291846025_AddTableBlueberryException.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006301023231_AddHarvestTable.resx">
+      <DependentUpon>202006301023231_AddHarvestTable.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

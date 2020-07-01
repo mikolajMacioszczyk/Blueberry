@@ -1,0 +1,126 @@
+﻿<Page x:Class="Blueberry.WPF.Pages.HarvestPages.NewHarvestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      Title="NewHarvestPage"
+      Loaded="NewHarvestPage_OnLoaded">
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}" x:Key="TextStyle">
+                    <Setter Property="FontSize" Value="28" />
+                </Style>
+                <Style TargetType="{x:Type TextBox}" x:Key="TextBoxStyle">
+                    <Setter Property="FontSize" Value="28" />
+                </Style>
+                <Style TargetType="{x:Type ComboBox}" x:Key="ComboBoxStyle">
+                    <Setter Property="FontSize" Value="28" />
+                </Style>
+                <Style TargetType="{x:Type Button}" x:Key="ButtonStyle">
+                    <Setter Property="Width" Value="150" />
+                    <Setter Property="Margin" Value="20,0" />
+                    <Setter Property="Padding" Value="5" />
+                    <Setter Property="BorderThickness" Value="0,0,1,1" />
+                    <Setter Property="Background" Value="#d3dfed" />
+                </Style>
+            </Grid.Resources>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2.5*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0"
+                    BorderBrush="DarkGray" BorderThickness="0,0,3,0"
+                    Padding="15">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+
+                    <TextBlock Grid.Row="0"
+                               Text="Pracownik:"
+                               Style="{StaticResource TextStyle}"/>
+
+                    <ComboBox Grid.Row="1"
+                              x:Name="EmployeesComboBox" ItemsSource="{Binding}"
+                              Style="{StaticResource ComboBoxStyle}"
+                              Margin="0,5"/>
+
+                    <Separator Grid.Row="2" Margin="0,0,0,10" />
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Zebrane:"
+                                       Style="{StaticResource TextStyle}" />
+                            <TextBox x:Name="AmountTextBox" Margin="0,5"
+                                     Style="{StaticResource TextBoxStyle}"/>
+                        </StackPanel>
+                        
+                        <Button Grid.Column="1"
+                            Click="AddHarvestOnClick"
+                            Background="White"
+                            BorderThickness="0"
+                            Cursor="Hand">
+                            <Image Source="../../Images/add_icone.png" MaxHeight="50" />
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Border>
+
+
+            <DockPanel  Grid.Column="1" Margin="20">
+                <StackPanel DockPanel.Dock="Bottom" 
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Button Content="Dodaj" Click="AddOnClick" Style="{StaticResource ButtonStyle}" />
+                    <Button Content="Anuluj" Click="DiscardOnClick" Style="{StaticResource ButtonStyle}" />
+                </StackPanel>
+                
+                <ScrollViewer >
+                    <ItemsControl x:Name="JustAddedHarvestControl" ItemsSource="{Binding}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+
+                                <Border BorderBrush="DarkGray" BorderThickness="1" Padding="5" CornerRadius="3">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{Binding Path=Employee}"
+                                                   Style="{StaticResource TextStyle}" />
+
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Path=Amount, StringFormat=Zerwano: {0}}"
+                                                   Style="{StaticResource TextStyle}" />
+                                    </Grid>
+                                </Border>
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>
+            
+        </Grid>
+</Page>

@@ -1,0 +1,92 @@
+﻿<Page x:Class="Blueberry.WPF.Pages.StatisticsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Blueberry.WPF.Pages.HarvestPages"
+      xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+      mc:Ignorable="d"
+      Title="StatisticsPage" 
+      Loaded="StatisticsPage_OnLoaded">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}" x:Key="StatsButtonStyle">
+                <Setter Property="BorderThickness" Value="0,0,1,1"  />
+                <Setter Property="Background" Value="#d3dfed" />
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="Padding" Value="0,5" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+            </Style>
+            <Style TargetType="chartingToolkit:Chart" x:Key="ChartStyle">
+                <Setter Property="Margin" Value="50,20" />
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="1" Content="Zbiorów" Click="HarvestStatsOnClick"
+                    Style="{StaticResource StatsButtonStyle}"/>
+            <Button Grid.Column="3" Content="Pracowników" Click="EmployeesStatsOnClick" 
+                    Style="{StaticResource StatsButtonStyle}"/>
+            <Button Grid.Column="5" Content="Sprzedanych" Click="RealizedStatsOnClick" 
+                    Style="{StaticResource StatsButtonStyle}"/>
+            <Button Grid.Column="7" Content="Przyjętych" Click="AcceptedStatsOnClick" 
+                    Style="{StaticResource StatsButtonStyle}"/>
+            <Button Grid.Column="9" Content="Lokalizacji" Click="LocalizationStatsOnClick" 
+                    Style="{StaticResource StatsButtonStyle}"/>
+        </Grid>
+        
+        <chartingToolkit:Chart Grid.Row="1"
+                               x:Name="HarvestStats" Title="Zebrane kilogramy na dzień"
+                               Style="{StaticResource ChartStyle}">
+            <chartingToolkit:ColumnSeries ItemsSource="{Binding}" Title="" 
+                                       IndependentValuePath="Key" DependentValuePath="Value" />
+        </chartingToolkit:Chart>
+        
+        <chartingToolkit:Chart Grid.Row="1"
+                               x:Name="EmployeesStats" Title="Zebrane kilogramy na przez pracownika"
+                               Style="{StaticResource ChartStyle}">
+            <chartingToolkit:PieSeries ItemsSource="{Binding}" Title="" ToolTip="{Binding Path=Key}"
+                                        IndependentValuePath="Key" DependentValuePath="Value" />
+        </chartingToolkit:Chart>
+        
+        <chartingToolkit:Chart Grid.Row="1"
+                               x:Name="RealizedStats" Title="Sprzedane kilogramy na dzień"
+                               Style="{StaticResource ChartStyle}">
+            <chartingToolkit:ColumnSeries ItemsSource="{Binding}" Title=""
+                                          IndependentValuePath="Key" DependentValuePath="Value" />
+        </chartingToolkit:Chart>
+            
+        <chartingToolkit:Chart Grid.Row="1"
+                               x:Name="DateOfOrderStats" Title="Przyjęte zamówienia na dzień"
+                               Style="{StaticResource ChartStyle}">
+            <chartingToolkit:ColumnSeries ItemsSource="{Binding}" Title=""
+                                          IndependentValuePath="Key" DependentValuePath="Value" />
+        </chartingToolkit:Chart>
+        
+        <chartingToolkit:Chart Grid.Row="1"
+                               x:Name="LocalizationStats" Title="Lokalizacja klientów"
+                               Style="{StaticResource ChartStyle}">
+            <chartingToolkit:ColumnSeries ItemsSource="{Binding}" Title="Skąd są klienci?"
+                                          IndependentValuePath="Key" DependentValuePath="Value" />
+        </chartingToolkit:Chart>
+    </Grid>
+</Page>

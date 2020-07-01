@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Blueberry.WPF.UserControls.HarvestControls.HarvestList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Blueberry.WPF.UserControls.HarvestControls"
+             mc:Ignorable="d"
+             Loaded="HarvestList_OnLoaded">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Zbiory z dnia " FontSize="26" />
+            <TextBlock x:Name="DayTextBlock" FontSize="30" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Razem zebranych kilogramów: " FontSize="26"/>
+            <TextBlock x:Name="FullAmountTextBlock" FontSize="30" FontWeight="Bold" />
+        </StackPanel>
+        
+        <GroupBox>
+            <GroupBox.Header>
+                <TextBlock Text="Szczegóły: " FontSize="24" />
+            </GroupBox.Header>
+            
+            <ItemsControl ItemsSource="{Binding}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:HarvestItem DataContext="{Binding}" Margin="10" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </GroupBox>
+        
+    </StackPanel>
+</UserControl>

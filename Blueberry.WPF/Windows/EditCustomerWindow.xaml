@@ -5,7 +5,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Blueberry.WPF.Windows"
         mc:Ignorable="d"
-        Title="EditCustomerWindow" Height="500" Width="800">
+        Title="Blueberry" Height="500" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Icon="../Images/berry.png">
     <Grid Margin="20">
         <Grid.Resources>
             <Style TargetType="{x:Type Button}" x:Key="ButtonStyle">
@@ -83,7 +85,7 @@
         <TextBlock x:Name="InfoBox" Foreground="Red" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" />
         
         <!--Submit -->
-        <Button Content="Zapisz" Grid.Column="0" Grid.Row="9" Click="SubmitOnClick" Style="{StaticResource ButtonStyle}" />
+        <Button Content="Zapisz" Grid.Column="0" Grid.Row="9" Click="SubmitOnClick" Style="{StaticResource ButtonStyle}"/>
         <Button Content="Anuluj" Grid.Column="1" Grid.Row="9" Click="CancelOnClick" Style="{StaticResource ButtonStyle}"/>
     </Grid>
 </Window>

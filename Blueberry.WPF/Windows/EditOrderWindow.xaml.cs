@@ -34,7 +34,7 @@ namespace Blueberry.WPF.Windows
         {
             try
             {
-                Order.Amount = Convert.ToInt32(AmountTextBox.Text);
+                Order.Amount = (float) Convert.ToDouble(AmountTextBox.Text.Replace('.',','));
                 Order.Priority = (Priority) (PriorityComboBox.SelectedIndex+1);
                 Order.Status = (OrderStatus) StatusComboBox.SelectedIndex;
                 Order.DateOfRealization = Convert.ToDateTime(RealizationDate.SelectedDate);
@@ -52,9 +52,9 @@ namespace Blueberry.WPF.Windows
             Order.Amount = Save.Amount;
             AmountTextBox.Text = Save.Amount.ToString();
             Order.Priority = Save.Priority;
-            PriorityComboBox.SelectedValue = Save.Priority;
+            PriorityComboBox.SelectedIndex = ((int) Save.Priority) - 1;
             Order.Status = Save.Status;
-            StatusComboBox.SelectedValue = Save.Status;
+            StatusComboBox.SelectedIndex = (int) Save.Status;
             RealizationDate.SelectedDate = Save.DateOfRealization;
         }
     }

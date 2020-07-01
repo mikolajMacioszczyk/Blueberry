@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using Blueberry.DLL.Models;
 using Blueberry.WPF.PageEventArgs;
 using Blueberry.WPF.UserControls;
+using Blueberry.WPF.ViewModels;
 using Blueberry.WPF.Windows;
 
 namespace Blueberry.WPF.Pages
@@ -27,6 +28,8 @@ namespace Blueberry.WPF.Pages
 
         private void Initialize()
         {
+            ConnectEventHandlers();
+            
             _newCustomerControl = new NewCustomerUserControl();
 
             void OnNewCustomerControlOnDiscarded(object sender, EventArgs args)
@@ -43,6 +46,12 @@ namespace Blueberry.WPF.Pages
             _customerList.DataContext = _model.Customers.OrderBy(c => c.LastName);
             
             RightSide.Content = _customerList;
+        }
+
+        private void ConnectEventHandlers()
+        {
+            CustomerAdded += _model.OnCustomerAddedEventHandler;
+            CustomerModified += _model.OnCustomerModifiedEventHandler;
         }
 
         private void NewCustomerOnClick(object sender, RoutedEventArgs e)
