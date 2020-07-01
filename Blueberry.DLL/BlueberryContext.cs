@@ -14,10 +14,19 @@ namespace Blueberry.DLL
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Record> Records { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<BlueberryException> Exceptions { get; set; }
+        public DbSet<Harvest> Harvests { get; set; }
 
-        public BlueberryContext() : base("BlueberryContext")
+        public BlueberryContext()
         {
 
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BlueberryData>();
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

@@ -7,7 +7,9 @@
         xmlns:converters="clr-namespace:Blueberry.WPF.Converters"
         mc:Ignorable="d"
         SizeToContent="Width"
-        Title="CustomerDetailsWindow" Height="450">
+        Title="Blueberry" Height="450"
+        WindowStartupLocation="CenterScreen"
+        Icon="../Images/berry.png">
     <Window.Resources>
         <converters:AngToPlPriorityConverter x:Key="PriorityToPlConverter" />
         <converters:AngToPlStatusConverter x:Key="StatusToPlConverter" />

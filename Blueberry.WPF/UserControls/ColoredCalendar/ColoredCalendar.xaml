@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="Blueberry.WPF.UserControls.ColoredCalendar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Blueberry.WPF.UserControls"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Image}" x:Key="IconStyle">
+                <Setter Property="Width" Value="50" />
+            </Style>
+            <Style TargetType="{x:Type TextBlock}" x:Key="DayOfWeekStyle">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="27" />
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <!-- Left side -->
+            <Button Grid.Column="0" Click="PreviousOnClick">
+                <Image Source="../../Images/previous_icone.png" Style="{StaticResource IconStyle}"/>
+            </Button>
+            
+            <!-- -->
+            <TextBlock Grid.Column="1" x:Name="Header" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FontSize="30"/>
+            
+            <!-- Right side -->
+            <Button Grid.Column="2" Click="NextOnClick">
+                <Image Source="../../Images/next_icone.png" Style="{StaticResource IconStyle}"/>
+            </Button>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Text="Pon" Grid.Column="0" Style="{StaticResource DayOfWeekStyle}" />
+            <TextBlock Text="Wt" Grid.Column="1" Style="{StaticResource DayOfWeekStyle}" />
+            <TextBlock Text="Śro" Grid.Column="2" Style="{StaticResource DayOfWeekStyle}" />
+            <TextBlock Text="Czw" Grid.Column="3" Style="{StaticResource DayOfWeekStyle}"/>
+            <TextBlock Text="Pt" Grid.Column="4" Style="{StaticResource DayOfWeekStyle}"/>
+            <TextBlock Text="Sob" Grid.Column="5" Style="{StaticResource DayOfWeekStyle}"/>
+            <TextBlock Text="Nie" Grid.Column="6" Style="{StaticResource DayOfWeekStyle}"/>
+        </Grid>
+        
+        <!-- Content -->
+        <Grid x:Name="CalendarGrid" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            
+        </Grid>
+    </Grid>
+</UserControl>

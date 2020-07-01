@@ -18,7 +18,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\macio\Desktop\</PublishUrl>
+    <PublishUrl>C:\Users\macio\Desktop\test1\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -28,7 +28,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -75,6 +75,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=4.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\System.Windows.Controls.DataVisualization.Toolkit.4.0.0.0\lib\net40-Client\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -101,54 +105,95 @@
     <Compile Include="Enums\PageTypes.cs" />
     <Compile Include="Enums\PriorityPolishNames.cs" />
     <Compile Include="Enums\SortBy.cs" />
+    <Compile Include="Enums\SortEmployeeBy.cs" />
     <Compile Include="ExtensionMethods\ObservableCollectionExtensionMethods.cs" />
+    <Compile Include="obj\Release\Pages\StatisticsPage.g.cs" />
     <Compile Include="PageEventArgs\CustomerAddedEventArgs.cs" />
     <Compile Include="PageEventArgs\CustomerPageEventArgs.cs" />
+    <Compile Include="PageEventArgs\EmployeeEditedEventArgs.cs" />
+    <Compile Include="PageEventArgs\HarvestGroupAddedEventArgs.cs" />
     <Compile Include="PageEventArgs\NewCustomerEventArgs.cs" />
+    <Compile Include="PageEventArgs\NewEmployeeEventArgs.cs" />
     <Compile Include="PageEventArgs\NewOrderEventArgs.cs" />
     <Compile Include="PageEventArgs\OrderPageEventAgrs.cs" />
     <Compile Include="Pages\CustomersPage.xaml.cs">
       <DependentUpon>CustomersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EmployeePages\EmployerPage.xaml.cs">
+      <DependentUpon>EmployerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EmployeePages\NewEmployeePage.xaml.cs">
+      <DependentUpon>NewEmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EmployeePages\SalaryPage.xaml.cs">
+      <DependentUpon>SalaryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HarvestPages\HarvestHistoryPage.xaml.cs">
+      <DependentUpon>HarvestHistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HarvestPages\NewHarvestPage.xaml.cs">
+      <DependentUpon>NewHarvestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StatisticsPage.xaml.cs">
+      <DependentUpon>StatisticsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="UserControls\ColoredCalendar.xaml.cs">
+    <Compile Include="UserControls\ColoredCalendar\ColoredCalendar.xaml.cs">
       <DependentUpon>ColoredCalendar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ColoredCalendarItem.xaml.cs">
+    <Compile Include="UserControls\ColoredCalendar\ColoredCalendarItem.xaml.cs">
       <DependentUpon>ColoredCalendarItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\CustomerList.xaml.cs">
+    <Compile Include="UserControls\CustomerControls\CustomerList.xaml.cs">
       <DependentUpon>CustomerList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\NewCustomerUserControl.xaml.cs">
+    <Compile Include="UserControls\CustomerControls\NewCustomerUserControl.xaml.cs">
       <DependentUpon>NewCustomerUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\NewOrderPanel.xaml.cs">
+    <Compile Include="UserControls\EmployeeControls\EmployeeTemplate.xaml.cs">
+      <DependentUpon>EmployeeTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EmployeeControls\EmployeeTemplateHeader.xaml.cs">
+      <DependentUpon>EmployeeTemplateHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EmployeeControls\SalaryTemplate.xaml.cs">
+      <DependentUpon>SalaryTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\HarvestControls\HarvestItem.xaml.cs">
+      <DependentUpon>HarvestItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\HarvestControls\HarvestList.xaml.cs">
+      <DependentUpon>HarvestList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OrderControls\NewOrderPanel.xaml.cs">
       <DependentUpon>NewOrderPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\OrderList.xaml.cs">
+    <Compile Include="UserControls\OrderControls\OrderList.xaml.cs">
       <DependentUpon>OrderList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel.cs" />
     <Compile Include="ViewModels\ColoredCalendarViewModel.cs" />
+    <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="VisualizationStructures\EmployeesStatsStructure.cs" />
+    <Compile Include="VisualizationStructures\HarvestPerDayStructure.cs" />
+    <Compile Include="VisualizationStructures\LocalizationStatsStructure.cs" />
+    <Compile Include="VisualizationStructures\RealizedStatsStructure.cs" />
     <Compile Include="Windows\CustomerDetailsWindow.xaml.cs">
       <DependentUpon>CustomerDetailsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\EditCustomerWindow.xaml.cs">
       <DependentUpon>EditCustomerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\EditEmployeeWindow.xaml.cs">
+      <DependentUpon>EditEmployeeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\EditOrderWindow.xaml.cs">
       <DependentUpon>EditOrderWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -157,6 +202,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CustomersPage.xaml" />
+    <Page Include="Pages\EmployeePages\EmployerPage.xaml" />
+    <Page Include="Pages\EmployeePages\NewEmployeePage.xaml" />
+    <Page Include="Pages\EmployeePages\SalaryPage.xaml" />
+    <Page Include="Pages\HarvestPages\HarvestHistoryPage.xaml" />
+    <Page Include="Pages\HarvestPages\NewHarvestPage.xaml" />
     <Page Include="Pages\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -165,15 +215,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\ColoredCalendar.xaml" />
-    <Page Include="UserControls\ColoredCalendarItem.xaml" />
-    <Page Include="UserControls\CustomerList.xaml" />
-    <Page Include="UserControls\NewCustomerUserControl.xaml" />
-    <Page Include="UserControls\NewOrderPanel.xaml" />
-    <Page Include="UserControls\OrderList.xaml" />
+    <Page Include="Pages\StatisticsPage.xaml" />
+    <Page Include="UserControls\ColoredCalendar\ColoredCalendar.xaml" />
+    <Page Include="UserControls\ColoredCalendar\ColoredCalendarItem.xaml" />
+    <Page Include="UserControls\CustomerControls\CustomerList.xaml" />
+    <Page Include="UserControls\CustomerControls\NewCustomerUserControl.xaml" />
+    <Page Include="UserControls\EmployeeControls\EmployeeTemplate.xaml" />
+    <Page Include="UserControls\EmployeeControls\EmployeeTemplateHeader.xaml" />
+    <Page Include="UserControls\EmployeeControls\SalaryTemplate.xaml" />
+    <Page Include="UserControls\HarvestControls\HarvestItem.xaml" />
+    <Page Include="UserControls\HarvestControls\HarvestList.xaml" />
+    <Page Include="UserControls\OrderControls\NewOrderPanel.xaml" />
+    <Page Include="UserControls\OrderControls\OrderList.xaml" />
     <Page Include="Windows\CustomerDetailsWindow.xaml" />
     <Page Include="Windows\EditCustomerWindow.xaml" />
+    <Page Include="Windows\EditEmployeeWindow.xaml" />
     <Page Include="Windows\EditOrderWindow.xaml" />
+    <Page Include="Windows\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\CalendarPage.xaml.cs">
@@ -218,9 +279,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="BlueberriesBackground.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Blueberry.DLL\Blueberry.DLL.csproj">
       <Project>{cda7a8bd-b905-41d6-ae00-b7d06f21717e}</Project>
       <Name>Blueberry.DLL</Name>
@@ -255,6 +313,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\previous_icone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\coin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\berry.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

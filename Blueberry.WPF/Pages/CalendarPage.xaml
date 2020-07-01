@@ -8,7 +8,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CalendarPage"
-      Background="White">
+      Background="White"
+      Loaded="CalendarPage_OnLoaded">
     <DockPanel>
         <DockPanel.Resources>
             <Style TargetType="{x:Type Rectangle}" x:Key="RectangleStyle">

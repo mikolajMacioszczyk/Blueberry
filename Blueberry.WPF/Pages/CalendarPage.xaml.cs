@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Blueberry.DLL.Models;
 using Blueberry.WPF.UserControls;
+using Blueberry.WPF.ViewModels;
 
 namespace Blueberry.WPF.Pages
 {
@@ -24,13 +25,19 @@ namespace Blueberry.WPF.Pages
     public partial class CalendarPage : Page
     {
         private readonly ViewModel _model;
+        private ColoredCalendar _calendar;
 
         public CalendarPage(ViewModel model)
         {
             _model = model;
             InitializeComponent();
-            Calendar.Content = new ColoredCalendar(DateTime.Today, _model.Orders);
+            _calendar = new ColoredCalendar(DateTime.Today, _model.Orders);
+            Calendar.Content = _calendar;
         }
 
+        private void CalendarPage_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            _calendar.Refresh();
+        }
     }
 }

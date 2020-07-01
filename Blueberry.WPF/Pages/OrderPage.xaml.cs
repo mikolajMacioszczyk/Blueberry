@@ -18,6 +18,7 @@ using Blueberry.WPF.Enums;
 using Blueberry.WPF.ExtensionMethods;
 using Blueberry.WPF.PageEventArgs;
 using Blueberry.WPF.UserControls;
+using Blueberry.WPF.ViewModels;
 using Blueberry.WPF.Windows;
 
 namespace Blueberry.WPF.Pages
@@ -33,7 +34,7 @@ namespace Blueberry.WPF.Pages
         private OrderList _orderList;
         private NewOrderPanel _newOrderPanel;
 
-        public event EventHandler<NewOrderEventArgs> OrderAdded; 
+        public event EventHandler<NewOrderEventArgs> OrderAdded;
         public event EventHandler<OrderPageEventAgrs> OrderChanged;
 
         public OrderPage(ViewModel model)
@@ -45,6 +46,19 @@ namespace Blueberry.WPF.Pages
 
         private void Initialize()
         {
+            OrderAdded += _model.OnOrderAddedEventHandler;
+            OrderChanged += _model.OnOrdersChangedEventHandler;
+            
+            CreateNewOrderPanel();
+            CreateOrderListPanel();
+
+            RightSideControl.Content = _orderList;
+
+            FilterOrders();
+        }
+
+        private void CreateNewOrderPanel()
+        {
             _newOrderPanel = new NewOrderPanel(_model);
             _newOrderPanel.OrderAdded += (sender, args) =>
             {
@@ -52,14 +66,16 @@ namespace Blueberry.WPF.Pages
                 RightSideControl.Content = _orderList;
                 FilterOrders();
             };
+        }
+
+        private void CreateOrderListPanel()
+        {
             _orderList = new OrderList();
-            RightSideControl.Content = _orderList;
             _orderList.OrderChanged += (sender, args) =>
             {
                 OrderChanged?.Invoke(sender, args);
                 FilterOrders();
             };
-            FilterOrders();
         }
 
         private void FilterOrders()
@@ -82,7 +98,7 @@ namespace Blueberry.WPF.Pages
                     throw new ArgumentOutOfRangeException();
             }
         }
-        
+
         private void RefreshOnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -94,10 +110,11 @@ namespace Blueberry.WPF.Pages
             {
                 return;
             }
+
             _sortByFilter = (SortBy) Enum.Parse(typeof(SortBy), e.Parameter.ToString());
             FilterOrders();
         }
-        
+
         private void FindOnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -109,6 +126,7 @@ namespace Blueberry.WPF.Pages
             {
                 return;
             }
+
             _statusFilter = (OrderStatus) Enum.Parse(typeof(OrderStatus), e.Parameter.ToString());
             FilterOrders();
         }
@@ -117,7 +135,7 @@ namespace Blueberry.WPF.Pages
         {
             RightSideControl.Content = _newOrderPanel;
         }
-        
+
         private void ListOnClick(object sender, RoutedEventArgs e)
         {
             RightSideControl.Content = _orderList;

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Blueberry.DLL.Models;
+using Blueberry.WPF.ViewModels;
 
 namespace Blueberry.WPF.Pages
 {

@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="Blueberry.WPF.UserControls.EmployeeTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Blueberry.WPF.UserControls"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}" x:Key="ButtonStyle">
+                <Setter Property="Background" Value="#7f90b0" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="FontSize" Value="25" />
+            </Style>
+            <Style TargetType="{x:Type Border}" x:Key="BorderStyle">
+                <Setter Property="Background" Value="#7f90b0" />
+                <Setter Property="BorderThickness" Value="0,0,1,1" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="Width" Value="150" />
+                <Setter Property="Margin" Value="10" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="Hand" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockStyle">
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0"
+            Text="{Binding Path=FirstName, StringFormat=Imie: {0}}" 
+            Style="{StaticResource TextBlockStyle}"/>
+        
+        <TextBlock Grid.Row="1"
+                   Text="{Binding Path=LastName, StringFormat=Nazwisko: {0}}" 
+                   Style="{StaticResource TextBlockStyle}"/>
+        
+        <TextBlock Grid.Row="2"
+                   Text="{Binding Path=PhoneNumber, StringFormat=Numer: {0}}" 
+                   Style="{StaticResource TextBlockStyle}"/>
+        
+        <TextBlock Grid.Row="3"
+                   Text="{Binding Path=Rate, StringFormat=Stawka: {0}}" 
+                   Style="{StaticResource TextBlockStyle}"/>
+        
+        <TextBlock Grid.Row="4"
+                   Text="{Binding Path=TotalCollected, StringFormat=Zebrane razem: {0}}" 
+                   Style="{StaticResource TextBlockStyle}"/>
+        
+        <TextBlock Grid.Row="5"
+                   Text="{Binding Path=UnPaided, StringFormat=Nieopłacone: {0}}" 
+                   Style="{StaticResource TextBlockStyle}"/>
+        
+        <StackPanel Grid.Row="7" Orientation="Horizontal">
+            <Border Style="{StaticResource BorderStyle}">
+                <Button Content="Zapłać" Style="{StaticResource ButtonStyle}"
+                        Click="PayOnClick"/>
+            </Border>
+            <Border Style="{StaticResource BorderStyle}">
+                <Button Content="Edytuj" Style="{StaticResource ButtonStyle}"
+                        Click="EditOnClick"/>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

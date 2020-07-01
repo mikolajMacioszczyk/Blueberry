@@ -8,9 +8,11 @@
         mc:Ignorable="d"
         FontSize="30"
         SizeToContent="Width"
-        Title="EditOrderWindow" MinHeight="570" Height="570" Width="400">
+        Title="Blueberry" MinHeight="570" Height="570" Width="400"
+        WindowStartupLocation="CenterScreen"
+        Icon="../Images/berry.png">
     <Window.Background>
-        <ImageBrush ImageSource="../BlueberriesBackground.jpg" Stretch="UniformToFill"/>
+        <ImageBrush ImageSource="../Images/BlueberriesBackground.jpg" Stretch="UniformToFill"/>
     </Window.Background>
     
     <StackPanel Orientation="Vertical" Margin="20,10" HorizontalAlignment="Left">

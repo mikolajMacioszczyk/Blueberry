@@ -9,7 +9,9 @@
       Loaded="HomeLoaded"
       Unloaded="HomeUnloaded"
       Title="HomePage">
-
+    <Page.Background>
+        <ImageBrush ImageSource="../Images/BlueberriesBackground.jpg" Stretch="UniformToFill"/>
+    </Page.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />

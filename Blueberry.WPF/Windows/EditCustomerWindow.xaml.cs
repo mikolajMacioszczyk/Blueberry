@@ -43,9 +43,15 @@ namespace Blueberry.WPF.Windows
         {
             try
             {
-                Customer.FirstName = FirstNameTextBox.Text;
-                Customer.LastName = LastNameTextBox.Text;
-                Customer.Number = Convert.ToInt32(PhoneNumberTextBox.Text).ToString();
+                Customer.FirstName = !string.IsNullOrEmpty(FirstNameTextBox.Text)
+                    ? FirstNameTextBox.Text
+                    : throw new ArgumentException();
+                Customer.LastName = !string.IsNullOrEmpty(LastNameTextBox.Text)
+                    ? LastNameTextBox.Text
+                    : throw new ArgumentException();
+                Customer.Number = !string.IsNullOrEmpty(PhoneNumberTextBox.Text)
+                    ? PhoneNumberTextBox.Text
+                    : throw new ArgumentException();
                 Customer.Address.City = CityTextBox.Text;
                 Customer.Address.Street = StreetTextBox.Text;
                 Customer.Address.House = Convert.ToInt32(HouseTextBox.Text);
@@ -55,6 +61,11 @@ namespace Blueberry.WPF.Windows
             {
                 Refresh();
                 InfoBox.Text = "Nieprawidłowa wartość liczbowa";
+            }
+            catch (ArgumentException)
+            {
+                Refresh();
+                InfoBox.Text = "Pola nie mogą być puste";
             }
         }
 

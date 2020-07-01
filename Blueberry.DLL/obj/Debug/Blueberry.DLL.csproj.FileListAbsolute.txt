@@ -1,5 +1,3 @@
-D:\C#\Blueberry\Blueberry.DLL\bin\Debug\Blueberry.DLL.exe.config
-D:\C#\Blueberry\Blueberry.DLL\bin\Debug\Blueberry.DLL.exe
 D:\C#\Blueberry\Blueberry.DLL\bin\Debug\Blueberry.DLL.pdb
 D:\C#\Blueberry\Blueberry.DLL\bin\Debug\EntityFramework.dll
 D:\C#\Blueberry\Blueberry.DLL\bin\Debug\EntityFramework.SqlServer.dll
@@ -8,9 +6,16 @@ D:\C#\Blueberry\Blueberry.DLL\bin\Debug\EntityFramework.SqlServer.xml
 D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.csprojAssemblyReference.cache
 D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.csproj.CoreCompileInputs.cache
 D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.csproj.CopyComplete
-D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.exe
 D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.pdb
 D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.Migrations.InitialModel.resources
 D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.csproj.GenerateResource.cache
 D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.Migrations.InitialModel1.resources
 D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.Migrations.AddNumberColumnToCustomer.resources
+D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.Migrations.AddBlueberryDataEntity.resources
+D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.Migrations.AddEmployeeTable.resources
+D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.Migrations.AddRateColumnToEmployeeTable.resources
+D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.Migrations.AddTableBlueberryException.resources
+D:\C#\Blueberry\Blueberry.DLL\bin\Debug\Blueberry.DLL.dll.config
+D:\C#\Blueberry\Blueberry.DLL\bin\Debug\Blueberry.DLL.dll
+D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.dll
+D:\C#\Blueberry\Blueberry.DLL\obj\Debug\Blueberry.DLL.Migrations.AddHarvestTable.resources

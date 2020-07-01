@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\C#\Blueberry\Blueberry.WPF\App.xaml
-131772007588
+191483443463
 
-33-606127419
+43-2121928371
 17-1004546059
-MainWindow.xaml;Pages\CalendarPage.xaml;Pages\CustomersPage.xaml;Pages\HomePage.xaml;Pages\OrderPage.xaml;UserControls\ColoredCalendar.xaml;UserControls\CustomerList.xaml;UserControls\NewCustomerUserControl.xaml;UserControls\NewOrderPanel.xaml;UserControls\OrderList.xaml;Windows\CustomerDetailsWindow.xaml;Windows\EditCustomerWindow.xaml;Windows\EditOrderWindow.xaml;
+Pages\CalendarPage.xaml;Pages\CustomersPage.xaml;Pages\EmployerPage.xaml;Pages\HomePage.xaml;Pages\NewEmployeePage.xaml;Pages\OrderPage.xaml;Pages\SalaryPage.xaml;UserControls\ColoredCalendar.xaml;UserControls\ColoredCalendarItem.xaml;UserControls\CustomerList.xaml;UserControls\EmployeeTemplate.xaml;UserControls\NewCustomerUserControl.xaml;UserControls\NewOrderPanel.xaml;UserControls\OrderList.xaml;Windows\CustomerDetailsWindow.xaml;Windows\EditCustomerWindow.xaml;Windows\EditEmployeeWindow.xaml;Windows\EditOrderWindow.xaml;Windows\MainWindow.xaml;
 
-False
+True
 
