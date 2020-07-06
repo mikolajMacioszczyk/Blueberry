@@ -60,11 +60,11 @@
                         <Label Content="Sortuj po: " />
                     </GroupBox.Header>
                     <StackPanel Orientation="Vertical">
-                        <RadioButton Content="Dacie" Command="Refresh" CommandParameter="0"
+                        <RadioButton Content="Dacie" IsChecked="{Binding Path=SortByDate}" Command="Refresh" CommandParameter="0"
                                      Style="{StaticResource RadioButtonStyle}" />
-                        <RadioButton Content="Kliencie" Command="Refresh" CommandParameter="1"
+                        <RadioButton Content="Kliencie" IsChecked="{Binding Path=SortByClient}" Command="Refresh" CommandParameter="1"
                                      Style="{StaticResource RadioButtonStyle}" />
-                        <RadioButton Content="Priorytecie" Command="Refresh" CommandParameter="2"
+                        <RadioButton Content="Priorytecie" IsChecked="{Binding Path=SortByPriority}" Command="Refresh" CommandParameter="2"
                                      Style="{StaticResource RadioButtonStyle}" />
                     </StackPanel>
                 </GroupBox>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using Blueberry.DLL.Models;
@@ -9,64 +10,83 @@ namespace Blueberry.DLL
     public class DBConnector
     {
         private BlueberryContext _context;
-        private List<Order> Orders;
-        private List<Customer> Customers;
-        private List<Address> Addresses;
-        private List<Employee> Employees;
-        private List<Harvest> Harvests;
+        private ObservableCollection<Order> _orders;
+        private ObservableCollection<Customer> _customers;
+        private ObservableCollection<Address> _addresses;
+        private ObservableCollection<Employee> _employees;
+        private ObservableCollection<Harvest> _harvests;
+        private float? _pricePerKilo;
+        
+        public float PricePerKilo
+        {
+            get
+            {
+                if (!_pricePerKilo.HasValue)
+                {
+                    _pricePerKilo = _context.Datas.First().PricePerKilo;
+                }
+                return _pricePerKilo.Value;
+            }
+        }
         
         private static DBConnector Instance = new DBConnector();
-        public static DBConnector GetInstance => Instance;
+        public static DBConnector GetInstance() => Instance;
+        public event Action OrdersChanged;
+        public event Action CustomersChanged;
+        public event Action AddressesChanged;
+        public event Action EmployeesChanged;
+        public event Action HarvestChanged;
+
         private DBConnector()
         {
             _context = new BlueberryContext();
         }
 
-        public List<Customer> GetCustomers()
+        public ObservableCollection<Customer> GetCustomers()
         {
-            if (Customers == null)
+            if (_customers == null)
             {
-                Customers = _context.Customers.Include(c => c.Address).ToList();
+                _customers = new ObservableCollection<Customer>(_context.Customers.Include(c => c.Address));
             }
-            return Customers;
+            return _customers;
         }
 
-        public List<Order> GetOrders()
+        public ObservableCollection<Order> GetOrders()
         {
-            if (Orders == null)
+            if (_orders == null)
             {
-                Orders = _context.Orders.Include(o => o.Customer).Include(o => o.Customer.Address).ToList();
+                _orders = new ObservableCollection<Order>(_context.Orders.Include(o => o.Customer).Include(o => o.Customer.Address));
             }
-            return Orders;
+            return _orders;
         }
 
-        public List<Address> GetAddresses()
+        public ObservableCollection<Address> GetAddresses()
         {
-            if (Addresses == null)
+            if (_addresses == null)
             {
-                Addresses = _context.Addresses.ToList();
+                _addresses = new ObservableCollection<Address>(_context.Addresses);
             }
 
-            return Addresses;
+            return _addresses;
         }
 
-        public List<Employee> GetEmployees()
+        public ObservableCollection<Employee> GetEmployees()
         {
-            if (Employees == null)
+            if (_employees == null)
             {
-                Employees = _context.Employees.ToList();
+                _employees = new ObservableCollection<Employee>(_context.Employees);
             }
 
-            return Employees;
+            return _employees;
         }
         
-        public List<Harvest> GetHarvests()
+        public ObservableCollection<Harvest> GetHarvests()
         {
-            if (Harvests == null)
+            if (_harvests == null)
             {
-                Harvests = _context.Harvests.ToList();
+                _harvests = new ObservableCollection<Harvest>(_context.Harvests);
             }
-            return Harvests;
+            return _harvests;
         }
 
         public void ModifyOrder(Order modifiedOrder, Modification[] modifications)
@@ -76,6 +96,7 @@ namespace Blueberry.DLL
                 Message =$"Modification order {modifiedOrder.FullString()}: " + string.Join(", ",modifications.Select(m => $"property {m.Type} =>  from '{m.OldValue}' to '{m.NewValue}', ")),
             };
             _context.Records.Add(record);
+            OrdersChanged?.Invoke();
         }
 
         public void ModifyEmployee(Employee old, Modification[] modifications)
@@ -85,6 +106,7 @@ namespace Blueberry.DLL
                 Message =$"Modification employee {old.FullString()}: " + string.Join(", ",modifications.Select(m => $"property {m.Type} =>  from '{m.OldValue}' to '{m.NewValue}', ")),
             };
             _context.Records.Add(record);
+            EmployeesChanged?.Invoke();
         }
         
         public void ModifyCustomer(Customer old, Modification[] modifications)
@@ -94,6 +116,7 @@ namespace Blueberry.DLL
                 Message =$"Modification customer {old.FullString()}: " + string.Join(", ",modifications.Select(m => $"property {m.Type} =>  from '{m.OldValue}' to '{m.NewValue}', ")),
             };
             _context.Records.Add(record);
+            CustomersChanged?.Invoke();
         }
 
         public void AddCustomer(Customer customer, bool isAddressNew)
@@ -108,6 +131,7 @@ namespace Blueberry.DLL
                 _context.Addresses.Add(customer.Address);
             }
             _context.Records.Add(record);
+            CustomersChanged?.Invoke();
         }
         
         public void AddOrder(Order order)
@@ -118,6 +142,7 @@ namespace Blueberry.DLL
             };
             _context.Orders.Add(order);
             _context.Records.Add(record);
+            OrdersChanged?.Invoke();
         }
         
         public void AddEmployee(Employee employee)
@@ -128,6 +153,7 @@ namespace Blueberry.DLL
             };
             _context.Employees.Add(employee);
             _context.Records.Add(record);
+            EmployeesChanged?.Invoke();
         }
 
         public void AddException(Exception exception)
@@ -149,6 +175,7 @@ namespace Blueberry.DLL
             };
             _context.Harvests.Add(harvest);
             _context.Records.Add(record);
+            HarvestChanged?.Invoke();
         }
 
         public void Save()

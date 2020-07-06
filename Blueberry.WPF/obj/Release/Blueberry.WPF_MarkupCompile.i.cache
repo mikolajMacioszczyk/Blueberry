@@ -10,11 +10,11 @@ none
 false
 TRACE
 D:\C#\Blueberry\Blueberry.WPF\App.xaml
-191483443463
+26-1963320297
 
-431937819460
-17-611161509
-Pages\CalendarPage.xaml;Pages\CustomersPage.xaml;Pages\EmployerPage.xaml;Pages\HomePage.xaml;Pages\NewEmployeePage.xaml;Pages\OrderPage.xaml;Pages\SalaryPage.xaml;UserControls\ColoredCalendar.xaml;UserControls\ColoredCalendarItem.xaml;UserControls\CustomerList.xaml;UserControls\EmployeeTemplate.xaml;UserControls\NewCustomerUserControl.xaml;UserControls\NewOrderPanel.xaml;UserControls\OrderList.xaml;Windows\CustomerDetailsWindow.xaml;Windows\EditCustomerWindow.xaml;Windows\EditEmployeeWindow.xaml;Windows\EditOrderWindow.xaml;Windows\MainWindow.xaml;
+58272407545
+18-1229177871
+Pages\CalendarPage.xaml;Pages\CustomersPage.xaml;Pages\EmployeePages\EmployerPage.xaml;Pages\EmployeePages\NewEmployeePage.xaml;Pages\EmployeePages\SalaryPage.xaml;Pages\HarvestPages\HarvestHistoryPage.xaml;Pages\HarvestPages\NewHarvestPage.xaml;Pages\HomePage.xaml;Pages\OrderPage.xaml;Pages\StatisticsPage.xaml;UserControls\ColoredCalendar\ColoredCalendar.xaml;UserControls\ColoredCalendar\ColoredCalendarItem.xaml;UserControls\CustomerControls\CustomerList.xaml;UserControls\CustomerControls\NewCustomerUserControl.xaml;UserControls\EmployeeControls\EmployeeTemplate.xaml;UserControls\EmployeeControls\EmployeeTemplateHeader.xaml;UserControls\EmployeeControls\SalaryTemplate.xaml;UserControls\HarvestControls\HarvestItem.xaml;UserControls\HarvestControls\HarvestList.xaml;UserControls\OrderControls\NewOrderPanel.xaml;UserControls\OrderControls\OrderList.xaml;Windows\CustomerDetailsWindow.xaml;Windows\EditCustomerWindow.xaml;Windows\EditEmployeeWindow.xaml;Windows\EditOrderWindow.xaml;Windows\MainWindow.xaml;
 
-False
+True
 

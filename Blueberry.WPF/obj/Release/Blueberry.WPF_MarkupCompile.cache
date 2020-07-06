@@ -12,9 +12,9 @@ TRACE
 D:\C#\Blueberry\Blueberry.WPF\App.xaml
 26-1963320297
 
-56421519859
+571349986377
 18-1229177871
 Pages\CalendarPage.xaml;Pages\CustomersPage.xaml;Pages\EmployeePages\EmployerPage.xaml;Pages\EmployeePages\NewEmployeePage.xaml;Pages\EmployeePages\SalaryPage.xaml;Pages\HarvestPages\HarvestHistoryPage.xaml;Pages\HarvestPages\NewHarvestPage.xaml;Pages\HomePage.xaml;Pages\OrderPage.xaml;Pages\StatisticsPage.xaml;UserControls\ColoredCalendar\ColoredCalendar.xaml;UserControls\ColoredCalendar\ColoredCalendarItem.xaml;UserControls\CustomerControls\CustomerList.xaml;UserControls\CustomerControls\NewCustomerUserControl.xaml;UserControls\EmployeeControls\EmployeeTemplate.xaml;UserControls\EmployeeControls\EmployeeTemplateHeader.xaml;UserControls\EmployeeControls\SalaryTemplate.xaml;UserControls\HarvestControls\HarvestItem.xaml;UserControls\HarvestControls\HarvestList.xaml;UserControls\OrderControls\NewOrderPanel.xaml;UserControls\OrderControls\OrderList.xaml;Windows\CustomerDetailsWindow.xaml;Windows\EditCustomerWindow.xaml;Windows\EditEmployeeWindow.xaml;Windows\EditOrderWindow.xaml;Windows\MainWindow.xaml;
 
-False
+True
 

@@ -172,11 +172,13 @@
       <DependentUpon>OrderList.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ColoredCalendarViewModel.cs" />
+    <Compile Include="ViewModels\HomePageVM.cs" />
+    <Compile Include="ViewModels\OrderPageVM.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
-    <Compile Include="VisualizationStructures\EmployeesStatsStructure.cs" />
-    <Compile Include="VisualizationStructures\HarvestPerDayStructure.cs" />
-    <Compile Include="VisualizationStructures\LocalizationStatsStructure.cs" />
-    <Compile Include="VisualizationStructures\RealizedStatsStructure.cs" />
+    <Compile Include="Structures\EmployeesStatsStructure.cs" />
+    <Compile Include="Structures\HarvestPerDayStructure.cs" />
+    <Compile Include="Structures\LocalizationStatsStructure.cs" />
+    <Compile Include="Structures\RealizedStatsStructure.cs" />
     <Compile Include="Windows\CustomerDetailsWindow.xaml.cs">
       <DependentUpon>CustomerDetailsWindow.xaml</DependentUpon>
     </Compile>

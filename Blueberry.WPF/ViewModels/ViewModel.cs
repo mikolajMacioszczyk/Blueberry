@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Blueberry.DLL;
 using Blueberry.DLL.Models;
@@ -73,6 +75,8 @@ namespace Blueberry.WPF.ViewModels
             }
         }
         #endregion
+        public event Action<IEnumerable<Order>> OrdersChanged;
+        public event Action<IEnumerable<Harvest>> HarvestChanged;
         public float PricePerKilo => 15;
         
         public ViewModel()
@@ -92,12 +96,14 @@ namespace Blueberry.WPF.ViewModels
             old.Status = after.Status;
             old.DateOfRealization = after.DateOfRealization;
             _connector.ModifyOrder(args.Old, args.Modifications);
+            OrdersChanged?.Invoke(Orders);
         }
 
         public void OnOrderAddedEventHandler(object sender, NewOrderEventArgs args)
         {
             Orders.Add(args.Order);
             _connector.AddOrder(args.Order);
+            OrdersChanged?.Invoke(Orders);
         }
 
         public void OnCustomerModifiedEventHandler(object sender, CustomerPageEventArgs args)
@@ -145,6 +151,7 @@ namespace Blueberry.WPF.ViewModels
                 Harvests.Add(harvest);
                 _connector.AddHarvest(harvest);
             }
+            HarvestChanged?.Invoke(Harvests);
         }
 
         #endregion
