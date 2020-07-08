@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Blueberry.WPF.exe.manifest" size="5552">
+    <dependentAssembly dependencyType="install" codebase="Blueberry.WPF.exe.manifest" size="6236">
       <assemblyIdentity name="Blueberry.WPF.exe" version="1.0.0.4" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>67TCWxOFd+NuwwYMNLycDPLcn6aiPH7j8kmc/CH7rgQ=</dsig:DigestValue>
+        <dsig:DigestValue>9yKrScjpXI7wPL5DahzXRFMjJxtFK6ZiRPVjel3dm18=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

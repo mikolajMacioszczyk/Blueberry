@@ -14,16 +14,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          Opcje manifestu kontroli konta użytkownika
-          Jeśli chcesz zmienić poziom kontroli konta użytkownika systemu Windows, zastąp węzeł 
-          requestedExecutionLevel jednym z następujących.
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         Jeśli chcesz użyć wirtualizacji plików i rejestru do celów zgodności wstecznej, 
-         usuń węzeł requestedExecutionLevel.
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -42,26 +42,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Blueberry.DLL.dll" size="84992">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Blueberry.DLL.dll" size="87040">
       <assemblyIdentity name="Blueberry.DLL" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Hog6NBGHKm/Aye0G1BmgCTVVuI+/A7RTxRWqKt+dvYE=</dsig:DigestValue>
+        <dsig:DigestValue>YoW0+HZ4yDZ48uqlWC2QCOXXvA9jMqCUVpUcYnpdtIo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Blueberry.WPF.exe" size="213984">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Blueberry.WPF.exe" size="249312">
       <assemblyIdentity name="Blueberry.WPF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OaJ4Gq0Grt5LBFoNeQw7Op0mt7xid2zKMKkkOvv/XSI=</dsig:DigestValue>
+        <dsig:DigestValue>IqPdVtNA/8HwVhV3f2WQzfx/grak7q3YVcuaA2T+bAw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -86,6 +86,18 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>qWDdTS8PN7PAn/uVZ8MkJrh5ExDX65NcBMgZw9Rr1J4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Windows.Controls.DataVisualization.Toolkit.dll" size="351744">
+      <assemblyIdentity name="System.Windows.Controls.DataVisualization.Toolkit" version="4.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>qlcytBwPYzmTut8Jr8oV4GaL2Ih4TP6hJJ+0/9baEz0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

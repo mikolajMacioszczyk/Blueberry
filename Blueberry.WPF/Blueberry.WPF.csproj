@@ -97,6 +97,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\SortByCommand.cs" />
     <Compile Include="Converters\AddressToStringPConverter.cs" />
     <Compile Include="Converters\AngToPlPriorityConverter.cs" />
     <Compile Include="Converters\AngToPlStatusConverter.cs" />
@@ -107,7 +108,6 @@
     <Compile Include="Enums\SortBy.cs" />
     <Compile Include="Enums\SortEmployeeBy.cs" />
     <Compile Include="ExtensionMethods\ObservableCollectionExtensionMethods.cs" />
-    <Compile Include="obj\Release\Pages\StatisticsPage.g.cs" />
     <Compile Include="PageEventArgs\CustomerAddedEventArgs.cs" />
     <Compile Include="PageEventArgs\CustomerPageEventArgs.cs" />
     <Compile Include="PageEventArgs\EmployeeEditedEventArgs.cs" />
@@ -327,6 +327,9 @@
     <Resource Include="Images\berry.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Release\Pages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

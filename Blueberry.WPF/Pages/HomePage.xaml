@@ -11,7 +11,10 @@
     <Page.Background>
         <ImageBrush ImageSource="../Images/BlueberriesBackground.jpg" Stretch="UniformToFill"/>
     </Page.Background>
-    <Grid>
+    <Page.Resources>
+        <models:HomePageVM x:Key="model" />
+    </Page.Resources>
+    <Grid DataContext="{StaticResource model}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
             <ColumnDefinition />

@@ -68,7 +68,13 @@ D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\OrderControls\NewOrderPanel
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\OrderControls\OrderList.baml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\HarvestPages\HarvestHistoryPage.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\HarvestPages\NewHarvestPage.g.cs
-D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\HarvestPages\StatisticsPage.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\HarvestPages\HarvestHistoryPage.baml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\HarvestPages\NewHarvestPage.baml
-D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\HarvestPages\StatisticsPage.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\StatisticsPage.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\HarvestControls\HarvestItem.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\HarvestControls\HarvestList.g.cs
+D:\C#\Blueberry\Blueberry.WPF\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+D:\C#\Blueberry\Blueberry.WPF\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.xml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\StatisticsPage.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\HarvestControls\HarvestItem.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\HarvestControls\HarvestList.baml

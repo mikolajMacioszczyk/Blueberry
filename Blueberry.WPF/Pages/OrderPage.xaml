@@ -4,24 +4,17 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Blueberry.WPF.Pages"
-      xmlns:converters="clr-namespace:Blueberry.WPF.Converters"
-      xmlns:userControls="clr-namespace:Blueberry.WPF.UserControls"
+      xmlns:viewModels="clr-namespace:Blueberry.WPF.ViewModels"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       MaxHeight="800"
       FontSize="30"
       Title="OrderPage"
       Background="White">
-    <Page.CommandBindings>
-        <CommandBinding Command="Refresh"
-                        CanExecute="RefreshOnCanExecute"
-                        Executed="RefreshOnExecuted" />
-        <CommandBinding Command="Find"
-                        CanExecute="FindOnCanExecute"
-                        Executed="FindOnExecuted" />
-    </Page.CommandBindings>
-
-    <DockPanel>
+    <Page.Resources>
+        <viewModels:OrderPageVM x:Key="model" />
+    </Page.Resources>
+    <DockPanel DataContext="{StaticResource model}">
         <!-- Left Side -->
         <Border DockPanel.Dock="Left"
                 BorderThickness="0,0,3,0" BorderBrush="#004225"
@@ -60,11 +53,14 @@
                         <Label Content="Sortuj po: " />
                     </GroupBox.Header>
                     <StackPanel Orientation="Vertical">
-                        <RadioButton Content="Dacie" IsChecked="{Binding Path=SortByDate}" Command="Refresh" CommandParameter="0"
+                        <RadioButton Content="Dacie" IsChecked="{Binding Path=SortByDate}" 
+                                     Command="{Binding Path=SortCommand}" CommandParameter="0"
                                      Style="{StaticResource RadioButtonStyle}" />
-                        <RadioButton Content="Kliencie" IsChecked="{Binding Path=SortByClient}" Command="Refresh" CommandParameter="1"
+                        <RadioButton Content="Kliencie" IsChecked="{Binding Path=SortByClient}" 
+                                     Command="{Binding Path=SortCommand}" CommandParameter="1"
                                      Style="{StaticResource RadioButtonStyle}" />
-                        <RadioButton Content="Priorytecie" IsChecked="{Binding Path=SortByPriority}" Command="Refresh" CommandParameter="2"
+                        <RadioButton Content="Priorytecie" IsChecked="{Binding Path=SortByPriority}" 
+                                     Command="{Binding Path=SortCommand}" CommandParameter="2"
                                      Style="{StaticResource RadioButtonStyle}" />
                     </StackPanel>
                 </GroupBox>

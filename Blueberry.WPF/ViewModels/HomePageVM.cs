@@ -26,28 +26,38 @@ namespace Blueberry.WPF.ViewModels
         public DateTime Date { get; set; }
         public string Timer { get; set; }
         private DBConnector _connector;
-        public HomePageVM(ViewModel model)
+        public HomePageVM()
         {
             SetTick();
+            SetConnector();
             SetStatistics();
         }
 
         private void SetConnector()
         {
             _connector = DBConnector.GetInstance();
-            _connector.OrdersChanged += SetOrdersStatistics;
-            _connector.HarvestChanged += SetHarvestStatistics;
+            _connector.OrdersChanged += OnOrdersChanged;
+            _connector.HarvestChanged += OnHarvestsHanged;
         }
         private void SetStatistics()
         {
-            SetOrdersStatistics();
-            SetHarvestStatistics();
-            SetPrice();
+            SetOrdersStatistics(_connector.GetOrders());
+            SetHarvestStatistics(_connector.GetHarvests());
+            SetPrice(_connector.PricePerKilo);
         }
 
-        private void SetOrdersStatistics()
+        private void OnOrdersChanged()
         {
-            var orders = _connector.GetOrders();
+            SetOrdersStatistics(_connector.GetOrders());
+        }
+
+        private void OnHarvestsHanged()
+        {
+            SetHarvestStatistics(_connector.GetHarvests());
+        }
+
+        public void SetOrdersStatistics(IEnumerable<Order> orders)
+        {
             _solded = orders.Where(o => o.Status == OrderStatus.Realized).Select(o => o.Amount).Sum();
             OnPropertyChanged(nameof(SoldedInfo));
             OnPropertyChanged(nameof(IncomeInfo));
@@ -68,15 +78,19 @@ namespace Blueberry.WPF.ViewModels
             OnPropertyChanged(nameof(WaitingRoom3));
         }
 
-        private void SetHarvestStatistics()
+        public void SetHarvestStatistics(IEnumerable<Harvest> harvests)
         {
-            _droped = _connector.GetHarvests().Select(h => h.Amount).Sum();
+            _droped = harvests.Select(h => h.Amount).Sum();
             OnPropertyChanged(nameof(DropedInfo));
         }
 
-        private void SetPrice()
+        public void SetPrice(float price)
         {
-            _price = _connector.PricePerKilo;
+            if (price <= 0)
+            {
+                throw new ArgumentException("Price must be positive");
+            }
+            _price = price;
             OnPropertyChanged(nameof(PricePerKgInfo));
             OnPropertyChanged(nameof(IncomeInfo));
         }

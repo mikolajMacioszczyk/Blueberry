@@ -81,7 +81,7 @@ namespace Blueberry.WPF.ViewModels
         
         public ViewModel()
         {
-            _connector = DBConnector.GetInstance;
+            _connector = DBConnector.GetInstance();
         }
 
         #region EventHadlers

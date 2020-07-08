@@ -17,9 +17,18 @@ namespace Blueberry.WPF.ExtensionMethods
             }
             for (int i = 0; i < collection.Count-1; i++)
             {
-                if (comparer.Invoke(collection[i], collection[i+1]) > 0)
+                bool isSorted = true;
+                for (int j = 0; j < collection.Count-1-i; j++)
                 {
-                    Swap(collection, i, i+1);
+                    if (comparer.Invoke(collection[j], collection[j + 1]) > 0)
+                    {
+                        isSorted = false;
+                        Swap(collection, j, j + 1);
+                    }
+                }
+                if (isSorted)
+                {
+                    return;
                 }
             }
         }

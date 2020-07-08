@@ -8,10 +8,9 @@ namespace Blueberry.WPF.Pages
     /// </summary>
     public partial class HomePage : Page
     {
-        public HomePage(ViewModel Model)
+        public HomePage()
         {
             InitializeComponent();
-            DataContext = new HomePageVM(Model);
         }
     }
 }

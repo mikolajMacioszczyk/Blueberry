@@ -48,7 +48,7 @@ namespace Blueberry.WPF.Windows
             };
             Pages = new List<Page>()
             {
-                new HomePage(Model),
+                new HomePage(),
                 new OrderPage(Model),
                 new CustomersPage(Model),
                 new CalendarPage(Model),

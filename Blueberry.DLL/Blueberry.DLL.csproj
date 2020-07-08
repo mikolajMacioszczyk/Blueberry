@@ -73,7 +73,6 @@
   <ItemGroup>
     <Compile Include="BlueberryContext.cs" />
     <Compile Include="DBConnector.cs" />
-    <Compile Include="DbDatas.cs" />
     <Compile Include="ExtensionMethods\DateTimeExtensionMethods.cs" />
     <Compile Include="Migrations\202006241918168_InitialModel.cs" />
     <Compile Include="Migrations\202006241918168_InitialModel.designer.cs">
