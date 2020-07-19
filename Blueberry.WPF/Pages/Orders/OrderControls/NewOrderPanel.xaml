@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="Blueberry.WPF.Pages.Orders.OrderControls.NewOrderPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:models="clr-namespace:Blueberry.WPF.ViewModels"
+             xmlns:orderControls="clr-namespace:Blueberry.WPF.Pages.Orders.OrderControls"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <orderControls:NewOrderPanelVM x:Key="Model" />
+    </UserControl.Resources>
+    <StackPanel Margin="20,10" DataContext="{StaticResource Model}">
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="{x:Type ComboBox}" x:Key="ComboBoxStyle">
+                    <Setter Property="MinWidth" Value="250" />
+                    <Setter Property="Margin" Value="10,5" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+                <Style TargetType="{x:Type Button}" x:Key="ButtonStyle">
+                    <Setter Property="Background" Value="#b8c4dd" />
+                    <Setter Property="Width" Value="200" />
+                    <Setter Property="BorderThickness" Value="0,0,1,1" />
+                    <Setter Property="Margin" Value="20,15,20,0" />
+                </Style>
+            </Grid.Resources>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            
+            <!-- Row 1 -->
+            <TextBlock Text="Wybierz Klienta: " Grid.Column="0"  />
+            <ComboBox Grid.Row="0" Grid.Column="1"
+                      ItemsSource="{Binding Path=Customers}"
+                      SelectedItem="{Binding Path=SelectedCustomer}"
+                      Style="{StaticResource ComboBoxStyle}"/>
+            
+            <!-- Row 2 -->
+            <TextBlock Text="Zamówione kilogramy: " Grid.Column="0" Grid.Row="1" />
+            <TextBox Grid.Column="1" Grid.Row="1" 
+                     Text="{Binding Path=Amount}"
+                     MinWidth="{Binding ElementName=Customers}"
+                     Margin="10,5"
+                     TextAlignment="Center"/>
+            
+            <!-- Row 3 -->
+            <TextBlock Text="Wybierz Priorytet:" Grid.Column="0" Grid.Row="2" />
+            <ComboBox Grid.Column="1" Grid.Row="2"
+                      ItemsSource="{Binding Path=Priorities}"
+                      SelectedItem="{Binding Path=SelectedPriority}"
+                      Style="{StaticResource ComboBoxStyle}" />
+            
+            <!-- Row 4 -->
+            <Grid Grid.Column="0" Grid.Row="3" ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <!-- Column 1 -->
+                <TextBlock Text="Data przyjęcia:" Grid.Column="0" Grid.Row="0" />
+                <Calendar SelectedDate="{Binding Path=OrderDate}" 
+                          Grid.Column="0" Grid.Row="1"
+                          HorizontalAlignment="Left"/>
+                
+                <!-- Column 2 -->
+                <TextBlock Text="Data realizacji: " Grid.Column="1" Grid.Row="0"/>
+                <Calendar SelectedDate="{Binding Path=RealizationDate}" 
+                          Grid.Column="1" Grid.Row="1" 
+                          HorizontalAlignment="Left"/>
+            </Grid>
+            
+            <!-- Row 5 -->
+            <Button Content="Dodaj" 
+                    Grid.Column="0" Grid.Row="4"
+                    Command="{Binding Path=AddOrderCommand}"
+                    Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Anuluj" Grid.Column="1" Grid.Row="4"
+                    Command="{Binding Path=DiscardCommand}"
+                    Style="{StaticResource ButtonStyle}"/>
+
+            <!-- Row 6 -->
+            <TextBlock Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" 
+                       Text="{Binding Path=Info}"
+                       Foreground="Red" TextWrapping="Wrap"/>
+            
+        </Grid>
+    </StackPanel>
+</UserControl>

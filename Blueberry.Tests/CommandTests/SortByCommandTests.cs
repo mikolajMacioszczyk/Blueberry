@@ -1,4 +1,5 @@
-﻿using Blueberry.WPF.Enums;
+﻿using Blueberry.DLL.Enums;
+using Blueberry.WPF.Pages.Orders;
 using Blueberry.WPF.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

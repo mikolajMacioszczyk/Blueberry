@@ -3,10 +3,13 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Blueberry.WPF.Pages.HarvestPages"
       mc:Ignorable="d"
-      Title="NewHarvestPage"
-      Loaded="NewHarvestPage_OnLoaded">
-        <Grid>
+      Title="NewHarvestPage">
+    <Page.Resources>
+        <local:NewHarvestVM x:Key="Model" />
+    </Page.Resources>
+    <Grid DataContext="{StaticResource Model}">
             <Grid.Resources>
                 <Style TargetType="{x:Type TextBlock}" x:Key="TextStyle">
                     <Setter Property="FontSize" Value="28" />
@@ -50,7 +53,8 @@
                                Style="{StaticResource TextStyle}"/>
 
                     <ComboBox Grid.Row="1"
-                              x:Name="EmployeesComboBox" ItemsSource="{Binding}"
+                              ItemsSource="{Binding Path=Employees}"
+                              SelectedItem="{Binding Path=SelectedEmployee}"
                               Style="{StaticResource ComboBoxStyle}"
                               Margin="0,5"/>
 
@@ -65,15 +69,16 @@
                         <StackPanel Grid.Column="0">
                             <TextBlock Text="Zebrane:"
                                        Style="{StaticResource TextStyle}" />
-                            <TextBox x:Name="AmountTextBox" Margin="0,5"
+                            <TextBox Margin="0,5"
+                                     Text="{Binding Path=Amount}"
                                      Style="{StaticResource TextBoxStyle}"/>
                         </StackPanel>
                         
                         <Button Grid.Column="1"
-                            Click="AddHarvestOnClick"
-                            Background="White"
-                            BorderThickness="0"
-                            Cursor="Hand">
+                                Command="{Binding Path=AddHarvestCommand}"
+                                Background="White"
+                                BorderThickness="0"
+                                Cursor="Hand">
                             <Image Source="../../Images/add_icone.png" MaxHeight="50" />
                         </Button>
                     </Grid>
@@ -85,12 +90,14 @@
                 <StackPanel DockPanel.Dock="Bottom" 
                             Orientation="Horizontal"
                             HorizontalAlignment="Center">
-                    <Button Content="Dodaj" Click="AddOnClick" Style="{StaticResource ButtonStyle}" />
-                    <Button Content="Anuluj" Click="DiscardOnClick" Style="{StaticResource ButtonStyle}" />
+                    <Button Content="Dodaj" Style="{StaticResource ButtonStyle}"
+                            Command="{Binding Path=AddWholeHarvestCommand}"/>
+                    <Button Content="Anuluj" Style="{StaticResource ButtonStyle}"
+                            Command="{Binding Path=DiscardCommand}"/>
                 </StackPanel>
                 
                 <ScrollViewer >
-                    <ItemsControl x:Name="JustAddedHarvestControl" ItemsSource="{Binding}">
+                    <ItemsControl ItemsSource="{Binding Path=Added}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel />

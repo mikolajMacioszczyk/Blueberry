@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
-using Blueberry.WPF.Enums;
+using Blueberry.DLL.Enums;
+using Blueberry.WPF.Pages.Orders;
 using Blueberry.WPF.ViewModels;
 
 namespace Blueberry.WPF.Commands

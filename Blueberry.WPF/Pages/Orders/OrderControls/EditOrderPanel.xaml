@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Blueberry.WPF.Pages.Orders.OrderControls.EditOrderPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Blueberry.WPF.Converters"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel Margin="20">
+        <TextBlock Text="{Binding Path=SelectedOrder.Customer, StringFormat=Klient: {0}}" />
+        
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Ilość: " />
+            <TextBox Text="{Binding Path=Amount}" />
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Priorytet:" />
+            <ComboBox ItemsSource="{Binding Path=Priorities}"
+                      SelectedItem="{Binding Path=SelectedPriority}"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Status:" />
+            <ComboBox ItemsSource="{Binding Path=Statuses}"
+                      SelectedItem="{Binding Path=SelectedStatus}"
+                      Text="{Binding Path=SelectedStatus}" />
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Data przyjęcia:" />
+            <DatePicker SelectedDate="{Binding OrderDate}" />
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Data realizacji:" />
+            <DatePicker SelectedDate="{Binding RealizationDate}" />
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Zatwierdź" 
+                    Command="{Binding Path=SubmitCommand}"/>
+            <Button Content="Anuluj"
+                    Command="{Binding Path=DiscardCommand}"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

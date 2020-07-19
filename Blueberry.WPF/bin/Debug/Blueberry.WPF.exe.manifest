@@ -14,16 +14,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          UAC Manifest Options
-          If you want to change the Windows User Account Control level replace the
-          requestedExecutionLevel node with one of the following.
+          Opcje manifestu kontroli konta użytkownika
+          Jeśli chcesz zmienić poziom kontroli konta użytkownika systemu Windows, zastąp węzeł 
+          requestedExecutionLevel jednym z następujących.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         If you want to utilize File and Registry Virtualization for backward
-         compatibility then delete the requestedExecutionLevel node.
+         Jeśli chcesz użyć wirtualizacji plików i rejestru do celów zgodności wstecznej, 
+         usuń węzeł requestedExecutionLevel.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -42,26 +42,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Blueberry.DLL.dll" size="87040">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Blueberry.DLL.dll" size="88064">
       <assemblyIdentity name="Blueberry.DLL" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YoW0+HZ4yDZ48uqlWC2QCOXXvA9jMqCUVpUcYnpdtIo=</dsig:DigestValue>
+        <dsig:DigestValue>0an7QtQvJolMHNNy7Y/hXlXx1V/OZDh1rKFVrn1SgVg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Blueberry.WPF.exe" size="249312">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Blueberry.WPF.exe" size="258528">
       <assemblyIdentity name="Blueberry.WPF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>IqPdVtNA/8HwVhV3f2WQzfx/grak7q3YVcuaA2T+bAw=</dsig:DigestValue>
+        <dsig:DigestValue>ut2TS+KqCqyArMpIzy7RdpM6y7nSfZpEEi2fM7XIVtk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

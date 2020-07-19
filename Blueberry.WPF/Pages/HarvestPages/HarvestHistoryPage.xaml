@@ -6,10 +6,12 @@
       xmlns:local="clr-namespace:Blueberry.WPF.Pages.HarvestPages"
       xmlns:userControls="clr-namespace:Blueberry.WPF.UserControls.HarvestControls"
       mc:Ignorable="d"
-      Title="HarvestHistoryPage"
-      Loaded="HarvestHistoryPage_OnLoaded">
-    <ScrollViewer>
-        <ItemsControl ItemsSource="{Binding}">
+      Title="HarvestHistoryPage">
+    <Page.Resources>
+        <local:HarvestHistoryVM x:Key="Model" />
+    </Page.Resources>
+    <ScrollViewer DataContext="{StaticResource Model}">
+        <ItemsControl ItemsSource="{Binding Path=HarvestGroups}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel />

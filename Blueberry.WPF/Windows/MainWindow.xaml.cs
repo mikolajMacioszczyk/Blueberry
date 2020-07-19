@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Blueberry.WPF.Enums;
+using Blueberry.DLL.Enums;
 using Blueberry.WPF.Pages;
+using Blueberry.WPF.Pages.Calendar;
 using Blueberry.WPF.Pages.HarvestPages;
 using Blueberry.WPF.ViewModels;
-using StatisticsPage = Blueberry.WPF.Pages.StatisticsPage;
+using StatisticsPage = Blueberry.WPF.Pages.Statistics.StatisticsPage;
 
 namespace Blueberry.WPF.Windows
 {
@@ -49,15 +50,15 @@ namespace Blueberry.WPF.Windows
             Pages = new List<Page>()
             {
                 new HomePage(),
-                new OrderPage(Model),
+                new OrderPage(),
                 new CustomersPage(Model),
                 new CalendarPage(Model),
                 employerPage,
                 new SalaryPage(Model), 
                 newEmployeePage,
-                new NewHarvestPage(Model),
+                new NewHarvestPage(),
                 new HarvestHistoryPage(Model),
-                new StatisticsPage(Model)
+                new StatisticsPage()
             };
         }
 

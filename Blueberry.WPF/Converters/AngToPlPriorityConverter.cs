@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using Blueberry.DLL.Enums;
 using Blueberry.DLL.Models;
 
 namespace Blueberry.WPF.Converters
@@ -14,18 +15,17 @@ namespace Blueberry.WPF.Converters
             {
                 return "";
             }
-
             Priority priority = (Priority) Enum.Parse(typeof(Priority), value.ToString());
             switch (priority)
             {
                 case Priority.LowPriority:
-                    return "Niski";
+                    return PriorityPolishNames.Niski;
                 case Priority.MiddlePriority:
-                    return "Średni";
+                    return PriorityPolishNames.Średni;
                 case Priority.HighPriority:
-                    return "Wysoki";
+                    return PriorityPolishNames.Wysoki;
                 case Priority.UlitimatePriority:
-                    return "Bardzo Wysoki";
+                    return PriorityPolishNames.BardzoWysoki;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -33,7 +33,24 @@ namespace Blueberry.WPF.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            if (value == null)
+            {
+                return "";
+            }
+            PriorityPolishNames priority = (PriorityPolishNames) Enum.Parse(typeof(PriorityPolishNames), value.ToString());
+            switch (priority)
+            {
+                case PriorityPolishNames.Niski:
+                    return Priority.LowPriority;
+                case PriorityPolishNames.Średni:
+                    return Priority.MiddlePriority;
+                case PriorityPolishNames.Wysoki:
+                    return Priority.HighPriority;
+                case PriorityPolishNames.BardzoWysoki:
+                    return Priority.UlitimatePriority;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

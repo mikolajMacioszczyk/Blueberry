@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Blueberry.DLL.Enums;
 using Blueberry.DLL.Models;
 using Blueberry.WPF.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

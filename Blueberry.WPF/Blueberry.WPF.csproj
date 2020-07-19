@@ -97,16 +97,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ChangeContentCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Commands\SelectCommand.cs" />
     <Compile Include="Commands\SortByCommand.cs" />
     <Compile Include="Converters\AddressToStringPConverter.cs" />
     <Compile Include="Converters\AngToPlPriorityConverter.cs" />
     <Compile Include="Converters\AngToPlStatusConverter.cs" />
-    <Compile Include="Enums\MonthPolishNames.cs" />
-    <Compile Include="Enums\OrderStatusPolishNames.cs" />
-    <Compile Include="Enums\PageTypes.cs" />
-    <Compile Include="Enums\PriorityPolishNames.cs" />
-    <Compile Include="Enums\SortBy.cs" />
-    <Compile Include="Enums\SortEmployeeBy.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="DialogBoxes\CommandDialogBox.cs" />
+    <Compile Include="DialogBoxes\DialogBox.cs" />
     <Compile Include="ExtensionMethods\ObservableCollectionExtensionMethods.cs" />
     <Compile Include="PageEventArgs\CustomerAddedEventArgs.cs" />
     <Compile Include="PageEventArgs\CustomerPageEventArgs.cs" />
@@ -116,6 +116,9 @@
     <Compile Include="PageEventArgs\NewEmployeeEventArgs.cs" />
     <Compile Include="PageEventArgs\NewOrderEventArgs.cs" />
     <Compile Include="PageEventArgs\OrderPageEventAgrs.cs" />
+    <Compile Include="Pages\Calendar\CalendarPage.xaml.cs">
+      <DependentUpon>CalendarPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CustomersPage.xaml.cs">
       <DependentUpon>CustomersPage.xaml</DependentUpon>
     </Compile>
@@ -131,19 +134,43 @@
     <Compile Include="Pages\HarvestPages\HarvestHistoryPage.xaml.cs">
       <DependentUpon>HarvestHistoryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\HarvestPages\HarvestHistoryVM.cs" />
     <Compile Include="Pages\HarvestPages\NewHarvestPage.xaml.cs">
       <DependentUpon>NewHarvestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\StatisticsPage.xaml.cs">
+    <Compile Include="Pages\HarvestPages\NewHarvestVM.cs" />
+    <Compile Include="Pages\Home\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Home\HomePageVM.cs" />
+    <Compile Include="Pages\Orders\OrderControls\EditOrderPanel.xaml.cs">
+      <DependentUpon>EditOrderPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Orders\OrderControls\EditOrderVM.cs" />
+    <Compile Include="Pages\Orders\OrderControls\NewOrderPanel.xaml.cs">
+      <DependentUpon>NewOrderPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Orders\OrderControls\NewOrderPanelVM.cs" />
+    <Compile Include="Pages\Orders\OrderControls\OrderList.xaml.cs">
+      <DependentUpon>OrderList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Orders\OrderPage.xaml.cs">
+      <DependentUpon>OrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Orders\OrderPageVM.cs" />
+    <Compile Include="Pages\Statistics\StatisticsPage.xaml.cs">
       <DependentUpon>StatisticsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Statistics\StatisticsStructure.cs" />
+    <Compile Include="Pages\Statistics\StatisticsVM.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="UserControls\ColoredCalendar\ColoredCalendar.xaml.cs">
+    <Compile Include="UserControls\ColoredCalendarDir\ColoredCalendar.xaml.cs">
       <DependentUpon>ColoredCalendar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ColoredCalendar\ColoredCalendarItem.xaml.cs">
+    <Compile Include="UserControls\ColoredCalendarDir\ColoredCalendarItem.xaml.cs">
       <DependentUpon>ColoredCalendarItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ColoredCalendarDir\ColoredCalendarVM.cs" />
     <Compile Include="UserControls\CustomerControls\CustomerList.xaml.cs">
       <DependentUpon>CustomerList.xaml</DependentUpon>
     </Compile>
@@ -165,20 +192,7 @@
     <Compile Include="UserControls\HarvestControls\HarvestList.xaml.cs">
       <DependentUpon>HarvestList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\OrderControls\NewOrderPanel.xaml.cs">
-      <DependentUpon>NewOrderPanel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\OrderControls\OrderList.xaml.cs">
-      <DependentUpon>OrderList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\ColoredCalendarViewModel.cs" />
-    <Compile Include="ViewModels\HomePageVM.cs" />
-    <Compile Include="ViewModels\OrderPageVM.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
-    <Compile Include="Structures\EmployeesStatsStructure.cs" />
-    <Compile Include="Structures\HarvestPerDayStructure.cs" />
-    <Compile Include="Structures\LocalizationStatsStructure.cs" />
-    <Compile Include="Structures\RealizedStatsStructure.cs" />
     <Compile Include="Windows\CustomerDetailsWindow.xaml.cs">
       <DependentUpon>CustomerDetailsWindow.xaml</DependentUpon>
     </Compile>
@@ -188,9 +202,6 @@
     <Compile Include="Windows\EditEmployeeWindow.xaml.cs">
       <DependentUpon>EditEmployeeWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\EditOrderWindow.xaml.cs">
-      <DependentUpon>EditOrderWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -199,7 +210,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\CalendarPage.xaml">
+    <Page Include="Pages\Calendar\CalendarPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -209,17 +220,20 @@
     <Page Include="Pages\EmployeePages\SalaryPage.xaml" />
     <Page Include="Pages\HarvestPages\HarvestHistoryPage.xaml" />
     <Page Include="Pages\HarvestPages\NewHarvestPage.xaml" />
-    <Page Include="Pages\HomePage.xaml">
+    <Page Include="Pages\Home\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\OrderPage.xaml">
+    <Page Include="Pages\Orders\OrderControls\EditOrderPanel.xaml" />
+    <Page Include="Pages\Orders\OrderControls\NewOrderPanel.xaml" />
+    <Page Include="Pages\Orders\OrderControls\OrderList.xaml" />
+    <Page Include="Pages\Orders\OrderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\StatisticsPage.xaml" />
-    <Page Include="UserControls\ColoredCalendar\ColoredCalendar.xaml" />
-    <Page Include="UserControls\ColoredCalendar\ColoredCalendarItem.xaml" />
+    <Page Include="Pages\Statistics\StatisticsPage.xaml" />
+    <Page Include="UserControls\ColoredCalendarDir\ColoredCalendar.xaml" />
+    <Page Include="UserControls\ColoredCalendarDir\ColoredCalendarItem.xaml" />
     <Page Include="UserControls\CustomerControls\CustomerList.xaml" />
     <Page Include="UserControls\CustomerControls\NewCustomerUserControl.xaml" />
     <Page Include="UserControls\EmployeeControls\EmployeeTemplate.xaml" />
@@ -227,27 +241,15 @@
     <Page Include="UserControls\EmployeeControls\SalaryTemplate.xaml" />
     <Page Include="UserControls\HarvestControls\HarvestItem.xaml" />
     <Page Include="UserControls\HarvestControls\HarvestList.xaml" />
-    <Page Include="UserControls\OrderControls\NewOrderPanel.xaml" />
-    <Page Include="UserControls\OrderControls\OrderList.xaml" />
     <Page Include="Windows\CustomerDetailsWindow.xaml" />
     <Page Include="Windows\EditCustomerWindow.xaml" />
     <Page Include="Windows\EditEmployeeWindow.xaml" />
-    <Page Include="Windows\EditOrderWindow.xaml" />
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\CalendarPage.xaml.cs">
-      <DependentUpon>CalendarPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\OrderPage.xaml.cs">
-      <DependentUpon>OrderPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -330,6 +332,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\Pages\" />
+    <Folder Include="obj\Release\UserControls\OrderControls" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

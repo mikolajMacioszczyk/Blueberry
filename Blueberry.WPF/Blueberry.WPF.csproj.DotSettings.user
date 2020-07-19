@@ -1,0 +1,7 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=PAGES_005CIMAGES_005CADD_005FICONE_002EPNG/@EntryIndexedValue">Pages\Images\add_icone.png</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=PAGES_005CIMAGES_005CLIST_002EPNG/@EntryIndexedValue">Pages\Images\list.png</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=PAGES_005CHOME_005CIMAGES_005CBLUEBERRIESBACKGROUND_002EJPG/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=PAGES_005CHOME_005CIMAGES_005CBLUEBERRIESBACKGROUND_002EJPG/@EntryIndexedValue">Pages\Home\Images\BlueberriesBackground.jpg</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=PAGES_005CIMAGES_005CADD_005FICONE_002EPNG/@EntryIndexedValue">Pages\Images\add_icone.png</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=PAGES_005CIMAGES_005CLIST_002EPNG/@EntryIndexedValue">Pages\Images\list.png</s:String></wpf:ResourceDictionary>

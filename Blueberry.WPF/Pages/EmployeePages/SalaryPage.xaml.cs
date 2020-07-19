@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Blueberry.WPF.Enums;
+using Blueberry.DLL.Enums;
 using Blueberry.WPF.PageEventArgs;
 using Blueberry.WPF.ViewModels;
 
