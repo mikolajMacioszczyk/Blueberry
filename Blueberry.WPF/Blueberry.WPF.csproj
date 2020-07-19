@@ -107,6 +107,8 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="DialogBoxes\CommandDialogBox.cs" />
     <Compile Include="DialogBoxes\DialogBox.cs" />
+    <Compile Include="DialogBoxes\NotificationDialogBox.cs" />
+    <Compile Include="DialogBoxes\SimpleDialogBox.cs" />
     <Compile Include="ExtensionMethods\ObservableCollectionExtensionMethods.cs" />
     <Compile Include="PageEventArgs\CustomerAddedEventArgs.cs" />
     <Compile Include="PageEventArgs\CustomerPageEventArgs.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="Pages\CustomersPage.xaml.cs">
       <DependentUpon>CustomersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EmployeePages\EmployeePageVM.cs" />
     <Compile Include="Pages\EmployeePages\EmployerPage.xaml.cs">
       <DependentUpon>EmployerPage.xaml</DependentUpon>
     </Compile>
@@ -164,12 +167,17 @@
     <Compile Include="Pages\Statistics\StatisticsStructure.cs" />
     <Compile Include="Pages\Statistics\StatisticsVM.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="UserControls\ColoredCalendarDir\CCWeek.xaml.cs">
+      <DependentUpon>CCWeek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ColoredCalendarDir\CCWeekVM.cs" />
     <Compile Include="UserControls\ColoredCalendarDir\ColoredCalendar.xaml.cs">
       <DependentUpon>ColoredCalendar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ColoredCalendarDir\ColoredCalendarItem.xaml.cs">
-      <DependentUpon>ColoredCalendarItem.xaml</DependentUpon>
+    <Compile Include="UserControls\ColoredCalendarDir\CCItem.xaml.cs">
+      <DependentUpon>CCItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ColoredCalendarDir\CCItemVM.cs" />
     <Compile Include="UserControls\ColoredCalendarDir\ColoredCalendarVM.cs" />
     <Compile Include="UserControls\CustomerControls\CustomerList.xaml.cs">
       <DependentUpon>CustomerList.xaml</DependentUpon>
@@ -183,6 +191,7 @@
     <Compile Include="UserControls\EmployeeControls\EmployeeTemplateHeader.xaml.cs">
       <DependentUpon>EmployeeTemplateHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\EmployeeControls\EmployeeTemplateVM.cs" />
     <Compile Include="UserControls\EmployeeControls\SalaryTemplate.xaml.cs">
       <DependentUpon>SalaryTemplate.xaml</DependentUpon>
     </Compile>
@@ -232,8 +241,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Statistics\StatisticsPage.xaml" />
+    <Page Include="UserControls\ColoredCalendarDir\CCWeek.xaml" />
     <Page Include="UserControls\ColoredCalendarDir\ColoredCalendar.xaml" />
-    <Page Include="UserControls\ColoredCalendarDir\ColoredCalendarItem.xaml" />
+    <Page Include="UserControls\ColoredCalendarDir\CCItem.xaml" />
     <Page Include="UserControls\CustomerControls\CustomerList.xaml" />
     <Page Include="UserControls\CustomerControls\NewCustomerUserControl.xaml" />
     <Page Include="UserControls\EmployeeControls\EmployeeTemplate.xaml" />

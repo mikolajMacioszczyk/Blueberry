@@ -3,10 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:converters="clr-namespace:Blueberry.WPF.Converters"
+             xmlns:dialogs="clr-namespace:Blueberry.WPF.DialogBoxes"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Margin="20">
+        <dialogs:NotificationDialogBox 
+            x:Name="SubmitDialogBox"
+            Caption="Zamówienie zostało zaktualizowane"
+            CommandBefore="{Binding Path=SubmitCommand}"
+            />
+        <dialogs:NotificationDialogBox
+            x:Name="DiscardDialogBox"
+            Caption="Zmiany zostały wycofane"
+            CommandAfter="{Binding Path=DiscardCommand}" />
+        
         <TextBlock Text="{Binding Path=SelectedOrder.Customer, StringFormat=Klient: {0}}" />
         
         <StackPanel Orientation="Horizontal">
@@ -39,9 +49,9 @@
         
         <StackPanel Orientation="Horizontal">
             <Button Content="Zatwierdź" 
-                    Command="{Binding Path=SubmitCommand}"/>
+                    Command="{Binding ElementName=SubmitDialogBox, Path=Show}"/>
             <Button Content="Anuluj"
-                    Command="{Binding Path=DiscardCommand}"/>
+                    Command="{Binding ElementName=DiscardDialogBox, Path=Show}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

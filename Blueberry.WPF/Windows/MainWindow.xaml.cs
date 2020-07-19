@@ -52,7 +52,7 @@ namespace Blueberry.WPF.Windows
                 new HomePage(),
                 new OrderPage(),
                 new CustomersPage(Model),
-                new CalendarPage(Model),
+                new CalendarPage(),
                 employerPage,
                 new SalaryPage(Model), 
                 newEmployeePage,

@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:Blueberry.WPF.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <UserControl.Resources>
+        <local:EmployeeTemplateVM x:Key="Model" />
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource Model}">
         <Grid.Resources>
             <Style TargetType="{x:Type Button}" x:Key="ButtonStyle">
                 <Setter Property="Background" Value="#7f90b0" />
@@ -44,27 +47,27 @@
         </Grid.RowDefinitions>
         
         <TextBlock Grid.Row="0"
-            Text="{Binding Path=FirstName, StringFormat=Imie: {0}}" 
+            Text="{Binding Path=Employee.FirstName, StringFormat=Imie: {0}}" 
             Style="{StaticResource TextBlockStyle}"/>
         
         <TextBlock Grid.Row="1"
-                   Text="{Binding Path=LastName, StringFormat=Nazwisko: {0}}" 
+                   Text="{Binding Path=Employee.LastName, StringFormat=Nazwisko: {0}}" 
                    Style="{StaticResource TextBlockStyle}"/>
         
         <TextBlock Grid.Row="2"
-                   Text="{Binding Path=PhoneNumber, StringFormat=Numer: {0}}" 
+                   Text="{Binding Path=Employee.PhoneNumber, StringFormat=Numer: {0}}" 
                    Style="{StaticResource TextBlockStyle}"/>
         
         <TextBlock Grid.Row="3"
-                   Text="{Binding Path=Rate, StringFormat=Stawka: {0}}" 
+                   Text="{Binding Path=Employee.Rate, StringFormat=Stawka: {0}}" 
                    Style="{StaticResource TextBlockStyle}"/>
         
         <TextBlock Grid.Row="4"
-                   Text="{Binding Path=TotalCollected, StringFormat=Zebrane razem: {0}}" 
+                   Text="{Binding Path=Employee.TotalCollected, StringFormat=Zebrane razem: {0}}" 
                    Style="{StaticResource TextBlockStyle}"/>
         
         <TextBlock Grid.Row="5"
-                   Text="{Binding Path=UnPaided, StringFormat=Nieopłacone: {0}}" 
+                   Text="{Binding Path=Employee.UnPaided, StringFormat=Nieopłacone: {0}}" 
                    Style="{StaticResource TextBlockStyle}"/>
         
         <StackPanel Grid.Row="7" Orientation="Horizontal">

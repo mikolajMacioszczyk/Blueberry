@@ -1,5 +1,4 @@
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Blueberry.WPF.csprojAssemblyReference.cache
-D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\CalendarPage.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\App.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Blueberry.WPF_MarkupCompile.cache
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Blueberry.WPF_MarkupCompile.lref
@@ -8,7 +7,6 @@ D:\C#\Blueberry\Blueberry.WPF\bin\Debug\Blueberry.WPF.exe
 D:\C#\Blueberry\Blueberry.WPF\bin\Debug\Blueberry.WPF.pdb
 D:\C#\Blueberry\Blueberry.WPF\bin\Debug\Blueberry.DLL.pdb
 D:\C#\Blueberry\Blueberry.WPF\bin\Debug\EntityFramework.xml
-D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\CalendarPage.baml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Blueberry.WPF.g.resources
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Blueberry.WPF.Properties.Resources.resources
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Blueberry.WPF.csproj.GenerateResource.cache
@@ -20,8 +18,6 @@ D:\C#\Blueberry\Blueberry.WPF\bin\Debug\EntityFramework.dll
 D:\C#\Blueberry\Blueberry.WPF\bin\Debug\EntityFramework.SqlServer.dll
 D:\C#\Blueberry\Blueberry.WPF\bin\Debug\EntityFramework.SqlServer.xml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\GeneratedInternalTypeHelper.g.cs
-D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Windows\EditOrderWindow.g.cs
-D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Windows\EditOrderWindow.baml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\CustomersPage.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\CustomersPage.baml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Windows\CustomerDetailsWindow.g.cs
@@ -41,8 +37,6 @@ D:\C#\Blueberry\Blueberry.WPF\bin\Debug\Blueberry.DLL.dll.config
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\EmployeePages\EmployerPage.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\EmployeePages\NewEmployeePage.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\EmployeePages\SalaryPage.g.cs
-D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendar\ColoredCalendar.g.cs
-D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendar\ColoredCalendarItem.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\CustomerControls\CustomerList.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\CustomerControls\NewCustomerUserControl.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\EmployeeControls\EmployeeTemplate.g.cs
@@ -51,8 +45,6 @@ D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\EmployeeControls\SalaryTemp
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\EmployeePages\EmployerPage.baml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\EmployeePages\NewEmployeePage.baml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\EmployeePages\SalaryPage.baml
-D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendar\ColoredCalendar.baml
-D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendar\ColoredCalendarItem.baml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\CustomerControls\CustomerList.baml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\CustomerControls\NewCustomerUserControl.baml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\EmployeeControls\EmployeeTemplate.baml
@@ -80,3 +72,11 @@ D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\Orders\OrderPage.baml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\Statistics\StatisticsPage.baml
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\Orders\OrderControls\EditOrderPanel.g.cs
 D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\Orders\OrderControls\EditOrderPanel.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\Calendar\CalendarPage.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendarDir\CCWeek.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendarDir\ColoredCalendar.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendarDir\CCItem.g.cs
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\Pages\Calendar\CalendarPage.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendarDir\CCWeek.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendarDir\ColoredCalendar.baml
+D:\C#\Blueberry\Blueberry.WPF\obj\Debug\UserControls\ColoredCalendarDir\CCItem.baml

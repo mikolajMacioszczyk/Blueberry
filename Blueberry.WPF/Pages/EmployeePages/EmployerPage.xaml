@@ -3,15 +3,19 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:Blueberry.WPF.Pages"
+      xmlns:local="clr-namespace:Blueberry.WPF.Pages.EmployeePages"
       xmlns:userContols="clr-namespace:Blueberry.WPF.UserControls"
       mc:Ignorable="d"
       Title="EmployerPage">
+    <Page.Resources>
+        <local:EmployeePageVM x:Key="Model" />
+    </Page.Resources>
     <Border Padding="5" Margin="20"
             BorderBrush="DarkGray" BorderThickness="2"
-            CornerRadius="5">
+            CornerRadius="5"
+            DataContext="{StaticResource Model}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding}">
+            <ItemsControl ItemsSource="{Binding Path=Employees}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
@@ -22,7 +26,7 @@
                         <Border Padding="5" Margin="10"
                                 BorderBrush="DarkGray" BorderThickness="2"
                                 CornerRadius="5">
-                            <userContols:EmployeeTemplate PaymentNeeded="EmployeeTemplate_OnPaymentNeeded" EmployeeEdited="EmployeeTemplate_OnEmployeeEdited" DataContext="{Binding}" />
+                            <userContols:EmployeeTemplate PaymentNeeded="EmployeeTemplate_OnPaymentNeeded" DataContext="{Binding}" />
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

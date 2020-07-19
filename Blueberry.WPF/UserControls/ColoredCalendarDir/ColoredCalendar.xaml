@@ -4,12 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Blueberry.WPF.UserControls.ColoredCalendarDir"
+             xmlns:converters="clr-namespace:Blueberry.WPF.Converters"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <local:ColoredCalendarVM x:Key="Model" />
+        <converters:BoolToVisibilityConverter x:Key="VisibilityConverter" />
     </UserControl.Resources>
-    <Grid>
+    <Grid DataContext="{StaticResource Model}">
         <Grid.Resources>
             <Style TargetType="{x:Type Image}" x:Key="IconStyle">
                 <Setter Property="Width" Value="50" />
@@ -35,17 +37,18 @@
             </Grid.ColumnDefinitions>
             
             <!-- Left side -->
-            <Button Grid.Column="0" Click="PreviousOnClick">
+            <Button Grid.Column="0" Command="{Binding Path=PreviousCommand}">
                 <Image Source="../../Images/previous_icone.png" Style="{StaticResource IconStyle}"/>
             </Button>
             
             <!-- -->
-            <TextBlock Grid.Column="1" x:Name="Header" 
+            <TextBlock Grid.Column="1" 
+                       Text="{Binding Path=MonthName}"
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontSize="30"/>
             
             <!-- Right side -->
-            <Button Grid.Column="2" Click="NextOnClick">
+            <Button Grid.Column="2" Command="{Binding Path=NextCommand}">
                 <Image Source="../../Images/next_icone.png" Style="{StaticResource IconStyle}"/>
             </Button>
         </Grid>
@@ -70,18 +73,9 @@
             <TextBlock Text="Nie" Grid.Column="6" Style="{StaticResource DayOfWeekStyle}"/>
         </Grid>
         
-        <!-- Content -->
-        <Grid x:Name="CalendarGrid" Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
+                <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -89,6 +83,14 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             
+            <local:CCWeek Grid.Row="0" DataContext="{Binding Path=Week1}" />
+            <local:CCWeek Grid.Row="1" DataContext="{Binding Path=Week2}" />
+            <local:CCWeek Grid.Row="2" DataContext="{Binding Path=Week3}" />
+            <local:CCWeek Grid.Row="3" DataContext="{Binding Path=Week4}" />
+            <local:CCWeek Grid.Row="4" DataContext="{Binding Path=Week5}" />
+            <StackPanel Grid.Row="5" Visibility="{Binding Path=IsLastWeekVisible, Converter={StaticResource VisibilityConverter}}">
+                <local:CCWeek DataContext="{Binding Path=Week6}" />
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

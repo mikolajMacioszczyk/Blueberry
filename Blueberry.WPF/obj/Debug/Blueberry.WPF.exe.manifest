@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Blueberry.WPF.exe" size="258528">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Blueberry.WPF.exe" size="267232">
       <assemblyIdentity name="Blueberry.WPF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ut2TS+KqCqyArMpIzy7RdpM6y7nSfZpEEi2fM7XIVtk=</dsig:DigestValue>
+        <dsig:DigestValue>p3P3xtCwmrlB0NcIm3lxbDKiYIwrnkc1kH0OohARiVo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

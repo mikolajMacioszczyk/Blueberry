@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Blueberry.WPF.UserControls.ColoredCalendarDir.CCWeek"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Blueberry.WPF.UserControls.ColoredCalendarDir"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <local:CCItem Grid.Column="0"
+                                   DataContext="{Binding Path=Day1}"/>
+        <local:CCItem Grid.Column="1"
+                                   DataContext="{Binding Path=Day2}"/>
+        <local:CCItem Grid.Column="2"
+                                   DataContext="{Binding Path=Day3}"/>
+        <local:CCItem Grid.Column="3"
+                                   DataContext="{Binding Path=Day4}"/>
+        <local:CCItem Grid.Column="4"
+                                   DataContext="{Binding Path=Day5}"/>
+        <local:CCItem Grid.Column="5"
+                                   DataContext="{Binding Path=Day6}"/>
+        <local:CCItem Grid.Column="6"
+                                   DataContext="{Binding Path=Day7}"/>
+    </Grid>
+</UserControl>
