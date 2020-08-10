@@ -4,16 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Blueberry.WPF.UserControls.HarvestControls"
-             mc:Ignorable="d"
-             Loaded="HarvestList_OnLoaded">
+             mc:Ignorable="d">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Zbiory z dnia " FontSize="26" />
-            <TextBlock x:Name="DayTextBlock" FontSize="30" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Path=Date}" FontSize="30" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Razem zebranych kilogramów: " FontSize="26"/>
-            <TextBlock x:Name="FullAmountTextBlock" FontSize="30" FontWeight="Bold" />
+            <TextBlock Text="{Binding Path=FullHarvestAmount}" FontSize="30" FontWeight="Bold" />
         </StackPanel>
         
         <GroupBox>
@@ -21,7 +20,7 @@
                 <TextBlock Text="Szczegóły: " FontSize="24" />
             </GroupBox.Header>
             
-            <ItemsControl ItemsSource="{Binding}">
+            <ItemsControl ItemsSource="{Binding Path=Harvests}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel />

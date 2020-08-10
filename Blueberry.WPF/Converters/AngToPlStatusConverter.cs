@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using Blueberry.DLL.Enums;
 using Blueberry.DLL.Models;
-using Blueberry.WPF.Enums;
 
 namespace Blueberry.WPF.Converters
 {
@@ -29,7 +29,20 @@ namespace Blueberry.WPF.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            var status = value is OrderStatusPolishNames ? (OrderStatusPolishNames) value : OrderStatusPolishNames.Oczekujący;
+            switch (status)
+            {
+                case OrderStatusPolishNames.Oczekujący:
+                    return OrderStatus.Waiting;
+                case OrderStatusPolishNames.Zrealizowany:
+                    return OrderStatus.Realized;
+                case OrderStatusPolishNames.Anulowany:
+                    return OrderStatus.Cancelled;
+                case OrderStatusPolishNames.Przełożony:
+                    return OrderStatus.Postponed;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

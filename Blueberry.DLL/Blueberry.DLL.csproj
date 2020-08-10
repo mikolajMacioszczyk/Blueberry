@@ -73,6 +73,15 @@
   <ItemGroup>
     <Compile Include="BlueberryContext.cs" />
     <Compile Include="DBConnector.cs" />
+    <Compile Include="Enums\MonthPolishNames.cs" />
+    <Compile Include="Enums\OrderStatus.cs" />
+    <Compile Include="Enums\OrderStatusPolishNames.cs" />
+    <Compile Include="Enums\PageTypes.cs" />
+    <Compile Include="Enums\Priority.cs" />
+    <Compile Include="Enums\PriorityPolishNames.cs" />
+    <Compile Include="Enums\SortBy.cs" />
+    <Compile Include="Enums\SortEmployeeBy.cs" />
+    <Compile Include="Enums\StatisticType.cs" />
     <Compile Include="ExtensionMethods\DateTimeExtensionMethods.cs" />
     <Compile Include="Migrations\202006241918168_InitialModel.cs" />
     <Compile Include="Migrations\202006241918168_InitialModel.designer.cs">
@@ -115,8 +124,6 @@
     <Compile Include="Models\Harvest.cs" />
     <Compile Include="Models\Modification.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrderStatus.cs" />
-    <Compile Include="Models\Priority.cs" />
     <Compile Include="Models\Record.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\Annotations.cs" />
