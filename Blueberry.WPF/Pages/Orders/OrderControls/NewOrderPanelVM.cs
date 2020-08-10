@@ -14,6 +14,7 @@ namespace Blueberry.WPF.Pages.Orders.OrderControls
 {
     public class NewOrderPanelVM : INotifyPropertyChanged
     {
+        public event Action ContentChangeRequested;
         #region Properties
         private Customer _selectedCustomer;
         private Priority _selectedPriority;
@@ -21,7 +22,6 @@ namespace Blueberry.WPF.Pages.Orders.OrderControls
         private DateTime _realizationDate;
         private ICommand _addOrderCommand;
         private ICommand _discardCommand;
-        private string _info;
         private int _amount;
 
         public ICommand AddOrderCommand
@@ -103,19 +103,6 @@ namespace Blueberry.WPF.Pages.Orders.OrderControls
                 }
             }
         }
-        public string Info
-        {
-            get => _info;
-            set
-            {
-                if (!_info.Equals(value))
-                {
-                    _info = value;
-                    OnPropertyChanged(nameof(Info));                    
-                }
-            }
-        }
-
         public int Amount
         {
             get => _amount;
@@ -141,6 +128,7 @@ namespace Blueberry.WPF.Pages.Orders.OrderControls
             if (Customers.Any()) { SelectedCustomer = Customers.First(); }
             SelectedPriority = Priority.MiddlePriority;
             OrderDate = DateTime.Now;
+            Amount = 0;
             RealizationDate = DateTime.Now.AddDays(7);
         }
 
@@ -162,14 +150,14 @@ namespace Blueberry.WPF.Pages.Orders.OrderControls
                 DateOfRealization = _realizationDate
             };
             DBConnector.GetInstance().AddOrder(order);
-            Info = "Zamówienie dodane";
             Clear();
+            ContentChangeRequested?.Invoke();
         }
 
         private void Discard()
         {
             Clear();
-            Info = "Wycofano tworzenie zamówienia";
+            ContentChangeRequested?.Invoke();
         }
         
         public event PropertyChangedEventHandler PropertyChanged;

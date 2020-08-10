@@ -107,9 +107,14 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="DialogBoxes\CommandDialogBox.cs" />
     <Compile Include="DialogBoxes\DialogBox.cs" />
+    <Compile Include="DialogBoxes\MessageDialogBox.cs" />
     <Compile Include="DialogBoxes\NotificationDialogBox.cs" />
     <Compile Include="DialogBoxes\SimpleDialogBox.cs" />
     <Compile Include="ExtensionMethods\ObservableCollectionExtensionMethods.cs" />
+    <Compile Include="MainWindowFolder\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PageEventArgs\CustomerAddedEventArgs.cs" />
     <Compile Include="PageEventArgs\CustomerPageEventArgs.cs" />
     <Compile Include="PageEventArgs\EmployeeEditedEventArgs.cs" />
@@ -121,9 +126,18 @@
     <Compile Include="Pages\Calendar\CalendarPage.xaml.cs">
       <DependentUpon>CalendarPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\CustomersPage.xaml.cs">
+    <Compile Include="Pages\Customers\CustomerList.xaml.cs">
+      <DependentUpon>CustomerList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Customers\CustomerListVM.cs" />
+    <Compile Include="Pages\Customers\CustomersPage.xaml.cs">
       <DependentUpon>CustomersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Customers\CustomersPageVM.cs" />
+    <Compile Include="Pages\Customers\NewCustomerUserControl.xaml.cs">
+      <DependentUpon>NewCustomerUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Customers\NewCustomerVM.cs" />
     <Compile Include="Pages\EmployeePages\EmployeePageVM.cs" />
     <Compile Include="Pages\EmployeePages\EmployerPage.xaml.cs">
       <DependentUpon>EmployerPage.xaml</DependentUpon>
@@ -131,9 +145,11 @@
     <Compile Include="Pages\EmployeePages\NewEmployeePage.xaml.cs">
       <DependentUpon>NewEmployeePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EmployeePages\NewEmployeeVM.cs" />
     <Compile Include="Pages\EmployeePages\SalaryPage.xaml.cs">
       <DependentUpon>SalaryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EmployeePages\SalaryPageVM.cs" />
     <Compile Include="Pages\HarvestPages\HarvestHistoryPage.xaml.cs">
       <DependentUpon>HarvestHistoryPage.xaml</DependentUpon>
     </Compile>
@@ -179,12 +195,6 @@
     </Compile>
     <Compile Include="UserControls\ColoredCalendarDir\CCItemVM.cs" />
     <Compile Include="UserControls\ColoredCalendarDir\ColoredCalendarVM.cs" />
-    <Compile Include="UserControls\CustomerControls\CustomerList.xaml.cs">
-      <DependentUpon>CustomerList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\CustomerControls\NewCustomerUserControl.xaml.cs">
-      <DependentUpon>NewCustomerUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\EmployeeControls\EmployeeTemplate.xaml.cs">
       <DependentUpon>EmployeeTemplate.xaml</DependentUpon>
     </Compile>
@@ -195,13 +205,15 @@
     <Compile Include="UserControls\EmployeeControls\SalaryTemplate.xaml.cs">
       <DependentUpon>SalaryTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\EmployeeControls\SalaryTemplateVM.cs" />
     <Compile Include="UserControls\HarvestControls\HarvestItem.xaml.cs">
       <DependentUpon>HarvestItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\HarvestControls\HarvestList.xaml.cs">
       <DependentUpon>HarvestList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="UserControls\HarvestControls\HarvestListVM.cs" />
+    <Compile Include="MainWindowFolder\ViewModel.cs" />
     <Compile Include="Windows\CustomerDetailsWindow.xaml.cs">
       <DependentUpon>CustomerDetailsWindow.xaml</DependentUpon>
     </Compile>
@@ -215,15 +227,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="MainWindowFolder\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Calendar\CalendarPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\CustomersPage.xaml" />
+    <Page Include="Pages\Customers\CustomerList.xaml" />
+    <Page Include="Pages\Customers\CustomersPage.xaml" />
+    <Page Include="Pages\Customers\NewCustomerUserControl.xaml" />
     <Page Include="Pages\EmployeePages\EmployerPage.xaml" />
     <Page Include="Pages\EmployeePages\NewEmployeePage.xaml" />
     <Page Include="Pages\EmployeePages\SalaryPage.xaml" />
@@ -244,8 +258,6 @@
     <Page Include="UserControls\ColoredCalendarDir\CCWeek.xaml" />
     <Page Include="UserControls\ColoredCalendarDir\ColoredCalendar.xaml" />
     <Page Include="UserControls\ColoredCalendarDir\CCItem.xaml" />
-    <Page Include="UserControls\CustomerControls\CustomerList.xaml" />
-    <Page Include="UserControls\CustomerControls\NewCustomerUserControl.xaml" />
     <Page Include="UserControls\EmployeeControls\EmployeeTemplate.xaml" />
     <Page Include="UserControls\EmployeeControls\EmployeeTemplateHeader.xaml" />
     <Page Include="UserControls\EmployeeControls\SalaryTemplate.xaml" />
@@ -254,10 +266,6 @@
     <Page Include="Windows\CustomerDetailsWindow.xaml" />
     <Page Include="Windows\EditCustomerWindow.xaml" />
     <Page Include="Windows\EditEmployeeWindow.xaml" />
-    <Page Include="Windows\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

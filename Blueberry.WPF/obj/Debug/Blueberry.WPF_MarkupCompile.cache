@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\C#\Blueberry\Blueberry.WPF\App.xaml
-27-311865951
+271473994725
 
-67-1702921788
+75-449874711
 181477242355
-Pages\Calendar\CalendarPage.xaml;Pages\CustomersPage.xaml;Pages\EmployeePages\EmployerPage.xaml;Pages\EmployeePages\NewEmployeePage.xaml;Pages\EmployeePages\SalaryPage.xaml;Pages\HarvestPages\HarvestHistoryPage.xaml;Pages\HarvestPages\NewHarvestPage.xaml;Pages\Home\HomePage.xaml;Pages\Orders\OrderControls\EditOrderPanel.xaml;Pages\Orders\OrderControls\NewOrderPanel.xaml;Pages\Orders\OrderControls\OrderList.xaml;Pages\Orders\OrderPage.xaml;Pages\Statistics\StatisticsPage.xaml;UserControls\ColoredCalendarDir\CCWeek.xaml;UserControls\ColoredCalendarDir\ColoredCalendar.xaml;UserControls\ColoredCalendarDir\CCItem.xaml;UserControls\CustomerControls\CustomerList.xaml;UserControls\CustomerControls\NewCustomerUserControl.xaml;UserControls\EmployeeControls\EmployeeTemplate.xaml;UserControls\EmployeeControls\EmployeeTemplateHeader.xaml;UserControls\EmployeeControls\SalaryTemplate.xaml;UserControls\HarvestControls\HarvestItem.xaml;UserControls\HarvestControls\HarvestList.xaml;Windows\CustomerDetailsWindow.xaml;Windows\EditCustomerWindow.xaml;Windows\EditEmployeeWindow.xaml;Windows\MainWindow.xaml;
+MainWindowFolder\MainWindow.xaml;Pages\Calendar\CalendarPage.xaml;Pages\Customers\CustomerList.xaml;Pages\Customers\CustomersPage.xaml;Pages\Customers\NewCustomerUserControl.xaml;Pages\EmployeePages\EmployerPage.xaml;Pages\EmployeePages\NewEmployeePage.xaml;Pages\EmployeePages\SalaryPage.xaml;Pages\HarvestPages\HarvestHistoryPage.xaml;Pages\HarvestPages\NewHarvestPage.xaml;Pages\Home\HomePage.xaml;Pages\Orders\OrderControls\EditOrderPanel.xaml;Pages\Orders\OrderControls\NewOrderPanel.xaml;Pages\Orders\OrderControls\OrderList.xaml;Pages\Orders\OrderPage.xaml;Pages\Statistics\StatisticsPage.xaml;UserControls\ColoredCalendarDir\CCWeek.xaml;UserControls\ColoredCalendarDir\ColoredCalendar.xaml;UserControls\ColoredCalendarDir\CCItem.xaml;UserControls\EmployeeControls\EmployeeTemplate.xaml;UserControls\EmployeeControls\EmployeeTemplateHeader.xaml;UserControls\EmployeeControls\SalaryTemplate.xaml;UserControls\HarvestControls\HarvestItem.xaml;UserControls\HarvestControls\HarvestList.xaml;Windows\CustomerDetailsWindow.xaml;Windows\EditCustomerWindow.xaml;Windows\EditEmployeeWindow.xaml;
 
 False
 

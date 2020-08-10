@@ -119,17 +119,14 @@ namespace Blueberry.DLL
             CustomersChanged?.Invoke();
         }
 
-        public void AddCustomer(Customer customer, bool isAddressNew)
+        public void AddCustomer(Customer customer)
         {
             var record = new Record()
             {
                 Message = $"Added new customer: {customer.FullString()}"
             };
             _context.Customers.Add(customer);
-            if (isAddressNew)
-            {
-                _context.Addresses.Add(customer.Address);
-            }
+            _customers.Add(customer);
             _context.Records.Add(record);
             CustomersChanged?.Invoke();
         }
@@ -140,6 +137,7 @@ namespace Blueberry.DLL
             {
                 Message =$"Added new order: {order.FullString()}: ",
             };
+            _orders.Add(order);
             _context.Orders.Add(order);
             _context.Records.Add(record);
             OrdersChanged?.Invoke();
@@ -151,6 +149,7 @@ namespace Blueberry.DLL
             {
                 Message =$"Added new employee: {employee.FullString()}: ",
             };
+            _employees.Add(employee);
             _context.Employees.Add(employee);
             _context.Records.Add(record);
             EmployeesChanged?.Invoke();
@@ -173,9 +172,22 @@ namespace Blueberry.DLL
             {
                 Message =$"Added new harvest: {harvest.FullString()}: ",
             };
+            _harvests.Add(harvest);
             _context.Harvests.Add(harvest);
             _context.Records.Add(record);
             HarvestChanged?.Invoke();
+        }
+
+        public void AddAddress(Address address)
+        {
+            var record = new Record()
+            {
+                Message = $"Added new address: {address.ToString()}"
+            };
+            _context.Addresses.Add(address);
+            _addresses.Add(address);
+            _context.Records.Add(record);
+            AddressesChanged?.Invoke();
         }
 
         public void Save()

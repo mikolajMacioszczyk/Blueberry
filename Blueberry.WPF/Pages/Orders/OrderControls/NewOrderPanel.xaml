@@ -3,14 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:models="clr-namespace:Blueberry.WPF.ViewModels"
              xmlns:orderControls="clr-namespace:Blueberry.WPF.Pages.Orders.OrderControls"
+             xmlns:dialogs="clr-namespace:Blueberry.WPF.DialogBoxes"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <orderControls:NewOrderPanelVM x:Key="Model" />
-    </UserControl.Resources>
-    <StackPanel Margin="20,10" DataContext="{StaticResource Model}">
+    <StackPanel Margin="20,10">
+        <dialogs:NotificationDialogBox
+            x:Name="AddDialogBox"
+            Caption="Zamówienie zostało dodane"
+            CommandAfter="{Binding Path=AddOrderCommand}"/>
+        
         <Grid>
             <Grid.Resources>
                 <Style TargetType="{x:Type ComboBox}" x:Key="ComboBoxStyle">
@@ -75,21 +77,21 @@
                 
                 <!-- Column 1 -->
                 <TextBlock Text="Data przyjęcia:" Grid.Column="0" Grid.Row="0" />
-                <Calendar SelectedDate="{Binding Path=OrderDate}" 
+                <DatePicker SelectedDate="{Binding Path=OrderDate}" 
                           Grid.Column="0" Grid.Row="1"
                           HorizontalAlignment="Left"/>
                 
                 <!-- Column 2 -->
                 <TextBlock Text="Data realizacji: " Grid.Column="1" Grid.Row="0"/>
-                <Calendar SelectedDate="{Binding Path=RealizationDate}" 
-                          Grid.Column="1" Grid.Row="1" 
-                          HorizontalAlignment="Left"/>
+                <DatePicker SelectedDate="{Binding Path=RealizationDate}" 
+                            Grid.Column="1" Grid.Row="1" 
+                            HorizontalAlignment="Left"/>
             </Grid>
             
             <!-- Row 5 -->
             <Button Content="Dodaj" 
                     Grid.Column="0" Grid.Row="4"
-                    Command="{Binding Path=AddOrderCommand}"
+                    Command="{Binding ElementName=AddDialogBox, Path=Show}"
                     Style="{StaticResource ButtonStyle}"/>
             <Button Content="Anuluj" Grid.Column="1" Grid.Row="4"
                     Command="{Binding Path=DiscardCommand}"

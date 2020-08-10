@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Blueberry.DLL;
 using Blueberry.DLL.Enums;
@@ -13,6 +14,12 @@ using Blueberry.WPF.Pages.Orders.OrderControls;
 
 namespace Blueberry.WPF.Pages.Orders
 {
+    internal enum OrderContent
+    {
+        List = 0,
+        New = 1,
+        Edit = 2
+    }
     public class OrderPageVM : INotifyPropertyChanged
     {
         #region Properties
@@ -25,56 +32,19 @@ namespace Blueberry.WPF.Pages.Orders
         private ICommand _editCommand;
         private SortBy _selectedSort;
         private OrderStatus _selectedStatus;
-        private bool _isNewOrderVisible = false;
-        private bool _isOrderListVisible = true;
-        private bool _isEditOrderVisible = false;
-        public EditOrderVM EditOrderVm { get; set; } = new EditOrderVM();
-        public bool IsNewOrderVisible
-        {
-            get => _isNewOrderVisible;
+        private NewOrderPanelVM _newOrderPanelVm = new NewOrderPanelVM();
+        private EditOrderVM EditOrderVm = new EditOrderVM();
+        private UserControl _newOrderPanel = new NewOrderPanel();
+        private UserControl _editOrderPanel = new EditOrderPanel();
+        private UserControl _orderLstPanel = new OrderList();
+        private UserControl _content;
+        public UserControl Content
+        {    
+            get => _content;
             set
             {
-                if (value)
-                {
-                    _isNewOrderVisible = true;
-                    _isOrderListVisible = false;
-                    _isEditOrderVisible = false;
-                    OnPropertyChanged(nameof(IsNewOrderVisible));
-                    OnPropertyChanged(nameof(IsOrderListVisible));
-                    OnPropertyChanged(nameof(IsEditOrderVisible));
-                }
-            }
-        }
-        public bool IsOrderListVisible
-        {
-            get => _isOrderListVisible;
-            set
-            {
-                if (value)
-                {
-                    _isOrderListVisible = true;
-                    _isNewOrderVisible = false;
-                    _isEditOrderVisible = false;
-                    OnPropertyChanged(nameof(IsOrderListVisible));
-                    OnPropertyChanged(nameof(IsNewOrderVisible));
-                    OnPropertyChanged(nameof(IsEditOrderVisible));
-                }
-            }
-        }
-        public bool IsEditOrderVisible
-        {
-            get => _isEditOrderVisible;
-            set
-            {
-                if (value)
-                {
-                    _isEditOrderVisible = true;
-                    _isNewOrderVisible = false;
-                    _isOrderListVisible = false;
-                    OnPropertyChanged(nameof(IsOrderListVisible));
-                    OnPropertyChanged(nameof(IsNewOrderVisible));
-                    OnPropertyChanged(nameof(IsEditOrderVisible));
-                }
+                _content = value;
+                OnPropertyChanged();
             }
         }
         public ICommand DoneCommand
@@ -141,12 +111,13 @@ namespace Blueberry.WPF.Pages.Orders
                         int id = (int) p;
                         Order o = DBConnector.GetInstance().GetOrders().FirstOrDefault(or => or.Id == id);
                         EditOrderVm.SelectedOrder = o;
-                        IsEditOrderVisible = true;
+                        ContentSwitch(OrderContent.Edit);
                     }
                 ); }
                 return _editCommand;
             }
         }
+
         public ICommand SortCommand
         {
             get
@@ -176,17 +147,13 @@ namespace Blueberry.WPF.Pages.Orders
                 if (_changeContentCommand == null)
                 {
                     _changeContentCommand = new ChangeContentCommand(
-                        p =>
-                        {
-                            int.TryParse(p.ToString(), out int number);
-                            if (number == 0) {IsOrderListVisible = true;}
-                            else {IsNewOrderVisible = true;}
-                        },
+                        p => ContentSwitch((OrderContent) Enum.Parse(typeof(OrderContent), p.ToString())),
                         p => true);
                 }
                 return _changeContentCommand;
             }
         }
+
         public SortBy SelectedSort
         {
             get => _selectedSort;
@@ -217,6 +184,11 @@ namespace Blueberry.WPF.Pages.Orders
             _connector = DBConnector.GetInstance();
             _connector.OrdersChanged += SetOrders;
             SetOrders();
+            _newOrderPanelVm.ContentChangeRequested += () => ContentSwitch(0);
+            _orderLstPanel.DataContext = this;
+            _editOrderPanel.DataContext = EditOrderVm;
+            _newOrderPanel.DataContext = _newOrderPanelVm;
+            Content = _orderLstPanel;
         }
 
         private void ClearOrders()
@@ -249,7 +221,7 @@ namespace Blueberry.WPF.Pages.Orders
                     sorted = list.OrderBy(o => o.Customer);
                     break;
                 case SortBy.Priority:
-                    sorted = list.OrderBy(o => o.Priority);
+                    sorted = list.OrderByDescending(o => o.Priority);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -257,6 +229,24 @@ namespace Blueberry.WPF.Pages.Orders
             foreach (var item in sorted)
             {
                 Orders.Add(item);
+            }
+        }
+        
+        private void ContentSwitch(OrderContent content)
+        {
+            switch (content)
+            {
+                case OrderContent.List:
+                    Content = _orderLstPanel;
+                    break;
+                case OrderContent.New:
+                    Content = _newOrderPanel;
+                    break;
+                case OrderContent.Edit:
+                    Content = _editOrderPanel;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(content), content, null);
             }
         }
 

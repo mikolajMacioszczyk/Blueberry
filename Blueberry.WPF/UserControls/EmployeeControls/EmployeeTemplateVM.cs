@@ -1,11 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Blueberry.DLL.Models;
 using Blueberry.WPF.Annotations;
 using Blueberry.WPF.Commands;
 
-namespace Blueberry.WPF.UserControls
+namespace Blueberry.WPF.UserControls.EmployeeControls
 {
     public class EmployeeTemplateVM : INotifyPropertyChanged
     {
@@ -33,6 +34,20 @@ namespace Blueberry.WPF.UserControls
                         );
                 }
                 return _editCommand;
+            }
+        }
+
+        private ICommand _payCommmand;
+
+        public ICommand PayCommand
+        {
+            get
+            {
+                if (_payCommmand == null)
+                {
+                    _payCommmand = new RelayCommand(p => true, p => throw new InvalidOperationException("Nie zaimplementowano płacenia"));
+                }
+                return _payCommmand;
             }
         }
 

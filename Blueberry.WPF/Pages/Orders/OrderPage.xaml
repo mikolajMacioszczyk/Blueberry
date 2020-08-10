@@ -99,7 +99,7 @@
                 <Border Grid.Row="3" Style="{StaticResource OuterBorderStyle}">
                     <Button BorderThickness="0"
                             Command="{Binding Path=ChangeContentCommand}"
-                            CommandParameter="1">
+                            CommandParameter="New">
                         <Button.Background>
                             <SolidColorBrush Color="White" Opacity="0.5" />
                         </Button.Background>
@@ -114,7 +114,7 @@
                 <Border Grid.Row="4" Style="{StaticResource OuterBorderStyle}">
                     <Button BorderThickness="0"
                             Command="{Binding Path=ChangeContentCommand}"
-                            CommandParameter="0">
+                            CommandParameter="List">
                         <Button.Background>
                             <SolidColorBrush Color="White" Opacity="0.5" />
                         </Button.Background>
@@ -129,11 +129,7 @@
         
         <!-- Center -->
         <ScrollViewer>
-            <ItemsControl>
-                <orderControls:NewOrderPanel Visibility="{Binding Path=IsNewOrderVisible, Converter={StaticResource VisibilityConverter}}" />
-                <orderControls:OrderList DataContext="{Binding}" Visibility="{Binding Path=IsOrderListVisible, Converter={StaticResource VisibilityConverter}}"/>
-                <orderControls:EditOrderPanel DataContext="{Binding Path=EditOrderVm}" Visibility="{Binding Path=IsEditOrderVisible, Converter={StaticResource VisibilityConverter}}" />
-            </ItemsControl>
+            <UserControl Content="{Binding Path=Content}" />
         </ScrollViewer>
     </DockPanel>
 </Page>

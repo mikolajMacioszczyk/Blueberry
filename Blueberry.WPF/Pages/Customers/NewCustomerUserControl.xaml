@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Blueberry.WPF.UserControls"
+             xmlns:local="clr-namespace:Blueberry.WPF.Pages.Customers"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -55,35 +55,35 @@
                    Text="Dodaj klienta!" TextAlignment="Center" FontSize="30"/>
         
         <!-- First Name -->
-        <TextBlock Text="Imię: " Grid.Column="0" Grid.Row="1" Style="{StaticResource TextBlockStyle}" />
-        <TextBox x:Name="FirstNameTextBox" Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBoxStyle}" />
+        <TextBlock Text="*Imię: " Grid.Column="0" Grid.Row="1" Style="{StaticResource TextBlockStyle}" />
+        <TextBox Text="{Binding Path=FirstName}" Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBoxStyle}" />
         
         <!-- Last Name -->
-        <TextBlock Text="Nazwsko: " Grid.Column="0" Grid.Row="2" Style="{StaticResource TextBlockStyle}"/>
-        <TextBox x:Name="LastNameTextBox" Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBoxStyle}"/>
+        <TextBlock Text="*Nazwsko: " Grid.Column="0" Grid.Row="2" Style="{StaticResource TextBlockStyle}"/>
+        <TextBox Text="{Binding Path=LastName}" Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBoxStyle}"/>
         
         <!-- Number -->
-        <TextBlock Text="Telefon: " Grid.Column="0" Grid.Row="3" Style="{StaticResource TextBlockStyle}"/>
-        <TextBox x:Name="PhoneNumberTextBox" Grid.Column="1" Grid.Row="3" Style="{StaticResource TextBoxStyle}"/>
+        <TextBlock Text="*Telefon: " Grid.Column="0" Grid.Row="3" Style="{StaticResource TextBlockStyle}"/>
+        <TextBox Text="{Binding Path=PhoneNumber}" Grid.Column="1" Grid.Row="3" Style="{StaticResource TextBoxStyle}"/>
         
         <Separator Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" />
         <!--City -->
         <TextBlock Text="Miasto: " Grid.Column="0" Grid.Row="5" Style="{StaticResource TextBlockStyle}"/>
-        <TextBox x:Name="CityTextBox" Grid.Column="1" Grid.Row="5" Style="{StaticResource TextBoxStyle}"/>
+        <TextBox Text="{Binding Path=City}" Grid.Column="1" Grid.Row="5" Style="{StaticResource TextBoxStyle}"/>
         
         <!--Street -->
         <TextBlock Text="Ulica: " Grid.Column="0" Grid.Row="6" Style="{StaticResource TextBlockStyle}"/>
-        <TextBox x:Name="StreetTextBox" Grid.Column="1" Grid.Row="6" Style="{StaticResource TextBoxStyle}"/>
+        <TextBox Text="{Binding Street}" Grid.Column="1" Grid.Row="6" Style="{StaticResource TextBoxStyle}"/>
         
         <!-- House -->
         <TextBlock Text="Dom: " Grid.Column="0" Grid.Row="7" Style="{StaticResource TextBlockStyle}"/>
-        <TextBox x:Name="HouseTextBox" Grid.Column="1" Grid.Row="7" Style="{StaticResource TextBoxStyle}"/>
+        <TextBox Text="{Binding House}" Grid.Column="1" Grid.Row="7" Style="{StaticResource TextBoxStyle}"/>
         
         <!-- Info -->
-        <TextBlock x:Name="InfoBox" Foreground="Red" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" />
+        <TextBlock Text="{Binding Info}" Foreground="Red" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" />
         
         <!--Submit -->
-        <Button Content="Dodaj" Grid.Column="0" Grid.Row="9" Click="SubmitOnClick" Style="{StaticResource ButtonStyle}" />
-        <Button Content="Anuluj" Grid.Column="1" Grid.Row="9" Click="DiscardOnClick" Style="{StaticResource ButtonStyle}"/>
+        <Button Content="Dodaj" Grid.Column="0" Grid.Row="9" Command="{Binding SubmitCommand}" Style="{StaticResource ButtonStyle}" />
+        <Button Content="Anuluj" Grid.Column="1" Grid.Row="9" Command="{Binding DiscardCommand}" Style="{StaticResource ButtonStyle}"/>
     </Grid>
 </UserControl>
