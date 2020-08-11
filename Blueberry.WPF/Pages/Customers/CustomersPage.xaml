@@ -31,7 +31,7 @@
     
     <DockPanel DataContext="{StaticResource Model}" Margin="20">
         <StackPanel DockPanel.Dock="Left" Margin="0,20,15,0">
-            <Border x:Name="AddButton" Style="{StaticResource OuterBorderStyle}">
+            <Border Style="{StaticResource OuterBorderStyle}">
                 <Button Style="{StaticResource AddButtonStyle}"
                         Command="{Binding Path=AddCommand}">
                     <StackPanel>

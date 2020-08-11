@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using Blueberry.WPF.Commands;
 
@@ -16,9 +17,17 @@ namespace Blueberry.WPF.DialogBoxes
                         p => true,
                         p =>
                         {
-                            executeCommand(CommandBefore, CommandParameter);
-                            execute(p);
-                            executeCommand(CommandAfter, CommandParameter);
+                            try
+                            {
+                                executeCommand(CommandBefore, CommandParameter);
+                                execute(p);
+                                executeCommand(CommandAfter, CommandParameter);
+                            }
+                            catch (InvalidOperationException e)
+                            {
+                                MessageBox.Show((string) e.Message, string.Empty,
+                                    MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
                         }
                         );
                 }

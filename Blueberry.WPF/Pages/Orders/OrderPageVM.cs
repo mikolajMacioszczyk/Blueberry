@@ -58,16 +58,14 @@ namespace Blueberry.WPF.Pages.Orders
                         if (!(p is int)) return;
                         int id = (int) p;
                         Order o = DBConnector.GetInstance().GetOrders().FirstOrDefault(or => or.Id == id);
-                        DBConnector.GetInstance().ModifyOrder(
+                        o.Status = OrderStatus.Realized;
+                        DBConnector.GetInstance().ModifyOrderAsync(
                             o,
                             new Modification[]
                             {
                                 new Modification(o.Status, OrderStatus.Realized)
                             }
-                            );
-                        o.Status = OrderStatus.Realized;
-                        Orders.Remove(o);
-                        Orders.Add(o);
+                        );
                     }
                     ); }
                 return _doneCommand;
@@ -84,16 +82,14 @@ namespace Blueberry.WPF.Pages.Orders
                         if (!(p is int)) return;
                         int id = (int) p;
                         Order o = DBConnector.GetInstance().GetOrders().FirstOrDefault(or => or.Id == id);
-                        DBConnector.GetInstance().ModifyOrder(
+                        o.Status = OrderStatus.Cancelled;
+                        DBConnector.GetInstance().ModifyOrderAsync(
                             o,
                             new Modification[]
                             {
                                 new Modification(o.Status, OrderStatus.Cancelled)
                             }
                         );
-                        o.Status = OrderStatus.Cancelled;
-                        Orders.Remove(o);
-                        Orders.Add(o);
                     }
                 ); }
                 return _cancelCommand;
@@ -186,6 +182,7 @@ namespace Blueberry.WPF.Pages.Orders
             SetOrders();
             _newOrderPanelVm.ContentChangeRequested += () => ContentSwitch(0);
             _orderLstPanel.DataContext = this;
+            EditOrderVm.ChangeContentRequested += () => ContentSwitch(0);
             _editOrderPanel.DataContext = EditOrderVm;
             _newOrderPanel.DataContext = _newOrderPanelVm;
             Content = _orderLstPanel;

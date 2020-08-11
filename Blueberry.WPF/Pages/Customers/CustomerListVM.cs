@@ -45,8 +45,7 @@ namespace Blueberry.WPF.Pages.Customers
                             {
                                 orders = customer.Orders.OrderBy(o => o.DateOfRealization).ToList();
                             }
-                            new CustomerDetailsWindow(orders).ShowDialog();
-                            throw new InvalidCastException("Pokaż tu Szczegóły");
+                            new CustomerDetailsWindow(){DataContext = orders}.ShowDialog();
                         });                    
                 }
                 return _detailsCommand;
@@ -86,7 +85,10 @@ namespace Blueberry.WPF.Pages.Customers
         {
             var oldCustomer = parameter as Customer;
             var newCustomer = new EditCustomerWindow().Edit(oldCustomer);
-            DBConnector.GetInstance().ModifyCustomer(oldCustomer,GetModifications(oldCustomer,newCustomer));
+            if (newCustomer != null)
+            {
+                DBConnector.GetInstance().ModifyCustomerAsync(oldCustomer,GetModifications(oldCustomer,newCustomer));
+            }
         }
         
         private Modification[] GetModifications(Customer before, Customer after)

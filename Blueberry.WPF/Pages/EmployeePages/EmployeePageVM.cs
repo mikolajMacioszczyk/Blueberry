@@ -2,13 +2,16 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Blueberry.DLL;
+using Blueberry.DLL.Enums;
 using Blueberry.DLL.Models;
+using Blueberry.WPF.UserControls.EmployeeControls;
 
 namespace Blueberry.WPF.Pages.EmployeePages
 {
     public class EmployeePageVM
     {
-        public ObservableCollection<Employee> Employees { get; set; }
+        public event Action<PageType> ContentSwitchRequested;
+        public ObservableCollection<EmployeeTemplateVM> EmployeeModels { get; set; }
         public EmployeePageVM()
         {
             DBConnector.GetInstance().EmployeesChanged += Refresh;
@@ -17,9 +20,23 @@ namespace Blueberry.WPF.Pages.EmployeePages
 
         private void Refresh()
         {
-            Employees = new ObservableCollection<Employee>(
-                DBConnector.GetInstance().GetEmployees().OrderBy(e => e.LastName)
-                );
+            var employees = DBConnector.GetInstance().GetEmployees().OrderBy(e => e.LastName).ThenBy(e => e.FirstName)
+                .ThenBy(e => e.Id);
+            if (EmployeeModels == null)
+            {
+                EmployeeModels = new ObservableCollection<EmployeeTemplateVM>();
+            }
+            EmployeeModels.Clear();
+            var data = employees.Select(e =>
+            {
+                var model = new EmployeeTemplateVM(e);
+                model.ContentSwitchRequested += t => ContentSwitchRequested.Invoke(t);
+                return model;
+            });
+            foreach (var vm in data)
+            {
+                EmployeeModels.Add(vm);
+            }
         }
     }
 }

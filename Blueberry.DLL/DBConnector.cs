@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Blueberry.DLL.Models;
 
 namespace Blueberry.DLL
@@ -10,11 +12,11 @@ namespace Blueberry.DLL
     public class DBConnector
     {
         private BlueberryContext _context;
-        private ObservableCollection<Order> _orders;
-        private ObservableCollection<Customer> _customers;
-        private ObservableCollection<Address> _addresses;
-        private ObservableCollection<Employee> _employees;
-        private ObservableCollection<Harvest> _harvests;
+        private List<Order> _orders;
+        private List<Customer> _customers;
+        private List<Address> _addresses;
+        private List<Employee> _employees;
+        private List<Harvest> _harvests;
         private float? _pricePerKilo;
         
         public float PricePerKilo
@@ -42,49 +44,49 @@ namespace Blueberry.DLL
             _context = new BlueberryContext();
         }
 
-        public ObservableCollection<Customer> GetCustomers()
+        public IEnumerable<Customer> GetCustomers()
         {
             if (_customers == null)
             {
-                _customers = new ObservableCollection<Customer>(_context.Customers.Include(c => c.Address));
+                _customers = new List<Customer>(_context.Customers.Include(c => c.Address));
             }
             return _customers;
         }
 
-        public ObservableCollection<Order> GetOrders()
+        public IEnumerable<Order> GetOrders()
         {
             if (_orders == null)
             {
-                _orders = new ObservableCollection<Order>(_context.Orders.Include(o => o.Customer).Include(o => o.Customer.Address));
+                _orders = new List<Order>(_context.Orders.Include(o => o.Customer).Include(o => o.Customer.Address));
             }
             return _orders;
         }
 
-        public ObservableCollection<Address> GetAddresses()
+        public IEnumerable<Address> GetAddresses()
         {
             if (_addresses == null)
             {
-                _addresses = new ObservableCollection<Address>(_context.Addresses);
+                _addresses = new List<Address>(_context.Addresses);
             }
 
             return _addresses;
         }
 
-        public ObservableCollection<Employee> GetEmployees()
+        public IEnumerable<Employee> GetEmployees()
         {
             if (_employees == null)
             {
-                _employees = new ObservableCollection<Employee>(_context.Employees);
+                _employees = new List<Employee>(_context.Employees);
             }
 
             return _employees;
         }
         
-        public ObservableCollection<Harvest> GetHarvests()
+        public IEnumerable<Harvest> GetHarvests()
         {
             if (_harvests == null)
             {
-                _harvests = new ObservableCollection<Harvest>(_context.Harvests);
+                _harvests = new List<Harvest>(_context.Harvests);
             }
             return _harvests;
         }
@@ -98,6 +100,21 @@ namespace Blueberry.DLL
             _context.Records.Add(record);
             OrdersChanged?.Invoke();
         }
+        public async void ModifyOrderAsync(Order modifiedOrder, Modification[] modifications)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                var record = new Record()
+                {
+                    Message = $"Modification order {modifiedOrder.FullString()}: " + string.Join(", ",
+                        modifications.Select(m =>
+                            $"property {m.Type} =>  from '{m.OldValue}' to '{m.NewValue}', ")),
+                };
+                _context.Records.Add(record);
+                _context.SaveChanges();
+            });
+            OrdersChanged?.Invoke();
+        }
 
         public void ModifyEmployee(Employee old, Modification[] modifications)
         {
@@ -106,6 +123,23 @@ namespace Blueberry.DLL
                 Message =$"Modification employee {old.FullString()}: " + string.Join(", ",modifications.Select(m => $"property {m.Type} =>  from '{m.OldValue}' to '{m.NewValue}', ")),
             };
             _context.Records.Add(record);
+            _context.SaveChanges();
+            EmployeesChanged?.Invoke();
+        }
+        
+        public async void ModifyEmployeeAsync(Employee old, Modification[] modifications)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                var record = new Record()
+                {
+                    Message = $"Modification employee {old.FullString()}: " + string.Join(", ",
+                        modifications.Select(m =>
+                            $"property {m.Type} =>  from '{m.OldValue}' to '{m.NewValue}', ")),
+                };
+                _context.Records.Add(record);
+                _context.SaveChanges();
+            });
             EmployeesChanged?.Invoke();
         }
         
@@ -116,6 +150,22 @@ namespace Blueberry.DLL
                 Message =$"Modification customer {old.FullString()}: " + string.Join(", ",modifications.Select(m => $"property {m.Type} =>  from '{m.OldValue}' to '{m.NewValue}', ")),
             };
             _context.Records.Add(record);
+            CustomersChanged?.Invoke();
+        }
+        
+        public async void ModifyCustomerAsync(Customer old, Modification[] modifications)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                var record = new Record()
+                {
+                    Message = $"Modification customer {old.FullString()}: " + string.Join(", ",
+                        modifications.Select(m =>
+                            $"property {m.Type} =>  from '{m.OldValue}' to '{m.NewValue}', ")),
+                };
+                _context.Records.Add(record);
+                _context.SaveChanges();
+            });
             CustomersChanged?.Invoke();
         }
 
@@ -131,6 +181,22 @@ namespace Blueberry.DLL
             CustomersChanged?.Invoke();
         }
         
+        public async void AddCustomerAsync(Customer customer)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                var record = new Record()
+                {
+                    Message = $"Added new customer: {customer.FullString()}"
+                };
+                _context.Customers.Add(customer);
+                _context.Records.Add(record);
+                _context.SaveChanges();
+            });
+            _customers.Add(customer);
+            CustomersChanged?.Invoke();
+        }
+        
         public void AddOrder(Order order)
         {
             var record = new Record()
@@ -140,6 +206,22 @@ namespace Blueberry.DLL
             _orders.Add(order);
             _context.Orders.Add(order);
             _context.Records.Add(record);
+            OrdersChanged?.Invoke();
+        }
+        
+        public async void AddOrderAsync(Order order)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                var record = new Record()
+                {
+                    Message = $"Added new order: {order.FullString()}: ",
+                };
+                _context.Orders.Add(order);
+                _context.Records.Add(record);
+                _context.SaveChanges();
+            });
+            _orders.Add(order);
             OrdersChanged?.Invoke();
         }
         
@@ -154,17 +236,35 @@ namespace Blueberry.DLL
             _context.Records.Add(record);
             EmployeesChanged?.Invoke();
         }
-
-        public void AddException(Exception exception)
+        public void AddEmployeeAsync(Employee employee)
         {
-            var blueberryex = new BlueberryException()
+            Task.Factory.StartNew(() =>
             {
-                StackTrance = exception.Message +"\n"+ exception.StackTrace,
-                IsSolved = false
-            };
-            _context.Exceptions.Add(blueberryex);
+                var record = new Record()
+                {
+                    Message = $"Added new employee: {employee.FullString()}: ",
+                };
+                _context.Employees.Add(employee);
+                _context.Records.Add(record);
+                _context.SaveChanges();
+            });
+            _employees.Add(employee);
+            EmployeesChanged?.Invoke();
         }
-        
+
+        public async void AddExceptionAsync(Exception exception)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                var blueberryex = new BlueberryException()
+                {
+                    StackTrance = exception.Message + "\n" + exception.StackTrace,
+                    IsSolved = false
+                };
+                _context.Exceptions.Add(blueberryex);
+                _context.SaveChanges();
+            });
+        }
         
         public void AddHarvest(Harvest harvest)
         {
@@ -177,6 +277,47 @@ namespace Blueberry.DLL
             _context.Records.Add(record);
             HarvestChanged?.Invoke();
         }
+        
+        public void AddHarvestAsync(Harvest harvest)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                var record = new Record()
+                {
+                    Message = $"Added new harvest: {harvest.FullString()}: ",
+                };
+                _context.Harvests.Add(harvest);
+                _context.Records.Add(record);
+                _context.SaveChanges();
+            });
+            _harvests.Add(harvest);
+            HarvestChanged?.Invoke();
+        }
+        
+        public void AddEnumerableHarvestAsync(List<Harvest> harvests)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                for (int i = 0; i < harvests.Count(); i++)
+                {
+                    var harvest = harvests[i];
+                    var record = new Record()
+                    {
+                        Message = $"Added new harvest: {harvest.FullString()}: "
+                    };
+                    _context.Harvests.Add(harvest);
+                    _context.Records.Add(record);
+                }
+                _context.SaveChanges();
+            });
+            
+            foreach (var harvest in harvests)
+            {
+                _harvests.Add(harvest);
+            }
+            Thread.MemoryBarrier();
+            HarvestChanged?.Invoke();
+        }
 
         public void AddAddress(Address address)
         {
@@ -187,6 +328,22 @@ namespace Blueberry.DLL
             _context.Addresses.Add(address);
             _addresses.Add(address);
             _context.Records.Add(record);
+            AddressesChanged?.Invoke();
+        }
+        
+        public async void AddAddressAsync(Address address)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                var record = new Record()
+                {
+                    Message = $"Added new address: {address.ToString()}"
+                };
+                _context.Addresses.Add(address);
+                _context.Records.Add(record);
+                _context.SaveChanges();
+            });
+            _addresses.Add(address);
             AddressesChanged?.Invoke();
         }
 

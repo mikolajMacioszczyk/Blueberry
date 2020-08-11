@@ -149,7 +149,7 @@ namespace Blueberry.WPF.Pages.Orders.OrderControls
                 DateOfOrder = _orderDate,
                 DateOfRealization = _realizationDate
             };
-            DBConnector.GetInstance().AddOrder(order);
+            DBConnector.GetInstance().AddOrderAsync(order);
             Clear();
             ContentChangeRequested?.Invoke();
         }

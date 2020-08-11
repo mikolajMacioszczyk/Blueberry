@@ -15,14 +15,9 @@ namespace Blueberry.WPF
     /// </summary>
     public partial class App : Application
     {
-        private void App_OnExit(object sender, ExitEventArgs e)
-        {
-            DBConnector.GetInstance().Save();
-        }
-
         private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            DBConnector.GetInstance().AddException(e.Exception);
+            DBConnector.GetInstance().AddExceptionAsync(e.Exception);
             DBConnector.GetInstance().Save();
         }
     }

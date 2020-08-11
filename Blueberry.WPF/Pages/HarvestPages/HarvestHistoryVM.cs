@@ -30,9 +30,7 @@ namespace Blueberry.WPF.Pages.HarvestPages
                     };
                     output.Refresh();
                     return output;
-                });
-             Console.WriteLine();
-             Console.WriteLine();
+                }).ToList();
         }
     }
 }

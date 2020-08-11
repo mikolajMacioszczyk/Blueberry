@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Blueberry.DLL;
+using Blueberry.DLL.Enums;
 using Blueberry.DLL.Models;
 using Blueberry.WPF.Annotations;
 using Blueberry.WPF.Commands;
@@ -16,6 +17,8 @@ namespace Blueberry.WPF.Pages.EmployeePages
         private static string validationString2 = "Niepoprawny numer telefonu";
         private static string validationString3 = "Niepoprawna stawka";
         private static string validationString4 = "Pracownik o podanym imieniu i nazwisku już istnieje";
+
+        public event Action<PageType> ChangeContentRequested; 
 
         #region Properties
         private string _firstName;
@@ -58,12 +61,8 @@ namespace Blueberry.WPF.Pages.EmployeePages
                 OnPropertyChanged();
             }
         }
-        private string _info;
-        public string Info
-        {
-            get { return _info; }
-            set { _info = value; }
-        }
+        #endregion
+        #region Commands
         private ICommand _addCommand;
         public ICommand AddCommand
         {
@@ -92,20 +91,31 @@ namespace Blueberry.WPF.Pages.EmployeePages
                 return _discardCommand;
             }
         }
+        private ICommand _changeContentCommand;
+        public ICommand ChangeContentCommand
+        {
+            get
+            {
+                if (_changeContentCommand == null)
+                {
+                    _changeContentCommand = new RelayCommand(p => true,
+                        p => ChangeContentRequested?.Invoke(PageType.EmployerPage));
+                }
+                return _changeContentCommand;
+            }
+        }
         #endregion
 
         private void Add()
         {
             if (string.IsNullOrEmpty(FirstName) || string.IsNullOrEmpty(LastName) || string.IsNullOrEmpty(PhoneNumber))
             {
-                Info = validationString1;
-                return;
+                throw new InvalidOperationException(validationString1);
             }
 
             if (DBConnector.GetInstance().GetEmployees().Any(e => e.FirstName.Equals(FirstName) && e.LastName.Equals(LastName)))
             {
-                Info = validationString4;
-                return;
+                throw new InvalidOperationException(validationString4);
             }
 
             int number;
@@ -119,13 +129,11 @@ namespace Blueberry.WPF.Pages.EmployeePages
             }
             catch (FormatException)
             {
-                Info = validationString2;
-                return;
+                throw new InvalidOperationException(validationString2);
             }
             if (Rate < 0.1)
             {
-                Info = validationString3;
-                return;
+                throw new InvalidOperationException(validationString3);
             }
             var employee = new Employee()
             {
@@ -136,15 +144,13 @@ namespace Blueberry.WPF.Pages.EmployeePages
                 TotalCollected = 0,
                 UnPaided = 0
             };
-            DBConnector.GetInstance().AddEmployee(employee);
+            DBConnector.GetInstance().AddEmployeeAsync(employee);
             Clear();
-            throw new InvalidCastException("Wrzyc messageboxa");
         }
 
         private void Discard()
         {
             Clear();
-            throw new InvalidCastException("Wrzuć messageboxa");
         }
 
         private void Clear()
@@ -153,7 +159,6 @@ namespace Blueberry.WPF.Pages.EmployeePages
             LastName = string.Empty;
             PhoneNumber = string.Empty;
             Rate = 0;
-            Info = string.Empty;
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

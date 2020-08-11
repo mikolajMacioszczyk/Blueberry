@@ -13,6 +13,7 @@ namespace Blueberry.WPF.Pages.Orders.OrderControls
 {
     public class EditOrderVM : INotifyPropertyChanged
     {
+        public event Action ChangeContentRequested;
         private AngToPlStatusConverter statusConverter = new AngToPlStatusConverter();
         private AngToPlPriorityConverter priorityConverter = new AngToPlPriorityConverter();
         private Order _selectedOrder;
@@ -32,8 +33,11 @@ namespace Blueberry.WPF.Pages.Orders.OrderControls
                 {
                     _submitCommand = new RelayCommand(
                         p => IsValid(),
-                        p => SubmitEditOrder()
-                        );                    
+                        p =>
+                        {
+                            SubmitEditOrder();
+                            ChangeContentRequested?.Invoke();
+                        });                    
                 }
                 return _submitCommand;
             }
@@ -47,8 +51,11 @@ namespace Blueberry.WPF.Pages.Orders.OrderControls
                 {
                     _discardCommand = new RelayCommand(
                         p => true,
-                        p => Clear()
-                    );                    
+                        p =>
+                        {
+                            Clear();
+                            ChangeContentRequested?.Invoke();
+                        });                    
                 }
                 return _discardCommand;
             }
@@ -126,7 +133,7 @@ namespace Blueberry.WPF.Pages.Orders.OrderControls
             var oldOrderDate = _selectedOrder.DateOfOrder;
             var oldRealizationDate = _selectedOrder.DateOfRealization;
             Update();
-            DBConnector.GetInstance().ModifyOrder(
+            DBConnector.GetInstance().ModifyOrderAsync(
                 _selectedOrder, new Modification[]
                 {
                     new Modification(oldAmount, _selectedOrder.Amount),

@@ -15,6 +15,7 @@ namespace Blueberry.WPF.Pages.Customers
     {
         private static string _validationString1 = "Pola oznaczone gwiazdką muszą być wypełnione";
         private static string _validationString2 = "Telefon powinien być numerem składającym się z 9 cyfr";
+        private static string _validationString3 = "Klient o podanym imieniu i nazwisku już istnieje";
 
         public event Action Done;
         
@@ -125,10 +126,29 @@ namespace Blueberry.WPF.Pages.Customers
         // zrobić dependencyProp w xaml i podpiąć się do jego wartości
         private void Add()
         {
+            if (Validate())
+            {
+                var address = GetAddress();
+                var customer = new Customer()
+                {
+                    FirstName = _firstName,
+                    LastName = _lastName,
+                    Number = _phoneNumber,
+                    Orders = new List<Order>(),
+                    Address = address
+                };
+                DBConnector.GetInstance().AddCustomerAsync(customer);
+                Clear();
+                Done?.Invoke();
+            }
+        }
+
+        private bool Validate()
+        {
             if (string.IsNullOrEmpty(FirstName) || string.IsNullOrEmpty(LastName) || string.IsNullOrEmpty(PhoneNumber))
             {
                 Info = _validationString1;
-                return;
+                return false;
             }
 
             try
@@ -142,21 +162,14 @@ namespace Blueberry.WPF.Pages.Customers
             catch (FormatException e)
             {
                 Info = _validationString2;
-                return;
+                return false;
             }
-
-            var address = GetAddress();
-            var customer = new Customer()
+            if (DBConnector.GetInstance().GetCustomers().Any(c => c.FirstName.Equals(FirstName) && c.LastName.Equals(LastName)))
             {
-                FirstName = _firstName,
-                LastName = _lastName,
-                Number = _phoneNumber,
-                Orders = new List<Order>(),
-                Address = address
-            };
-            DBConnector.GetInstance().AddCustomer(customer);
-            Clear();
-            Done?.Invoke();
+                Info = _validationString3;
+                return false;
+            }
+            return true;
         }
 
         private Address GetAddress()
@@ -164,8 +177,16 @@ namespace Blueberry.WPF.Pages.Customers
             Address address;
             try
             {
-                address = DBConnector.GetInstance().GetAddresses().First(a =>
-                    a.City.Equals(City) && a.House == House && a.Street.Equals(Street));
+                if (House == 0 && Street == null && City == null)
+                {
+                    address = Address.Empty;
+                }
+                else
+                {
+                    address = DBConnector.GetInstance().GetAddresses().First(a =>
+                        a.City.Equals(City) && a.House == House && a.Street.Equals(Street));
+                }
+                
             }
             catch (InvalidOperationException)
             {
@@ -175,7 +196,7 @@ namespace Blueberry.WPF.Pages.Customers
                     House = _house,
                     Street = _street,
                 };
-                DBConnector.GetInstance().AddAddress(address);
+                DBConnector.GetInstance().AddAddressAsync(address);
             }
             return address;
         }
@@ -194,6 +215,7 @@ namespace Blueberry.WPF.Pages.Customers
             City = string.Empty;
             Street = string.Empty;
             House = 0;
+            Info = string.Empty;
         }
         
         #region PropertyChanged

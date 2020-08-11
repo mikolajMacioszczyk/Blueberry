@@ -1,4 +1,4 @@
-﻿<Window x:Class="Blueberry.WPF.Windows.CustomerDetailsWindow"
+﻿<Window x:Class="Blueberry.WPF.Pages.Customers.CustomerDetailsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,7 +9,7 @@
         SizeToContent="Width"
         Title="Blueberry" Height="450"
         WindowStartupLocation="CenterScreen"
-        Icon="../Images/berry.png">
+        Icon="../../Images/berry.png">
     <Window.Resources>
         <converters:AngToPlPriorityConverter x:Key="PriorityToPlConverter" />
         <converters:AngToPlStatusConverter x:Key="StatusToPlConverter" />

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using Blueberry.DLL;
 using Blueberry.DLL.Models;
@@ -15,11 +16,6 @@ namespace Blueberry.WPF.Pages.HarvestPages
     public class NewHarvestVM : INotifyPropertyChanged
     {
         #region Properties
-        private Employee _selectedEmployee;
-        private IEnumerable<Employee> _employees;
-        private int _amount;
-        private ICommand _addHarvest;
-        private ICommand _addWholeHarvests;
         private ICommand _discard;
         public ICommand DiscardCommand
         {
@@ -35,34 +31,37 @@ namespace Blueberry.WPF.Pages.HarvestPages
                 return _discard;
             }
         }
+        private ICommand _addHarvestCommand;
         public ICommand AddHarvestCommand
         {
             get
             {
-                if (_addHarvest == null)
+                if (_addHarvestCommand == null)
                 {
-                    _addHarvest = new RelayCommand(
+                    _addHarvestCommand = new RelayCommand(
                         p => Validate(),
                         p => AddSingleHarvest()
                     );                    
                 }
-                return _addHarvest;
+                return _addHarvestCommand;
             }
         }
+        private ICommand _addWholeHarvestsCommand;
         public ICommand AddWholeHarvestCommand
         {
             get
             {
-                if (_addWholeHarvests == null)
+                if (_addWholeHarvestsCommand == null)
                 {
-                    _addWholeHarvests = new RelayCommand(
+                    _addWholeHarvestsCommand = new RelayCommand(
                         p => Added.Count != 0,
                         p => AddWholeHarvest()
                     );                    
                 }
-                return _addWholeHarvests;
+                return _addWholeHarvestsCommand;
             }
         }
+        private IEnumerable<Employee> _employees;
         public IEnumerable<Employee> Employees
         {
             get => _employees;
@@ -72,6 +71,7 @@ namespace Blueberry.WPF.Pages.HarvestPages
                 OnPropertyChanged(nameof(Employees));
             }
         }
+        private Employee _selectedEmployee;
         public Employee SelectedEmployee
         {
             get => _selectedEmployee;
@@ -82,6 +82,7 @@ namespace Blueberry.WPF.Pages.HarvestPages
                 CommandManager.InvalidateRequerySuggested();
             }
         }
+        private int _amount;
         public int Amount
         {
             get => _amount;
@@ -103,11 +104,7 @@ namespace Blueberry.WPF.Pages.HarvestPages
 
         private void AddWholeHarvest()
         {
-            var connector = DBConnector.GetInstance();
-            foreach (var harvest in Added)
-            {
-                connector.AddHarvest(harvest);
-            }
+            DBConnector.GetInstance().AddEnumerableHarvestAsync(new List<Harvest>(Added));
             ClearAdded();
         }
 
@@ -117,14 +114,24 @@ namespace Blueberry.WPF.Pages.HarvestPages
             CommandManager.InvalidateRequerySuggested();
         }
 
-        private void AddSingleHarvest()    
+        private void AddSingleHarvest()
         {
-            var harvest = new Harvest()
+            Harvest harvest;
+            if (Added.Any(h => h.Employee.Equals(SelectedEmployee)))
             {
-                Amount = this._amount,
-                Employee = this._selectedEmployee,
-                DateTime = DateTime.Now
-            };
+                harvest = Added.First(h => h.Employee.Equals(SelectedEmployee));
+                harvest.Amount += Amount;
+                Added.Remove(harvest);
+            }
+            else
+            {
+                harvest = new Harvest()
+                {
+                    Amount = this._amount,
+                    Employee = this._selectedEmployee,
+                    DateTime = DateTime.Now
+                };
+            }
             Added.Add(harvest);
             CommandManager.InvalidateRequerySuggested();
         }

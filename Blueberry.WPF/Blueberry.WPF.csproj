@@ -126,6 +126,9 @@
     <Compile Include="Pages\Calendar\CalendarPage.xaml.cs">
       <DependentUpon>CalendarPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Customers\CustomerDetailsWindow.xaml.cs">
+      <DependentUpon>CustomerDetailsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Customers\CustomerList.xaml.cs">
       <DependentUpon>CustomerList.xaml</DependentUpon>
     </Compile>
@@ -201,6 +204,12 @@
     <Compile Include="UserControls\EmployeeControls\EmployeeTemplateHeader.xaml.cs">
       <DependentUpon>EmployeeTemplateHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\EmployeeControls\EmployeeTemplateImplementation\EditEmployee.xaml.cs">
+      <DependentUpon>EditEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EmployeeControls\EmployeeTemplateImplementation\ShowEmployee.xaml.cs">
+      <DependentUpon>ShowEmployee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\EmployeeControls\EmployeeTemplateVM.cs" />
     <Compile Include="UserControls\EmployeeControls\SalaryTemplate.xaml.cs">
       <DependentUpon>SalaryTemplate.xaml</DependentUpon>
@@ -214,9 +223,6 @@
     </Compile>
     <Compile Include="UserControls\HarvestControls\HarvestListVM.cs" />
     <Compile Include="MainWindowFolder\ViewModel.cs" />
-    <Compile Include="Windows\CustomerDetailsWindow.xaml.cs">
-      <DependentUpon>CustomerDetailsWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\EditCustomerWindow.xaml.cs">
       <DependentUpon>EditCustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -235,6 +241,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Customers\CustomerDetailsWindow.xaml" />
     <Page Include="Pages\Customers\CustomerList.xaml" />
     <Page Include="Pages\Customers\CustomersPage.xaml" />
     <Page Include="Pages\Customers\NewCustomerUserControl.xaml" />
@@ -260,10 +267,11 @@
     <Page Include="UserControls\ColoredCalendarDir\CCItem.xaml" />
     <Page Include="UserControls\EmployeeControls\EmployeeTemplate.xaml" />
     <Page Include="UserControls\EmployeeControls\EmployeeTemplateHeader.xaml" />
+    <Page Include="UserControls\EmployeeControls\EmployeeTemplateImplementation\EditEmployee.xaml" />
+    <Page Include="UserControls\EmployeeControls\EmployeeTemplateImplementation\ShowEmployee.xaml" />
     <Page Include="UserControls\EmployeeControls\SalaryTemplate.xaml" />
     <Page Include="UserControls\HarvestControls\HarvestItem.xaml" />
     <Page Include="UserControls\HarvestControls\HarvestList.xaml" />
-    <Page Include="Windows\CustomerDetailsWindow.xaml" />
     <Page Include="Windows\EditCustomerWindow.xaml" />
     <Page Include="Windows\EditEmployeeWindow.xaml" />
   </ItemGroup>
@@ -296,25 +304,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\BlueberriesBackground.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Blueberry.DLL\Blueberry.DLL.csproj">
       <Project>{cda7a8bd-b905-41d6-ae00-b7d06f21717e}</Project>
       <Name>Blueberry.DLL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\add_icone.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\list.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -329,7 +322,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\next_icone.png">
+    <Folder Include="obj\Release\Pages\" />
+    <Folder Include="obj\Release\UserControls\OrderControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\berry.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add_icone.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
@@ -339,18 +341,24 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\next_icone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\list.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Images\coin.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\berry.png">
+    <Resource Include="Images\BlueberriesBackground.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="obj\Release\Pages\" />
-    <Folder Include="obj\Release\UserControls\OrderControls" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

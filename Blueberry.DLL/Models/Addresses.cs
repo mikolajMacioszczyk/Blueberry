@@ -53,6 +53,17 @@ namespace Blueberry.DLL.Models
             }
         }
         #endregion
+        private static readonly Address EmptyInstance = new Address()
+        {
+            House = 0,
+            City = string.Empty,
+            Street = string.Empty
+        };
+        public static Address Empty
+        {
+            get => EmptyInstance;
+        }
+        
 
         public Address() { }
 

@@ -10,6 +10,7 @@ namespace Blueberry.WPF.UserControls.EmployeeControls
 {
     public class SalaryTemplateVM : INotifyPropertyChanged
     {
+        #region Properties
         public Employee Employee {get; private set; }
         private bool _isBottomContentVisible;
         public bool IsBottomContentVisible
@@ -31,6 +32,8 @@ namespace Blueberry.WPF.UserControls.EmployeeControls
                 OnPropertyChanged();
             }
         }
+        #endregion
+        #region Commands
         private ICommand _payAllCommand;
         public ICommand PayAllCommand
         {
@@ -87,6 +90,7 @@ namespace Blueberry.WPF.UserControls.EmployeeControls
                 return _acceptCommand;
             }
         }
+        #endregion
 
         public SalaryTemplateVM(Employee employee)
         {
@@ -95,7 +99,7 @@ namespace Blueberry.WPF.UserControls.EmployeeControls
         
         private void Pay(float pay)
         {
-            DBConnector.GetInstance().ModifyEmployee(Employee, new []{new Modification(Employee.UnPaided, Employee.UnPaided-pay)});
+            DBConnector.GetInstance().ModifyEmployeeAsync(Employee, new []{new Modification(Employee.UnPaided, Employee.UnPaided-pay)});
             Employee.UnPaided -= pay;
             CommandManager.InvalidateRequerySuggested();
             IsBottomContentVisible = false;

@@ -4,12 +4,15 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Blueberry.DLL;
 using Blueberry.DLL.Enums;
 using Blueberry.DLL.Models;
 using Blueberry.WPF.Annotations;
 using Blueberry.WPF.Commands;
+using Blueberry.WPF.UserControls.EmployeeControls;
 
 namespace Blueberry.WPF.Pages.EmployeePages
 {
@@ -18,7 +21,7 @@ namespace Blueberry.WPF.Pages.EmployeePages
         private SortEmployeeBy _sortBy;
         private SortEmployeeBy SortBy
         {
-            get { return _sortBy; }
+            get => _sortBy;
             set
             {
                 _sortBy = value; 
@@ -27,8 +30,6 @@ namespace Blueberry.WPF.Pages.EmployeePages
             }
         }
         private ICommand _changeSort;
-        private List<Employee> _employees;
-
         public ICommand ChangeSort
         {
             get
@@ -37,55 +38,64 @@ namespace Blueberry.WPF.Pages.EmployeePages
                 {
                     _changeSort = new RelayCommand(p =>
                     {
-                        SortEmployeeBy input = p is SortEmployeeBy ? (SortEmployeeBy) p : SortEmployeeBy.ByName;
+                        SortEmployeeBy input = (SortEmployeeBy) Enum.Parse(typeof(SortEmployeeBy), p.ToString());
                         return SortBy != input;
                     }, p =>
                     {
-                        SortBy = p is SortEmployeeBy ? (SortEmployeeBy) p : SortEmployeeBy.ByName;
+                        SortBy = (SortEmployeeBy) Enum.Parse(typeof(SortEmployeeBy), p.ToString());
                     });
                 }
                 return _changeSort;
             }
         }
-
-        public List<Employee> Employees
+        private List<SalaryTemplateVM> _salaryModels;
+        public List<SalaryTemplateVM> SalaryModels
         {
-            get => _employees;
+            get => _salaryModels;
             set
             {
-                _employees = value;
+                _salaryModels = value;
                 OnPropertyChanged();
             }
         }
 
         public SalaryPageVM()
         {
-            Employees = new List<Employee>();
-            SetEmployees();
-            DBConnector.GetInstance().EmployeesChanged += SetEmployees;
+            SalaryModels = new List<SalaryTemplateVM>();
+            Refresh();
+            DBConnector.GetInstance().EmployeesChanged += Refresh;
         }
 
-        private void SetEmployees()
+        private void Refresh()
         {
-            Employees.Clear();
-            var data = DBConnector.GetInstance().GetEmployees();
-            switch (SortBy)
+            SetEmployees();   
+        }
+
+        private async void SetEmployees()
+        {
+            await Task.Factory.StartNew(() =>
             {
-                case SortEmployeeBy.ByName:
-                    Employees = data.OrderBy(e => e.LastName).ThenBy(e => e.FirstName).ToList();
-                    break;
-                case SortEmployeeBy.ByRate:
-                    Employees = data.OrderBy(e => e.Rate).ToList();
-                    break;
-                case SortEmployeeBy.ByCollected:
-                    Employees = data.OrderBy(e => e.TotalCollected).ToList();
-                    break;
-                case SortEmployeeBy.ByUnpaided:
-                    Employees = data.OrderBy(e => e.UnPaided).ToList();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                var data = DBConnector.GetInstance().GetEmployees();
+                IOrderedEnumerable<Employee> sorted;
+                switch (SortBy)
+                {
+                    case SortEmployeeBy.ByName:
+                        sorted = data.OrderBy(e => e.LastName).ThenBy(e => e.FirstName);
+                        break;
+                    case SortEmployeeBy.ByRate:
+                        sorted = data.OrderByDescending(e => e.Rate);
+                        break;
+                    case SortEmployeeBy.ByCollected:
+                        sorted = data.OrderByDescending(e => e.TotalCollected);
+                        break;
+                    case SortEmployeeBy.ByUnpaided:
+                        sorted = data.OrderByDescending(e => e.UnPaided);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                SalaryModels = sorted.Select(e => new SalaryTemplateVM(e)).ToList();
+            });
         }
         
         #region PropertyChanged

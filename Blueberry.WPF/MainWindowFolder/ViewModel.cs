@@ -81,6 +81,10 @@ namespace Blueberry.WPF.MainWindowFolder
                 {PageType.HarvestHistoryPage, new HarvestHistoryPage()},
                 {PageType.StatisticsPage, new StatisticsPage()}
             };
+            var employerModel = (pages[PageType.EmployerPage].Resources["Model"] as EmployeePageVM);
+            employerModel.ContentSwitchRequested += ChangePage;
+            var newEmployeerModel = (pages[PageType.NewEmployeePage].Resources["Model"] as NewEmployeeVM);
+            newEmployeerModel.ChangeContentRequested += ChangePage;
         }
         #endregion
         

@@ -40,11 +40,11 @@ namespace Blueberry.WPF.Pages.Customers
 
         public CustomersPageVM()
         {
-            RightSide = _customerList;
             var newCustomerVm = new NewCustomerVM();
             newCustomerVm.Done += () => { RightSide = _customerList;};
             _newCustomerUserControl = new NewCustomerUserControl(newCustomerVm);
             _customerList = new CustomerList();
+            RightSide = _customerList;
         }
         
         #region OnPropertyChanged

@@ -69,8 +69,7 @@
                 </Border>
 
                 <ScrollViewer>
-                    <ItemsControl x:Name="SalaryItemsControl"
-                                  ItemsSource="{Binding Path=Employees}"
+                    <ItemsControl ItemsSource="{Binding Path=SalaryModels}"
                                   Margin="20,0">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -82,8 +81,7 @@
                                 <Border Width="{Binding ElementName=SalaryItemsControl}"
                                         Padding="5" CornerRadius="3"
                                         BorderThickness="0,0,0,3" BorderBrush="DarkGray">
-                                    <!--Dodać property które zbiera employee, następnie tworzyć model i go wstrzyknąć -->
-                                    <employeeControls:SalaryTemplate Employee="{Binding}" />
+                                    <employeeControls:SalaryTemplate DataContext="{Binding}" />
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

@@ -7,6 +7,32 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Margin="20">
+        <StackPanel.Resources>
+            <Style TargetType="{x:Type Button}" x:Key="ButtonStyle">
+                <Setter Property="Margin" Value="20" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="BorderThickness" Value="0,0,1,1" />
+                <Setter Property="Background" Value="Teal" />
+                <Setter Property="Width" Value="150" />
+            </Style>
+            <Style TargetType="{x:Type ComboBox}" x:Key="ComboBoxStyle">
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Margin" Value="10" />
+            </Style>
+            <Style TargetType="{x:Type TextBlock}" x:Key="TextboxStyle">
+                <Setter Property="Margin" Value="10,5" />
+            </Style>
+            <Style TargetType="{x:Type TextBox}" x:Key="TextBoxStyle">
+                <Setter Property="Margin" Value="10,5" />
+                <Setter Property="MinWidth" Value="150" />
+                <Setter Property="TextAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="{x:Type DatePicker}" x:Key="DatePicerStyle">
+                <Setter Property="Margin" Value="10,5" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+            </Style>
+        </StackPanel.Resources>
+        
         <dialogs:MessageDialogBox
             x:Name="SubmitDialogBox"
             Caption="Czy na pewno chcesz zatwierdzić zmiany?"
@@ -19,41 +45,46 @@
             Caption="Zmiany zostały wycofane"
             CommandAfter="{Binding Path=DiscardCommand}" />
         
-        <TextBlock Text="{Binding Path=SelectedOrder.Customer, StringFormat=Klient: {0}}" />
+        <TextBlock Text="{Binding Path=SelectedOrder.Customer, StringFormat=Klient: {0}}"
+                   Style="{StaticResource TextboxStyle}" Foreground="Teal" FontWeight="Bold"/>
         
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Ilość: " />
-            <TextBox Text="{Binding Path=Amount}" />
+            <TextBlock Text="Ilość: " Style="{StaticResource TextboxStyle}" />
+            <TextBox Text="{Binding Path=Amount}" Style="{StaticResource TextBoxStyle}" />
         </StackPanel>
         
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Priorytet:" />
+            <TextBlock Text="Priorytet:" Style="{StaticResource TextboxStyle}" />
             <ComboBox ItemsSource="{Binding Path=Priorities}"
-                      SelectedItem="{Binding Path=SelectedPriority}"/>
+                      SelectedItem="{Binding Path=SelectedPriority}"
+                      Style="{StaticResource ComboBoxStyle}"/>
         </StackPanel>
         
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Status:" />
+            <TextBlock Text="Status:" Style="{StaticResource TextboxStyle}" />
             <ComboBox ItemsSource="{Binding Path=Statuses}"
                       SelectedItem="{Binding Path=SelectedStatus}"
-                      Text="{Binding Path=SelectedStatus}" />
+                      Text="{Binding Path=SelectedStatus}" 
+                      Style="{StaticResource ComboBoxStyle}"/>
         </StackPanel>
         
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Data przyjęcia:" />
-            <DatePicker SelectedDate="{Binding OrderDate}" />
+            <TextBlock Text="Data przyjęcia:" Style="{StaticResource TextboxStyle}" />
+            <DatePicker SelectedDate="{Binding OrderDate}" Style="{StaticResource DatePicerStyle}" />
         </StackPanel>
         
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Data realizacji:" />
-            <DatePicker SelectedDate="{Binding RealizationDate}" />
+            <TextBlock Text="Data realizacji:" Style="{StaticResource TextboxStyle}" />
+            <DatePicker SelectedDate="{Binding RealizationDate}" Style="{StaticResource DatePicerStyle}" />
         </StackPanel>
         
         <StackPanel Orientation="Horizontal">
             <Button Content="Zatwierdź" 
-                    Command="{Binding ElementName=SubmitDialogBox, Path=Show}"/>
+                    Command="{Binding ElementName=SubmitDialogBox, Path=Show}"
+                    Style="{StaticResource ButtonStyle}"/>
             <Button Content="Anuluj"
-                    Command="{Binding ElementName=DiscardDialogBox, Path=Show}"/>
+                    Command="{Binding ElementName=DiscardDialogBox, Path=Show}"
+                    Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

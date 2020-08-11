@@ -23,7 +23,6 @@
                 </Style.Triggers>
             </Style>
         </ScrollViewer.Resources>
-        
         <ItemsControl DataContext="{StaticResource Model}" ItemsSource="{Binding Path=Customers}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
